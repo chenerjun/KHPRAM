@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL", "ETL\ETL.dtproj", "{492AC0BE-980F-44E5-BBC7-048D7F103D8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{538D7A93-D3B9-49C5-866F-AFAC00F84651}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{492AC0BE-980F-44E5-BBC7-048D7F103D8E}.Debug|Any CPU.ActiveCfg = Development
+		{492AC0BE-980F-44E5-BBC7-048D7F103D8E}.Debug|Any CPU.Build.0 = Development
+		{492AC0BE-980F-44E5-BBC7-048D7F103D8E}.Development|Any CPU.ActiveCfg = Development
+		{492AC0BE-980F-44E5-BBC7-048D7F103D8E}.Development|Any CPU.Build.0 = Development
+		{492AC0BE-980F-44E5-BBC7-048D7F103D8E}.Release|Any CPU.ActiveCfg = Development
+		{492AC0BE-980F-44E5-BBC7-048D7F103D8E}.Release|Any CPU.Build.0 = Development
+		{538D7A93-D3B9-49C5-866F-AFAC00F84651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{538D7A93-D3B9-49C5-866F-AFAC00F84651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{538D7A93-D3B9-49C5-866F-AFAC00F84651}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{538D7A93-D3B9-49C5-866F-AFAC00F84651}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{538D7A93-D3B9-49C5-866F-AFAC00F84651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{538D7A93-D3B9-49C5-866F-AFAC00F84651}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

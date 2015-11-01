@@ -1,0 +1,872 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/28/2015 5:09:26 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="T530"
+  DTS:CreatorName="T530\William"
+  DTS:DTSID="{2365257D-270A-474D-AE92-44804F939F7B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="KHPCategoryMap"
+  DTS:PackageType="5"
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{15CD2C55-D249-4E4B-8DD4-EE5C237C52B0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection get KHP Category CSV Mapping]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{499172CC-8F7C-4FE3-8847-C5FAB3C6810F}"
+      DTS:ObjectName="Flat File Connection get KHP Category CSV Mapping">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="28591"
+          DTS:ConnectionString="D:\Users\erjun\Documents\KHP\RAM\KHPCategoryMap.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TaxonomyCode"
+              DTS:DTSID="{8305AF3C-CAFD-4164-8E93-C1B81431DDA9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="KHPCategoryID"
+              DTS:DTSID="{9B3E3167-15C1-43D2-8094-83582DDE879C}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[T530.RAM]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A410EB3E-F999-4927-8DC9-CA7F12C3607B}"
+      DTS:ObjectName="T530.RAM">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=T530;Initial Catalog=RAM;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{44F56C64-FF03-4760-ABCA-428579D2940E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varOtherCategory">
+      <DTS:VariableValue
+        DTS:DataType="3">999</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{346AE7D4-9C5A-4D74-AB3D-623F793DF4B6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT get khpcategory csv file to update KHPTaxonomy Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="FF_SRC_Get_KHPCategoryMap_CSV"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection get KHP Category CSV Mapping]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection get KHP Category CSV Mapping]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].Columns[TaxonomyCode]"
+                      codePage="28591"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].ExternalColumns[TaxonomyCode]"
+                      length="50"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].Columns[TaxonomyCode]"
+                      name="TaxonomyCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].Columns[KHPCategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].ExternalColumns[KHPCategoryID]"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].Columns[KHPCategoryID]"
+                      name="KHPCategoryID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].ExternalColumns[TaxonomyCode]"
+                      codePage="28591"
+                      dataType="str"
+                      length="50"
+                      name="TaxonomyCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].ExternalColumns[KHPCategoryID]"
+                      dataType="i4"
+                      name="KHPCategoryID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_Table_KHPTaxonomy"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[KHPTaxonomy]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[KHPTaxonomy]) [refTable]
+where [refTable].[KHPTaxonomyCode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="KHPTaxonomyID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="KHPCategoryID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="KHPTaxonomyCode" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="KHPTaxonomyDesc" dataType="DT_STR" length="2000" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="KHPTaxonomyChangedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="KHPTaxonomyCreatedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Outputs[Sort Output].Columns[TaxonomyCode]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">28591</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[T530.RAM]"
+                  connectionManagerRefId="Package.ConnectionManagers[T530.RAM]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Inputs[Lookup Input].Columns[TaxonomyCode]"
+                      cachedCodepage="28591"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TaxonomyCode"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Outputs[Sort Output].Columns[TaxonomyCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">KHPTaxonomyCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Match Output].Columns[KHPCategoryID_LKP]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Match Output].Columns[KHPCategoryID_LKP]"
+                      name="KHPCategoryID_LKP"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">KHPCategoryID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">update KHPTaxonomy 
+set KHPCategoryID = ? 
+where KHPTaxonomyCode = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">28591</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[T530.RAM]"
+                  connectionManagerRefId="Package.ConnectionManagers[T530.RAM]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input].Columns[TaxonomyCode]"
+                      cachedCodepage="28591"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TaxonomyCode"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Outputs[Sort Output].Columns[TaxonomyCode]" />
+                    <inputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input].Columns[KHPCategoryID_LKP]"
+                      cachedDataType="i4"
+                      cachedName="KHPCategoryID_LKP"
+                      externalMetadataColumnId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Match Output].Columns[KHPCategoryID_LKP]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="28591"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SRT_KHPCategoryMap"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Inputs[Sort Input].Columns[TaxonomyCode]"
+                      cachedCodepage="28591"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TaxonomyCode"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].Columns[TaxonomyCode]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Inputs[Sort Input].Columns[KHPCategoryID]"
+                      cachedDataType="i4"
+                      cachedName="KHPCategoryID"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].Columns[KHPCategoryID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Outputs[Sort Output].Columns[TaxonomyCode]"
+                      codePage="28591"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Outputs[Sort Output].Columns[TaxonomyCode]"
+                      name="TaxonomyCode"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].Columns[TaxonomyCode]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Outputs[Sort Output].Columns[KHPCategoryID]"
+                      dataType="i4"
+                      lineageId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Outputs[Sort Output].Columns[KHPCategoryID]"
+                      name="KHPCategoryID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output].Columns[KHPCategoryID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table.Paths[Flat File Source Output]"
+              endId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Inputs[Sort Input]"
+              name="Flat File Source Output"
+              startId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table.Paths[Lookup Match Output]"
+              endId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table.Paths[Lookup No Match Output]"
+              endId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table.Paths[Sort Output]"
+              endId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy.Inputs[Lookup Input]"
+              name="Sort Output"
+              startId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="362,42"
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table"
+          TopLeft="44.5,72.5" />
+        <AnnotationLayout
+          Text="Read a CSV file. this CSV file has Kristen's category.&#xA;1st column is Taxonomy code this code appreas in Kristen's taxnomy file,&#xA;2nd colum refer to SQL Server KHPCategory table ID column"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="414,72"
+          Id="c4bbabe4-1074-4629-abc7-ef40a0ed22ab"
+          TopLeft="413,53" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT get khpcategory csv file to update KHPTaxonomy Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\SRT_KHPCategoryMap"
+          TopLeft="362,114" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy"
+          TopLeft="348,194" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\FF_SRC_Get_KHPCategoryMap_CSV"
+          TopLeft="327,36" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\Conditional Split"
+          TopLeft="581,287" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\OLE DB Command"
+          TopLeft="176,279" />
+        <EdgeLayout
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table.Paths[Lookup Match Output]"
+          TopLeft="449,236">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-190,43"
+              Start="0,0"
+              End="-190,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="-4,21.5" />
+                  <mssgle:LineSegment
+                    End="-186,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-186,21.5"
+                    Point2="-190,21.5"
+                    Point3="-190,25.5" />
+                  <mssgle:LineSegment
+                    End="-190,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-152.0600390625,26.5,114.120078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table.Paths[Flat File Source Output]"
+          TopLeft="453,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table.Paths[Sort Output]"
+          TopLeft="451.75,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT get khpcategory csv file to update KHPTaxonomy Table.Paths[Lookup No Match Output]"
+          TopLeft="481.333333333333,236">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="177.166666666667,51"
+              Start="0,0"
+              End="177.166666666667,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.6404715127701" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.6404715127701"
+                    Point2="0,20.6404715127701"
+                    Point3="4,20.6404715127701" />
+                  <mssgle:LineSegment
+                    End="173.166666666667,20.6404715127701" />
+                  <mssgle:CubicBezierSegment
+                    Point1="173.166666666667,20.6404715127701"
+                    Point2="177.166666666667,20.6404715127701"
+                    Point3="177.166666666667,24.6404715127701" />
+                  <mssgle:LineSegment
+                    End="177.166666666667,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="23.9082942708334,25.6404715127701,129.350078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="set KHPcategoryID to 999 if the KHPTaxonomyCode does not appear in Kirsten's Table "
+          ParentId="Package\DFT get khpcategory csv file to update KHPTaxonomy Table"
+          FontInfo="{assembly:Null}"
+          Size="271,72"
+          Id="2a9ddb5b-fcfd-4ddb-bced-8b39685572b0"
+          TopLeft="735,176" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT get khpcategory csv file to update KHPTaxonomy Table\LKP_Table_KHPTaxonomy">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[KHPTaxonomy]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

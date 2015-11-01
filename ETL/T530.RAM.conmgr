@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:DelayValidation="True"
+  DTS:ObjectName="T530.RAM"
+  DTS:DTSID="{0F6BD84F-BD54-48DE-8201-666D91840F53}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::T530RAM_ConnectionString]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;User ID=sa;Initial Catalog=RAM;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6kvgLUfbokqGlg5BOqJddgAAAAACAAAAAAAQZgAAAAEAACAAAACzstfvNPy/dMPZJxjASEGX0DQ1y0TTZ1eNZuhdfluYvgAAAAAOgAAAAAIAACAAAABUgXl6oIT6HicoeOR2/2OOKvtHgFYcET31L47w+PiM3IAAAAA5yKbRyuTYr1yHuHOOSN1wAArgRm27Sh9tJWiKSbU0SM69paDchwPNofR3865uto/gEiiLJT/TLQpvI9p2ybUOqYRp7/+NCrTl3R6bHl6NVSGJD/bJNVI0F3HroMn6tLgs9xtsVK6ZSJwVgKDW6n53rUwrWzvfTFl0NrtBAMmz0EAAAACT15/wJg0IyRNtbA6E51GmYE6bX8R7v7TD1IJtcSL/ocO1jLPBTBfy/lVr3F0+3yGGcO04ehzz6WN4IAVHwuoG</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
