@@ -21,6 +21,14 @@ namespace Web.WebServices
     public class MapService : System.Web.Services.WebService
     {
 
+        [WebMethod(MessageName = "Demo_Comsume_WebServices_JSON", Description = "A Demo Comsumes a JSON WebServices")]
+        [ScriptMethod(UseHttpGet = false, ResponseFormat = ResponseFormat.Json)]
+        public string DemoJSON()
+        {
+            string r = "[{ \"cityid\": 11133, \"ProvinceID\": 6, \"CityName\": \"Tor Bay, NS\" },  { \"cityid\": 11135, \"ProvinceID\": 9, \"CityName\": \"Toronto, ON\" }, { \"cityid\": 11138, \"ProvinceID\": 1, \"CityName\": \"Torrington, AB\" }]";
+            return r;
+        }
+
         [WebMethod]
         [ScriptMethod(UseHttpGet = false, ResponseFormat = ResponseFormat.Json)]
         public string getmapen()
