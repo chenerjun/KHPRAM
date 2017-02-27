@@ -1,14 +1,6 @@
--- ================================================
--- Template generated from Template Explorer using:
--- Create Procedure (New Menu).SQL
---
--- Use the Specify Values for Template Parameters 
--- command (Ctrl-Shift-M) to fill in the parameter 
--- values below.
---
--- This block of comments will not be included in
--- the definition of the procedure.
--- ================================================
+USE [RAM]
+GO
+/****** Object:  StoredProcedure [dbo].[Proc_Get_Resource_By_Coverage]    Script Date: 2/24/2017 11:02:15 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -17,8 +9,11 @@ GO
 -- Author:		William Chen
 -- Create date: Aug.29, 2016
 -- Description:	Accounting to access to token, get resource by its coverage, and filter by language.  
+-- REVERSION: On Feb24,2017
+-- commented Cross Apply ..., replace by using "           like '' +'%'+@s+'%'+''         "
+-- thus, the speed/performance improved a lot
 -- =======================================================================================================================================
-ALTER PROCEDURE Proc_Get_Resource_By_Coverage 
+ALTER PROCEDURE [dbo].[Proc_Get_Resource_By_Coverage] 
  @s nvarchar (255)  ,
  @lang nvarchar(50)  ,
  @token nvarchar(50)  
@@ -82,15 +77,15 @@ BEGIN
 					INNER JOIN  CityLocation AS c   ON a.PhysicalCityID = c.CityId 
 					INNER JOIN  Province     AS p   ON a.PhysicalProvinceID = p.ProvinceID 
 					INNER JOIN  ETLLoad      AS ETL ON a.ETLLoadID = ETL.ETLLoadID 
-					CROSS APPLY 	( 
-										select ¡¡   f.id,  f.KEYWORD   from   F_Splite_Coverage_into_word   (a.etlloadid )  as f  
-									)  AS K	
+					--CROSS APPLY 	( 
+					--					select ¡¡   f.id,  f.KEYWORD   from   F_Splite_Coverage_into_word   (a.etlloadid )  as f  
+					--				)  AS K	
 	WHERE   a.LanguageOfRecord = @lang     
 			AND		SC.Active = 1   
 			AND		TC.Active = 1   
-			AND		K.KEYWORD  like   ''   + @s  +   '%'  +  ''  
+			--AND		K.KEYWORD  like   ''   + @s  +   '%'  +  ''  
+			AND		a.Coverage	LIKE ''	+	'%'	+	@s	+	'%'	+	''
 	ORDER BY  a.TOPCategoryID,  a.SubCategoryID, a.Map
 
 
 END
-GO

@@ -106,10 +106,7 @@ namespace WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.kidshelpphone.ca,http://kidshelpphone.ca,https://www.kidshelpphone.ca," +
-            "https://kidshelpphone.ca,http://www.jeunessejecoute.ca,http://jeunessejecoute.ca" +
-            ",http://www.kidshelpdev.org,http://kidshelpdev.org,http://localhost,https://loca" +
-            "lhost")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"http://www.kidshelpphone.ca,http://kidshelpphone.ca,https://www.kidshelpphone.ca,https://kidshelpphone.ca,http://www.jeunessejecoute.ca,http://jeunessejecoute.ca,http://www.kidshelpdev.org,http://kidshelpdev.org,http://localhost,https://localhost,http://dev.khp.blanclabs.com, http://qa.khp.blanclabs.com, http://prd.khp.blanclabs.com")]
         public string AllowDomain {
             get {
                 return ((string)(this["AllowDomain"]));
@@ -118,7 +115,9 @@ namespace WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("::1,127.0.0.1,10.*.*.*, 207.164.226.2, 209.141.156.45, 50.100.14.*, 52.15.130.24")]
+        [global::System.Configuration.DefaultSettingValueAttribute("::1,127.0.0.1,10.*.*.*, 207.164.226.2, 209.141.156.45, 50.100.14.*, 52.15.130.24," +
+            " 192.197.205.213, 54.202.77.31,200.62.26.226,54.213.162.134,38.140.101.42,54.191" +
+            ".239.180")]
         public string AuthorizeIPAddresses {
             get {
                 return ((string)(this["AuthorizeIPAddresses"]));

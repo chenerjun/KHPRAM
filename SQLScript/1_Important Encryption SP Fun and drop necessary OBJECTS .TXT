@@ -128,7 +128,7 @@ RECONFIGURE
 GO
 USE [master]
 ALTER DATABASE [RAM] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
-RESTORE DATABASE [RAM] FROM  DISK = N'E:\RAMAPI\App_Data\DB.bak' WITH  FILE = 1,  NOUNLOAD,  REPLACE,  STATS = 5
+RESTORE DATABASE [RAM] FROM  DISK = N'C:\TEMP\DB.bak' WITH  FILE = 1,  NOUNLOAD,  REPLACE,  STATS = 5
 ALTER DATABASE [RAM] SET MULTI_USER
 GO
 
@@ -142,24 +142,7 @@ GO
 
 
 
---------------------------------------
----
----  Delete backup file from disk
----
---------------------------------------
--- To allow advanced options to be changed.
-EXEC sp_configure 'show advanced options', 1
-GO
--- To update the currently configured value for advanced options.
-RECONFIGURE
-GO
--- To enable the feature.
-EXEC sp_configure 'xp_cmdshell', 1
-GO
--- To update the currently configured value for this feature.
-RECONFIGURE
-GO
-xp_cmdshell 'del /F /Q  E:\RAMAPI\App_Data\DB.*'
+
 
 
 
@@ -5360,7 +5343,10 @@ GO
 -- =======================================================================================================================================
 -- Author:		William Chen
 -- Create date: Aug.29, 2016
--- Description:	Accounting to access to token, get resource by its coverage, and filter by language.  
+-- Description:	Accounting to access to token, get resource by its coverage, and filter by language. 
+-- REVERSION: Feb.24, 2017
+-- commented Cross Apply ..., replace by using "           like '' +'%'+@s+'%'+''         "
+-- thus, the speed/performance improved a lot 
 -- =======================================================================================================================================
 CREATE PROCEDURE Proc_Search_Resource_By_Coverage 
  @s nvarchar (255)  ,
@@ -5403,13 +5389,14 @@ FROM ramresource as a
 					INNER JOIN  CityLocation AS c   ON a.PhysicalCityID = c.CityId 
 					INNER JOIN  Province     AS p   ON a.PhysicalProvinceID = p.ProvinceID 
 					INNER JOIN  ETLLoad      AS ETL ON a.ETLLoadID = ETL.ETLLoadID 
-					CROSS APPLY 	( 
-										select 　   f.id,  f.KEYWORD   from   F_Splite_Coverage_into_word   (a.etlloadid )  as f  
-									)  AS K	
+					--CROSS APPLY 	( 
+					--					select 　   f.id,  f.KEYWORD   from   F_Splite_Coverage_into_word   (a.etlloadid )  as f  
+					--				)  AS K	
 WHERE   a.LanguageOfRecord = @lang     
 		AND		SC.Active = 1   
 		AND		TC.Active = 1   
-		AND		K.KEYWORD  like   ''   + @s  +   '%'  +  ''  
+		--AND		K.KEYWORD  like   ''   + @s  +   '%'  +  '' 
+		AND		A.Coverage	LIKE	''	+	'%'	+	@s	+	'%'	+	''
 ORDER BY  a.TOPCategoryID,  a.SubCategoryID, a.Map
 
 
@@ -5435,6 +5422,9 @@ DROP PROCEDURE Proc_Get_Resource_By_Coverage
 -- Author:		William Chen
 -- Create date: Aug.29, 2016
 -- Description:	Accounting to access to token, get resource by its coverage, and filter by language.  
+-- REVERSION: On Feb24,2017
+-- commented Cross Apply ..., replace by using "           like '' +'%'+@s+'%'+''         "
+-- thus, the speed/performance improved a lot  
 -- =======================================================================================================================================
 GO
 CREATE PROCEDURE Proc_Get_Resource_By_Coverage 
@@ -5502,13 +5492,14 @@ BEGIN
 					INNER JOIN  CityLocation AS c   ON a.PhysicalCityID = c.CityId 
 					INNER JOIN  Province     AS p   ON a.PhysicalProvinceID = p.ProvinceID 
 					INNER JOIN  ETLLoad      AS ETL ON a.ETLLoadID = ETL.ETLLoadID 
-					CROSS APPLY 	( 
-										select 　   f.id,  f.KEYWORD   from   F_Splite_Coverage_into_word   (a.etlloadid )  as f  
-									)  AS K	
+					--CROSS APPLY 	( 
+					--					select 　   f.id,  f.KEYWORD   from   F_Splite_Coverage_into_word   (a.etlloadid )  as f  
+					--				)  AS K	
 	WHERE   a.LanguageOfRecord = @lang     
 			AND		SC.Active = 1   
 			AND		TC.Active = 1   
-			AND		K.KEYWORD  like   ''   + @s  +   '%'  +  ''  
+			--AND		K.KEYWORD  like   ''   + @s  +   '%'  +  ''  
+			AND		a.Coverage	LIKE ''	+	'%'	+	@s	+	'%'	+	''
 	ORDER BY  a.TOPCategoryID,  a.SubCategoryID, a.Map
 
 
@@ -5857,6 +5848,28 @@ GO
 
 
  
+ 
+ 
+ 
+ --------------------------------------
+---
+---  Delete backup file from disk
+---
+--------------------------------------
+-- To allow advanced options to be changed.
+EXEC sp_configure 'show advanced options', 1
+GO
+-- To update the currently configured value for advanced options.
+RECONFIGURE
+GO
+-- To enable the feature.
+EXEC sp_configure 'xp_cmdshell', 1
+GO
+-- To update the currently configured value for this feature.
+RECONFIGURE
+GO
+xp_cmdshell 'del /F /Q  C:\TEMP\*.*'
+
 
 
 

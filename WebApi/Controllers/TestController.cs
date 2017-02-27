@@ -38,7 +38,6 @@ namespace WebApi.Controllers
         [Route("api/v2/tester/json/{token}/{lang}")]
         [ResponseType(typeof(ProvinceList))]
         [HttpGet]
-       
         public HttpResponseMessage Demo(string lang, string token)
         {
 
