@@ -59,6 +59,13 @@
         </Function>
         <Function Name="Proc_Get_Allow_Domain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Proc_Get_Allow_IP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Proc_Get_Google_All_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Proc_Get_Google_City_By_GoogleCityID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Proc_Get_Google_City_By_ProvinceID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Proc_Get_Resource_by_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CityID" Type="int" Mode="In" />
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
@@ -125,6 +132,13 @@
           <Parameter Name="topcategoryid" Type="int" Mode="In" />
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Increment_Google_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="L" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_Increment_Loaction_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="L" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="Proc_Increment_Suggestion_Word" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="L" Type="nvarchar" Mode="In" />
@@ -347,6 +361,20 @@
           </FunctionImport>
           <FunctionImport Name="Proc_Get_Allow_Domain" ReturnType="Collection(String)" />
           <FunctionImport Name="Proc_Get_Allow_IP" ReturnType="Collection(String)" />
+          <FunctionImport Name="Proc_Get_Google_All_City" ReturnType="Collection(RAMModel.GoogleCityList)" />
+          <FunctionImport Name="Proc_Get_Google_City_By_GoogleCityID" ReturnType="Collection(RAMModel.GoogleCityList)">
+          <Parameter Name="cid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Get_Google_City_By_ProvinceID" ReturnType="Collection(RAMModel.GoogleCityList)">
+          <Parameter Name="PID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Increment_Google_City" ReturnType="Collection(RAMModel.GoogleCityList)">
+          <Parameter Name="L" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Increment_Loaction_Search" ReturnType="Collection(RAMModel.CityList)">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="L" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
           <Property Type="Int32" Name="TopCategoryID" Nullable="false" />
@@ -434,6 +462,11 @@
           <Property Type="Decimal" Name="Longitude" Nullable="true" Precision="18" Scale="10" />
           <Property Type="String" Name="Phone" Nullable="true" MaxLength="2000" />
           <Property Type="String" Name="WebsiteAddress" Nullable="true" MaxLength="2000" />
+        </ComplexType>
+        <ComplexType Name="GoogleCityList">
+          <Property Type="Int32" Name="GoogleCityID" Nullable="false" />
+          <Property Type="String" Name="GoogleCity" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="province" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1321,6 +1354,51 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Proc_Get_Allow_Domain" FunctionName="RAMModel.Store.Proc_Get_Allow_Domain" />
           <FunctionImportMapping FunctionImportName="Proc_Get_Allow_IP" FunctionName="RAMModel.Store.Proc_Get_Allow_IP" />
+          <FunctionImportMapping FunctionImportName="Proc_Get_Google_All_City" FunctionName="RAMModel.Store.Proc_Get_Google_All_City">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.GoogleCityList">
+                <ScalarProperty Name="GoogleCityID" ColumnName="GoogleCityID" />
+                <ScalarProperty Name="GoogleCity" ColumnName="GoogleCity" />
+                <ScalarProperty Name="province" ColumnName="province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Google_City_By_GoogleCityID" FunctionName="RAMModel.Store.Proc_Get_Google_City_By_GoogleCityID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.GoogleCityList">
+                <ScalarProperty Name="GoogleCityID" ColumnName="GoogleCityID" />
+                <ScalarProperty Name="GoogleCity" ColumnName="GoogleCity" />
+                <ScalarProperty Name="province" ColumnName="province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Google_City_By_ProvinceID" FunctionName="RAMModel.Store.Proc_Get_Google_City_By_ProvinceID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.GoogleCityList">
+                <ScalarProperty Name="GoogleCityID" ColumnName="GoogleCityID" />
+                <ScalarProperty Name="GoogleCity" ColumnName="GoogleCity" />
+                <ScalarProperty Name="province" ColumnName="province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Increment_Google_City" FunctionName="RAMModel.Store.Proc_Increment_Google_City">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.GoogleCityList">
+                <ScalarProperty Name="GoogleCityID" ColumnName="GoogleCityID" />
+                <ScalarProperty Name="GoogleCity" ColumnName="GoogleCity" />
+                <ScalarProperty Name="province" ColumnName="province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Increment_Loaction_Search" FunctionName="RAMModel.Store.Proc_Increment_Loaction_Search">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.CityList">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

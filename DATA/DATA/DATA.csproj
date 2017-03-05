@@ -103,6 +103,9 @@
     <Compile Include="EF\CityResult.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\GoogleCityList.cs">
+      <DependentUpon>RAMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\ProvinceList.cs">
       <DependentUpon>RAMModel.tt</DependentUpon>
     </Compile>

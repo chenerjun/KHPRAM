@@ -31,5 +31,14 @@ namespace BIZ.Locations
 
             return response;
         }
+
+
+        #region Incrementlocation
+        public List<CityList> GetIncrementCityLocationList(string cl, string token)
+        {
+            var response = db.Proc_Increment_Loaction_Search(token, cl).ToList();
+            return response;
+        }
+        #endregion Incrementlocation
     }
 }

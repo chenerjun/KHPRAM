@@ -2,8 +2,6 @@
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,7 +10,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Filters;
- 
+
 
 namespace WebApi.Controllers
 {
@@ -33,20 +31,19 @@ namespace WebApi.Controllers
         /// </summary>
         /// <param name="token">Access token</param>
         /// <returns>return an allowable city list, [CityID], [City Name] and [Provincial Alias], fromat in JSON</returns>
-        [ActionName("json")]
+                [ActionName("json")]
                 [Route("api/v2/city/json/{token}")]
                 [Route("api/v2/ville/json/{token}")]
                 [ResponseType(typeof(CityList))]
                 [HttpGet]
-        [AuthorizeIPAddress]
-        public HttpResponseMessage GetAllCitis(string token)
-                {
+                public HttpResponseMessage GetAllCitis(string token)
+                        {
 
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    var r = citysercice.GetAllCitis(token);
+                            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                            var r = citysercice.GetAllCitis(token);
 
-                    return toJson(r);
-                }
+                            return toJson(r);
+                        }
         #endregion url friendly
 
         #region query string
@@ -55,7 +52,7 @@ namespace WebApi.Controllers
         /// </summary>
         /// <param name="token">Access token</param>
         /// <returns>return an allowable city list, [CityID], [City Name] and [Provincial Alias], fromat in JSON</returns>
-        [ActionName("json")]
+                    [ActionName("json")]
                     [Route("api/v2/city/json")]
                     [Route("api/v2/ville/json")]
                     [ResponseType(typeof(CityList))]
@@ -78,7 +75,7 @@ namespace WebApi.Controllers
         /// </summary>
         /// <param name="token">Access token</param>
         /// <returns>return an allowable city list, [City ID], [City Name] and [provincial Alias], format in XML</returns>
-        [Route("api/v2/city/xml/{token}")]
+                        [Route("api/v2/city/xml/{token}")]
                         [Route("api/v2/ville/xml/{token}")]
                         [ResponseType(typeof(CityList))]
                         [HttpGet]
@@ -104,7 +101,7 @@ namespace WebApi.Controllers
         /// </summary>
         /// <param name="token">Access token</param>
         /// <returns>return an allowable city list, [City ID], [City Name] and [provincial Alias], format in XML</returns>
-        [Route("api/v2/city/xml")]
+                        [Route("api/v2/city/xml")]
                         [Route("api/v2/ville/xml")]
                         [ResponseType(typeof(CityList))]
                         [HttpGet]
@@ -226,7 +223,7 @@ namespace WebApi.Controllers
 
 
         #region get city by city ID
-        #region response JSON
+            #region response JSON
         //Friendly
         /// <summary>
         /// Looks up particular allowable city's information in detail by using cityID, format in JSON.
@@ -265,7 +262,7 @@ namespace WebApi.Controllers
                     }
                     #endregion response JSON
 
-                #region response XML
+            #region response XML
                     //Friendly
                     /// <summary>
                     /// Get the allowable city's detail information by using cityID, format in XML.
@@ -317,11 +314,114 @@ namespace WebApi.Controllers
                             return Request.CreateResponse(HttpStatusCode.NoContent);
                         }
                     }
-            #endregion response XML
+        #endregion response XML
         #endregion
 
 
-            private HttpResponseMessage toJson(Object r)
+
+        #region Increment City location
+            #region JSON
+            //Friendly
+            /// <summary>
+            /// Increment get city location list by path city name and access token, response format in JSON
+            /// </summary>
+            /// <param name="token">access token</param>
+            /// <param name="cl">city location name</param>
+            /// <returns>Return a JSON format city province list</returns>
+            [ActionName("json")]
+            [Route("api/v2/city/suggestion/json/{token}/{cl}")]
+            [Route("api/v2/ville/suggestion/json/{token}/{cl}")]
+            [ResponseType(typeof(CityList))]
+            [HttpGet]
+            public HttpResponseMessage IncrementCityLocationList(string token, string cl)
+            {
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                var json = citysercice.GetIncrementCityLocationList(cl,token).ToList();
+                return toJson(json);
+            }
+
+            //Query String
+            /// <summary>
+            /// Query string style, Increment get city location list by query city name and access token, response format in JSON
+            /// </summary>
+            /// <param name="token">access token</param>
+            /// <param name="cl">city location name</param>
+            /// <returns>Return a JSON format city province list</returns>
+            [ActionName("json")]
+            [Route("api/v2/city/suggestion/json")]
+            [Route("api/v2/ville/suggestion/json")]
+            [ResponseType(typeof(CityList))]
+            [HttpGet]
+            public HttpResponseMessage IncrementCityLocation_QS(string token, string cl)
+            {
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                var json = citysercice.GetIncrementCityLocationList(cl, token).ToList();
+                return toJson(json);
+            }
+            #endregion JSON
+
+
+            #region XML
+            //Friendly
+            /// <summary>
+            /// Increment get city location list by path city name and access token, response format in XML
+            /// </summary>
+            /// <param name="token">Access token</param>
+            /// <param name="cl">city loaction name</param>
+            /// <returns>Return a XML format city province list</returns>
+            [ActionName("xml")]
+            [Route("api/v2/city/suggestion/xml/{token}/{cl}")]
+            [Route("api/v2/ville/suggestion/xml/{token}/{cl}")]
+            [ResponseType(typeof(CityList))]
+            [HttpGet]
+            public HttpResponseMessage IncrementCityLocation_XML(string token, string cl)
+            {
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                var xml = citysercice.GetIncrementCityLocationList(cl, token);
+                if (xml != null)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                    return response;
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NoContent);
+                }
+            }
+
+
+            //Query String
+            /// <summary>
+            /// Query String Style, increment get city location list by query city name and access token, response format in XML
+            /// </summary>
+            /// <param name="token">Access Token</param>
+            /// <param name="cl">city location name</param>
+            /// <returns>Return a XML format city province list</returns>
+            [ActionName("xml")]
+            [Route("api/v2/city/suggestion/xml")]
+            [Route("api/v2/ville/suggestion/xml")]
+            [ResponseType(typeof(CityList))]
+            [HttpGet]
+            public HttpResponseMessage IncrementCityLocation_XML_QS(string token, string cl)
+            {
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                var xml = citysercice.GetIncrementCityLocationList(cl, token);
+                if (xml != null)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                    return response;
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NoContent);
+                }
+            }
+            #endregion XML
+        #endregion Increment City location
+
+
+
+        private HttpResponseMessage toJson(Object r)
             {
                 string thisJson = null;
                 thisJson = JsonConvert.SerializeObject(r, Formatting.None);

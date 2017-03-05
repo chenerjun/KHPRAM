@@ -603,5 +603,50 @@ namespace DATA.EF
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Proc_Get_Allow_IP");
         }
+    
+        public virtual ObjectResult<GoogleCityList> Proc_Get_Google_All_City()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoogleCityList>("Proc_Get_Google_All_City");
+        }
+    
+        public virtual ObjectResult<GoogleCityList> Proc_Get_Google_City_By_GoogleCityID(Nullable<int> cid)
+        {
+            var cidParameter = cid.HasValue ?
+                new ObjectParameter("cid", cid) :
+                new ObjectParameter("cid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoogleCityList>("Proc_Get_Google_City_By_GoogleCityID", cidParameter);
+        }
+    
+        public virtual ObjectResult<GoogleCityList> Proc_Get_Google_City_By_ProvinceID(Nullable<int> pID)
+        {
+            var pIDParameter = pID.HasValue ?
+                new ObjectParameter("PID", pID) :
+                new ObjectParameter("PID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoogleCityList>("Proc_Get_Google_City_By_ProvinceID", pIDParameter);
+        }
+    
+        public virtual ObjectResult<GoogleCityList> Proc_Increment_Google_City(string l)
+        {
+            var lParameter = l != null ?
+                new ObjectParameter("L", l) :
+                new ObjectParameter("L", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoogleCityList>("Proc_Increment_Google_City", lParameter);
+        }
+    
+        public virtual ObjectResult<CityList> Proc_Increment_Loaction_Search(string token, string l)
+        {
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            var lParameter = l != null ?
+                new ObjectParameter("L", l) :
+                new ObjectParameter("L", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CityList>("Proc_Increment_Loaction_Search", tokenParameter, lParameter);
+        }
     }
 }
