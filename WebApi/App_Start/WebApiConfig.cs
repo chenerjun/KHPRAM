@@ -46,11 +46,14 @@ namespace WebApi
             // Enables CORS for the specified domains for all WebApi Classes in our project
             //string allowdomain = Properties.Settings.Default.AllowDomain;
 
-
+            // Get Allowable Domain from SQL Server 
             string[] validdomains = GetAuthDomains().ToArray();
+            // concatenate /Join, or link  validdomains to a comma seprate string.
             string allowdomain = String.Join(",", validdomains);
 
-
+            //  [EnableCors(origins: "http://localhost:59452", headers: "*", methods: "*")]
+            //  You can add multiple origins by separating them with commas:
+            //  [EnableCors(origins: "http://localhost:59452,http://localhost:25495,http://localhost:8080", headers: "*", methods: "*")]
             var cors = new EnableCorsAttribute(allowdomain, "*", "*");
             config.EnableCors(cors);
 
