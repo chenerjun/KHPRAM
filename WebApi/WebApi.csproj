@@ -221,7 +221,7 @@
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\DocController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
-    <Compile Include="Controllers\GoogleController.cs" />
+    <Compile Include="Controllers\GoogleLocationController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ProvinceController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />

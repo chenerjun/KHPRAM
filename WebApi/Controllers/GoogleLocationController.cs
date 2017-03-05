@@ -14,11 +14,11 @@ using WebApi.Filters;
 namespace WebApi.Controllers
 {
     /// <summary>
-    /// Get Google Location information, response JSON or XML format.
+    /// Get Google Location information, response JSON or XML format. This location comes from Google, it does not fully match RAM resources location. For reference only.
     /// </summary>
     [AuthorizeIPAddress]
     [FilterIP]
-    public class GoogleController : ApiController
+    public class GoogleLocationController : ApiController
     {
         LocationServices locationservice = new LocationServices();
 
@@ -74,13 +74,13 @@ namespace WebApi.Controllers
 
 
         #region Get GoogleCity By ProvinceID
-            #region response JSON
+        #region response JSON
         #region path
         /// <summary>
-        /// 
+        /// Get google location list under certain province by provincial ID， response a json list.
         /// </summary>
         /// <param name="pid">Provincial ID</param>
-        /// <returns></returns>
+        /// <returns>return provincial cities, formation in JSON</returns>
         [ActionName("json")]
         [Route("api/v2/google/province/json/{pid}")]
         [ResponseType(typeof(GoogleCityList))]
@@ -95,10 +95,10 @@ namespace WebApi.Controllers
 
         #region querystring
         /// <summary>
-        /// 
+        /// Query string style, get google location list under certain province by provincial ID， response a json list.
         /// </summary>
         /// <param name="pid">Provincial ID</param>
-        /// <returns></returns>
+        /// <returns>return provincial cities, formation in JSON</returns>
         [ActionName("json")]
         [Route("api/v2/google/province/json")]
         [ResponseType(typeof(GoogleCityList))]
@@ -174,10 +174,10 @@ namespace WebApi.Controllers
         #region response JSON
         #region path
         /// <summary>
-        /// 
+        /// Get google city info by its ID, response format in JSON
         /// </summary>
         /// <param name="cid">Google City ID</param>
-        /// <returns></returns>
+        /// <returns>return city info format in JSON</returns>
         [ActionName("json")]
         [Route("api/v2/google/location/json/{cid}")]
         [ResponseType(typeof(GoogleCityList))]
@@ -192,10 +192,10 @@ namespace WebApi.Controllers
 
         #region querystring
         /// <summary>
-        /// 
+        /// Query string style, get google city info by its ID, response format in JSON
         /// </summary>
         /// <param name="cid">Google City ID</param>
-        /// <returns></returns>
+        /// <returns>return city info format in JSON</returns>
         [ActionName("json")]
         [Route("api/v2/google/location/json")]
         [ResponseType(typeof(GoogleCityList))]
@@ -213,10 +213,10 @@ namespace WebApi.Controllers
         #region response XML
         #region path
         /// <summary>
-        /// 
+        /// Get google city info by its ID, response format in XML
         /// </summary>
         /// <param name="cid">Google City ID</param>
-        /// <returns></returns>
+        /// <returns>Return city info format in XML</returns>
         [Route("api/v2/google/location/xml/{cid}")]
         [ResponseType(typeof(GoogleCityList))]
         [HttpGet]
@@ -238,10 +238,10 @@ namespace WebApi.Controllers
 
         #region querystring
         /// <summary>
-        /// 
+        /// Query string style, get google city info by its ID, response format in XML.
         /// </summary>
         /// <param name="cid">Google City ID</param>
-        /// <returns>Re</returns>
+        /// <returns>Return city info format in XML</returns>
         [Route("api/v2/google/location/xml")]
         [ResponseType(typeof(GoogleCityList))]
         [HttpGet]
