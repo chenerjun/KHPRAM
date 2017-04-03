@@ -59,6 +59,7 @@
         </Function>
         <Function Name="Proc_Get_Allow_Domain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Proc_Get_Allow_IP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Proc_Get_Blocked_IP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Proc_Get_Google_All_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Proc_Get_Google_City_By_GoogleCityID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cid" Type="int" Mode="In" />
@@ -375,6 +376,7 @@
             <Parameter Name="token" Mode="In" Type="String" />
             <Parameter Name="L" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Proc_Get_Blocked_IP" ReturnType="Collection(String)" />
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
           <Property Type="Int32" Name="TopCategoryID" Nullable="false" />
@@ -1399,6 +1401,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Blocked_IP" FunctionName="RAMModel.Store.Proc_Get_Blocked_IP" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

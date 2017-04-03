@@ -436,6 +436,7 @@ GO
 --            so lt read : (WHERE a.LanguageOfRecord = @lang  AND  SC.Active = 1   AND   TC.Active = 1) 
 -- Revision: Aug.17, 2016. 
 --				Add parameter @token to check access control list
+-- Reversion: Mar.30, 2017  ; using language filter
 -- =======================================================================================================================================
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'Proc_Cluster_Search')
 DROP PROCEDURE Proc_Cluster_Search
@@ -937,7 +938,7 @@ END CATCH
 				JOIN  F_Get_Allow_TopCategory (@token) AS ATC 	ON ATC.TOPCategoryID = A.TOPCategoryID 
 				-- Return only those resources whose PhysicalCityID is in the allowing City list
 				JOIN  F_Get_ALL_Allow_City (@token) AS ACID ON ACID.CityID = A.PhysicalCityID 
-			WHERE ---a.LanguageOfRecord = @lang   AND  
+			WHERE   a.LanguageOfRecord = @lang   AND  
 					SC.Active = 1   AND   TC.Active = 1
 			
 			ORDER BY        
@@ -984,7 +985,7 @@ GO
 -- Revision:  Apr.10, 2016
 --            changed last select statement, add (  AND  SC.Active = 1   AND   TC.Active = 1) into where cluste  
 --            it will read : (WHERE a.LanguageOfRecord = @lang   AND  SC.Active = 1   AND   TC.Active = 1)
---            
+-- Reversion: Mar.30, 2017  ; using language filter              
 -- =======================================================================================================================================
 
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'Proc_Cluster_Search_Short')
@@ -1489,7 +1490,7 @@ END CATCH
 					JOIN		F_Get_ALL_Allow_City  (@token)  AS ACID ON ACID.CityID = A.PhysicalCityID 
 				--JOIN  @allow_TopCategory as ATC ON ATC.ATID = A.TOPCategoryID -- Return only those resources whose TopCategoryID is in the allowing TopCategory list
 				--JOIN (SELECT * FROM  [dbo].[F_Get_ALL_Allow_City]  (@token) ) AS ACID ON ACID.CityID = A.PhysicalCityID -- Return only those resources whose PhysicalCityID is in the allowing City list
-			WHERE ---a.LanguageOfRecord = @lang   AND  
+			WHERE   a.LanguageOfRecord = @lang   AND  
 					SC.Active = 1   AND   TC.Active = 1
 			
 			ORDER BY        
@@ -1560,6 +1561,19 @@ GO
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'Proc_Search_Resource_In_Radius_boundary_Box')
 DROP PROCEDURE Proc_Search_Resource_In_Radius_boundary_Box
 GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- ==============================================================================================================
+-- Author:		William Chen
+-- Create date: Feb.23, 2016
+-- Description:	Get_All_Resource_In_Radius_boundary_Box
+-- Reversion: Aug.11, 2016
+-- Added Parameter @token, check access control list, get allowing TopCategory List and allowing City list
+-- Searching and returning those allowing resources locatied in boundary-box  
+-- Revision: On March 30, 2017, add language filter  
+-- ==============================================================================================================
 CREATE PROCEDURE [dbo].[Proc_Search_Resource_In_Radius_boundary_Box]
 @Lat NUMERIC(18,10) = 43.654490,
 @Long NUMERIC(18,10) = -79.387419,
@@ -1619,6 +1633,7 @@ WHERE (
               A.Longitude >= @WestLong
               AND A.Longitude <= @EastLong )
 		AND a.PhysicalCityID != 0   AND SC.Active = 1 AND TC.Active = 1 
+		AND @lang = a.LanguageOfRecord
 ORDER BY       a.TOPCategoryID,  a.SubCategoryID, a.Map 
               --a.PhysicalProvinceID, a.PhysicalCityID, 
 END
@@ -1640,6 +1655,20 @@ GO
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'Proc_Get_All_Resource_In_Radius_boundary_Box')
 DROP PROCEDURE Proc_Get_All_Resource_In_Radius_boundary_Box
 GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- ===============================================================================================================
+-- Author:		William Chen
+-- Create date: Feb.23, 2016
+-- Description:	Get_All_Resource_In_Radius_boundary_Box
+--Revision: Aug.17, 2016, add parameter @token to check access contro list
+--		Add parameter @token, it will get allowing access-TopCategory and access-city list , 
+--		then return those resources in the radius and in the allowing Topcategory and allowing city list 
+-- Revision : On March 30, 2017, add language filter @lang = a.LanguageOfRecord
+-- ===============================================================================================================
+
 CREATE PROCEDURE [dbo].[Proc_Get_All_Resource_In_Radius_boundary_Box]
 @Lat NUMERIC(18,10) = 43.654490,
 @Long NUMERIC(18,10) = -79.387419,
@@ -1718,6 +1747,7 @@ WHERE (
               A.Longitude >= @WestLong
               AND A.Longitude <= @EastLong )
 		AND a.PhysicalCityID != 0   AND SC.Active = 1 AND TC.Active = 1 
+		AND @lang = a.LanguageOfRecord
 ORDER BY       a.TOPCategoryID,  a.SubCategoryID, a.Map 
               --a.PhysicalProvinceID, a.PhysicalCityID, 
 END
@@ -1728,9 +1758,7 @@ GO
 
 
 
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'Proc_Get_All_Resources_In_Radius')
-DROP PROCEDURE Proc_Get_All_Resources_In_Radius
-GO
+
 
 
 
@@ -1740,6 +1768,20 @@ GO
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'Proc_Get_All_Resources_In_Radius')
 DROP PROCEDURE Proc_Get_All_Resources_In_Radius
 GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- ==========================================================================================
+-- Author:		William Chen
+-- Create date: Feb.22, 2016
+-- Description:	Find out resources located in Radius  and Start Lat/Long
+-- Return KM
+--Revision: Aug.17, 2016, add parameter @token to check access contro list
+--		Add parameter @token, it will get allowing access-TopCategory and access-city list , 
+--		then return those resources in the radius and in the allowing Topcategory and allowing city list 
+-- Revision: On March 30, 2017, Add language filter, @lang = a.LanguageOfRecord
+-- ==========================================================================================
 CREATE PROCEDURE [dbo].[Proc_Get_All_Resources_In_Radius] 
 	-- Add the parameters for the stored procedure here
 @StartLatitude NUMERIC(18,10) = 43.654490,
@@ -1805,6 +1847,7 @@ FROM            RamResource AS a
 					INNER JOIN  F_Get_ALL_Allow_City (@token) AS ACID ON ACID.CityID = A.PhysicalCityID 
 WHERE			[dbo].[fnCalcDistanceKM](@StartLatitude, @StartLongitude, a.Latitude, a.Longitude) < @Radius 
 				AND a.PhysicalCityID != 0 AND SC.Active = 1  AND  TC.Active = 1
+				AND @lang = a.LanguageOfRecord				
 ORDER BY        a.TOPCategoryID,  a.SubCategoryID, a.Map
 --a.PhysicalProvinceID, a.PhysicalCityID, 
 END
@@ -4642,6 +4685,19 @@ GO
 IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'Proc_Search_Resources_In_Radius')
 DROP PROCEDURE Proc_Search_Resources_In_Radius   
 GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- ==========================================================================================
+-- Author:		William Chen
+-- Create date: Feb.22, 2016
+-- Description:	Find out resources located in Radius  and Start Lat/Long, look up Radius in KM
+-- Reversion: Aug.11, 2016
+--		Add parameter @token, it will get allowing access-TopCategory and access-city list , 
+--		then return those resources in the radius and in the allowing Topcategory and allowing city list 
+-- Revision: On March 30, 2017, Add language filter, AND @lang = a.LanguageOfRecord
+-- ==========================================================================================
 CREATE PROCEDURE [dbo].[Proc_Search_Resources_In_Radius] 
 	-- Add the parameters for the stored procedure here
 @StartLatitude NUMERIC(18,10) = 43.654490,
@@ -4691,7 +4747,11 @@ FROM            RamResource AS a
 					INNER JOIN		F_Get_Allow_TopCategory (@token) AS ATC ON ATC.TopCategoryID = A.TOPCategoryID 
 					-- Return only those resources whose PhysicalCityID is in the allowing City list
 					INNER JOIN		F_Get_ALL_Allow_City  (@token)  AS ACID ON ACID.CityID = A.PhysicalCityID 
-WHERE			[dbo].[fnCalcDistanceKM](@StartLatitude, @StartLongitude, a.Latitude, a.Longitude) < @Radius AND a.PhysicalCityID != 0   AND SC.Active = 1 AND TC.Active = 1 
+WHERE			[dbo].[fnCalcDistanceKM](@StartLatitude, @StartLongitude, a.Latitude, a.Longitude) < @Radius 
+				AND a.PhysicalCityID != 0   
+				AND SC.Active = 1 
+				AND TC.Active = 1 
+				AND @lang = a.LanguageOfRecord
 ORDER BY        a.TOPCategoryID,  a.SubCategoryID, a.Map
 --a.PhysicalProvinceID, a.PhysicalCityID, 
 END
@@ -5394,12 +5454,16 @@ GO
 -- =======================================================================================================================================
 -- Author:		William Chen
 -- Create date: Aug.29, 2016
--- Description:	Accounting to access to token, get resource by its coverage, and filter by language. 
--- REVERSION: Feb.24, 2017
+-- Description:	Accounting to access to token, get resource by its coverage, and filter by language.  
+-- REVERSION: On Feb24,2017
 -- commented Cross Apply ..., replace by using "           like '' +'%'+@s+'%'+''         "
--- thus, the speed/performance improved a lot 
+-- thus, the speed/performance improved a lot
 --           on Feb.28, 2017
 --           commented all of old codes, replaced new code by using clusting search style,  
+-- On March 7, 2017, (1) changed 'LIKE' TO FREETEXT (SQL Server FreeText Search function), 
+--					 (2) Commented Try catch content and last ELSE content
+--					 (3) Added perfix (kws*)  supfix (*kws) and include (*kws*) by using LIKE '%KKEY WORDS%'
+-- Reversion: Mar.30, 2017  ; using language filter
 -- =======================================================================================================================================
 CREATE PROCEDURE [dbo].[Proc_Search_Resource_By_Coverage] 
  	-- Add the parameters for the stored procedure here
@@ -5420,7 +5484,8 @@ BEGIN
 ------------------------------------------------------------
 declare @SearchWordS NVARCHAR(255)  
 select @SearchWordS = @s;
-	
+
+
 --------------------------------------------------------------
 -- Searched raw results put in this table variable 
 --------------------------------------------------------------
@@ -5496,7 +5561,40 @@ IF LEN(@ToBeCheckedKWS) > 0 -- user input keywords in a double quotation pair, w
 		INSERT INTO  @T_KEYWORD  (KEYWORD) VALUES(@SearchWordS);
 
 		--  constructing freetext search contain 
-		SELECT @K1  =  CONCAT('', '%',KeyWord , '%','')     FROM  @T_KEYWORD  WHERE ID =  1 ;  
+		SELECT @K1  =  CONCAT('FORMSOF (THESAURUS,"', KeyWord , '")','  OR "' , KeyWord , '*"' )     FROM  @T_KEYWORD  WHERE ID =  1 ;  
+
+
+		-------------------------------------------------------------------
+		-- Select double quotation content by using FULLTEXT's CONTAINS
+		-------------------------------------------------------------------
+		INSERT INTO @T_Result
+			SELECT  DISTINCT etlloadid
+			, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS PublicNames
+			, [AgencyDescription] 
+			, [PhysicalAddress]
+			, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+			, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+			, taxonomyterm AS STerm
+			, taxonomyterms AS LTerms
+			FROM keywords 
+			WHERE  CONTAINS(Coverage, @K1) ;
+
+
+
+		------------------------------------------------------------
+		-- Select double quotation content by using LIKE "%kws%'
+		------------------------------------------------------------
+		INSERT INTO @T_Result
+			SELECT  DISTINCT etlloadid
+			, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS PublicNames
+			, [AgencyDescription] 
+			, [PhysicalAddress]
+			, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+			, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+			, taxonomyterm AS STerm
+			, taxonomyterms AS LTerms
+			FROM keywords 
+			WHERE  Coverage		like	''	+	'%'	+ @K1	+'%'	+	''  ;
 	END
 ELSE  -- user input multiple keywords, will process those words into @k1--@k11
 	BEGIN
@@ -5566,19 +5664,217 @@ ELSE  -- user input multiple keywords, will process those words into @k1--@k11
 		  ----------------------------------------------------------------------------------------------------------
 		 -- Extract splited search keywords from Table variable @T_KEYWORD, then constructing CONTAIN textsearch 
 		 ----------------------------------------------------------------------------------------------------------
-			SELECT @K1  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  1 ;  
-			SELECT @K2  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  2 ;  
-			SELECT @K3  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  3 ;  
-			SELECT @K4  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  4 ;  
-			SELECT @K5  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  5 ;  
-			SELECT @K6  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  6 ;  
-			SELECT @K7  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  7 ;  
-			SELECT @K8  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  8 ;  
-			SELECT @K9  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  9 ;  
-			SELECT @K10  = CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID = 10 ;  
-			SELECT @K11  = CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID = 11 ; 
-			 
+			SELECT @K1   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  1 ;  
+			SELECT @K2   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  2 ;  
+			SELECT @K3   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  3 ;  
+			SELECT @K4   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  4 ;  
+			SELECT @K5   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  5 ;  
+			SELECT @K6   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  6 ;  
+			SELECT @K7   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  7 ;  
+			SELECT @K8   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  8 ;  
+			SELECT @K9   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  9 ;  
+			SELECT @K10  =    KeyWord      FROM  @T_KEYWORD  WHERE ID = 10 ;  
+			SELECT @K11  =    KeyWord      FROM  @T_KEYWORD  WHERE ID = 11 ; 
 
+
+
+			-----------------------------------------------
+			-- Feb.1, 2016, add freetext(*,@SearchWordS)
+			-----------------------------------------------
+ 
+			IF (@PressLetter IS NOT NULL) AND (@PressLetter != '') AND (@PressLetter != ' ')
+					INSERT INTO @T_Result
+						SELECT  DISTINCT etlloadid
+						, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p> '+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
+						, [AgencyDescription]
+						, [PhysicalAddress]
+						, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+						, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]													 
+						, taxonomyterm AS STerm
+						, taxonomyterms AS LTerms
+						FROM keywords 
+						WHERE  FREETEXT(Coverage, @PressLetter) ;
+
+
+
+
+
+
+
+-------------------------------------
+-- select usine like '%keywords%'
+-------------------------------------
+BEGIN TRY
+ 
+  
+IF (@k11 IS NOT NULL) AND (@K11 != '')
+	BEGIN
+	 INSERT INTO @T_Result
+			SELECT  DISTINCT etlloadid
+			, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS PublicNames
+			, [AgencyDescription] 
+			, [PhysicalAddress]
+			, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+			, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+			, taxonomyterm AS STerm
+			, taxonomyterms AS LTerms
+			FROM keywords 
+			  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+					 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'') OR  (Coverage like ''+'%'+@K8+'%'+'') OR 
+					 (Coverage like ''+'%'+@K9+'%'+'') OR  (Coverage like ''+'%'+@K10+'%'+'') OR  (Coverage like ''+'%'+@K11+'%'+'');
+	END 
+	ELSE IF (@k10 IS NOT NULL) AND (@K10 != '')
+		BEGIN
+		 INSERT INTO @T_Result
+				SELECT  DISTINCT etlloadid
+				, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
+				, [AgencyDescription] 
+				, [PhysicalAddress]
+				, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+				, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+				, taxonomyterm AS STerm
+				, taxonomyterms AS LTerms
+				FROM keywords 
+				  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+						 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'') OR  (Coverage like ''+'%'+@K8+'%'+'') OR 
+						 (Coverage like ''+'%'+@K9+'%'+'') OR  (Coverage like ''+'%'+@K10+'%'+'')  ;
+		END 
+		ELSE IF (@k9 IS NOT NULL) AND (@K9 != '')
+			BEGIN
+			 INSERT INTO @T_Result
+					SELECT  DISTINCT etlloadid
+					, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
+					, [AgencyDescription]
+					, [PhysicalAddress]
+					, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+					, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]					 
+					, taxonomyterm AS STerm
+					, taxonomyterms AS LTerms
+					FROM keywords 
+					  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+							 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'') OR  (Coverage like ''+'%'+@K8+'%'+'') OR 
+							 (Coverage like ''+'%'+@K9+'%'+'') ;
+			END 		
+			ELSE IF (@k8 IS NOT NULL) AND (@K8 != '')
+				BEGIN
+				 INSERT INTO @T_Result
+						SELECT  DISTINCT etlloadid
+						, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
+						, [AgencyDescription] 
+						, [PhysicalAddress]
+						, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+						, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+						, taxonomyterm AS STerm
+						, taxonomyterms AS LTerms
+						FROM keywords 
+						  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+								 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'') OR  (Coverage like ''+'%'+@K8+'%'+'') ;
+				END 
+				ELSE IF (@k7 IS NOT NULL) AND (@K7 != '')
+					BEGIN
+					 INSERT INTO @T_Result
+							SELECT  DISTINCT etlloadid
+							, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
+							, [AgencyDescription]
+							, [PhysicalAddress]
+							, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+							, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]							 
+							, taxonomyterm AS STerm
+							, taxonomyterms AS LTerms
+							FROM keywords 
+							  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+									 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'')  ;
+					END 
+					ELSE IF (@k6 IS NOT NULL) AND (@K6 != '')
+						BEGIN
+						 INSERT INTO @T_Result
+								SELECT  DISTINCT etlloadid
+								, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
+								, [AgencyDescription] 
+								, [PhysicalAddress]
+								, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+								, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+								, taxonomyterm AS STerm
+								, taxonomyterms AS LTerms
+								FROM keywords 
+								  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+										 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'')  ;
+						END 
+						ELSE IF (@k5 IS NOT NULL) AND (@K5 != '')
+							BEGIN
+							 INSERT INTO @T_Result
+									SELECT  DISTINCT etlloadid
+									, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
+									, [AgencyDescription]
+									, [PhysicalAddress]
+									, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+									, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]									 
+									, taxonomyterm AS STerm
+									, taxonomyterms AS LTerms
+									FROM keywords 
+									WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+											(Coverage like ''+'%'+@K5+'%'+'')  ;
+							END
+							ELSE IF (@k4 IS NOT NULL) AND (@K4 != '')
+								BEGIN
+								 INSERT INTO @T_Result
+										SELECT  DISTINCT etlloadid
+										, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]  
+										, [AgencyDescription]
+										, [PhysicalAddress]
+										, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+										, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]										 
+										, taxonomyterm AS STerm
+										, taxonomyterms AS LTerms
+										FROM keywords 
+										WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') ;
+								END
+								ELSE IF (@k3 IS NOT NULL) AND (@K3 != '')
+									BEGIN
+									 INSERT INTO @T_Result
+											SELECT  DISTINCT etlloadid
+											, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
+											, [AgencyDescription]
+											, [PhysicalAddress]
+											, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+											, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]											 
+											, taxonomyterm AS STerm
+											, taxonomyterms AS LTerms
+											FROM keywords 
+											WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'')  ;
+									END 
+									ELSE IF (@k2 IS NOT NULL) AND (@K2 != '')
+										BEGIN
+										 INSERT INTO @T_Result
+												SELECT  DISTINCT etlloadid
+												, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
+												, [AgencyDescription]
+												, [PhysicalAddress]
+												, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+												, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]												 
+												, taxonomyterm AS STerm
+												, taxonomyterms AS LTerms
+												FROM keywords 
+												WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'')  ;
+										END
+										ELSE IF (@k1 IS NOT NULL) AND (@K1 != '')
+											BEGIN
+											 INSERT INTO @T_Result
+													SELECT  DISTINCT etlloadid
+													, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p> '+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
+													, [AgencyDescription]
+													, [PhysicalAddress]
+													, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+													, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]													 
+													, taxonomyterm AS STerm
+													, taxonomyterms AS LTerms
+													FROM keywords 
+													WHERE (Coverage like ''+'%'+@K1+'%'+'')  ;
+											END
+END TRY
+BEGIN CATCH
+ 
+END CATCH
 
  END  -- END OF processing user inputed keywords into @k1--@k11
 
@@ -5588,227 +5884,6 @@ ELSE  -- user input multiple keywords, will process those words into @k1--@k11
 
 
 
-
-
-
-
-
- 
- 
- 	----------------------------------------------
-	-- beginning like search on coverage field
-	---------------------------------------------
-
-BEGIN TRY
- 
-  
-		IF (@k11 IS NOT NULL) AND (@K11 != '')
-		BEGIN
-		 INSERT INTO @T_Result
-				SELECT  DISTINCT etlloadid
-				, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS PublicNames
-				, [AgencyDescription] 
-				, [PhysicalAddress]
-				, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-				, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
-				, taxonomyterm AS STerm
-				, taxonomyterms AS LTerms
-				FROM KeyWords 
-				  --WHERE CONTAINS(([PublicName],[AgencyDescription],[PhysicalCity],[PhysicalProvince],[TaxonomyTerm],[TaxonomyTerms]), @Searching)
-				  WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-						(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) OR (coverage like  @K8) OR 
-						(coverage like  @K9) OR (coverage like  @K10) OR (coverage like  @K11);
-		END 
-		ELSE IF (@k10 IS NOT NULL) AND (@K10 != '')
-			BEGIN
-			 INSERT INTO @T_Result
-					SELECT  DISTINCT etlloadid
-					, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-					, [AgencyDescription] 
-					, [PhysicalAddress]
-					, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-					, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
-					, taxonomyterm AS STerm
-					, taxonomyterms AS LTerms
-					FROM keywords 
-					WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-						(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) OR (coverage like  @K8) OR 
-						(coverage like  @K9) OR (coverage like  @K10) ;
-			END 
-			ELSE IF (@k9 IS NOT NULL) AND (@K9 != '')
-				BEGIN
-				 INSERT INTO @T_Result
-						SELECT  DISTINCT etlloadid
-						, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-						, [AgencyDescription]
-						, [PhysicalAddress]
-						, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-						, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]					 
-						, taxonomyterm AS STerm
-						, taxonomyterms AS LTerms
-						FROM keywords 
-						WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-							(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) OR (coverage like  @K8) OR 
-							(coverage like  @K9) ;
-				END 		
-				ELSE IF (@k8 IS NOT NULL) AND (@K8 != '')
-					BEGIN
-					 INSERT INTO @T_Result
-							SELECT  DISTINCT etlloadid
-							, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-							, [AgencyDescription] 
-							, [PhysicalAddress]
-							, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-							, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
-							, taxonomyterm AS STerm
-							, taxonomyterms AS LTerms
-							FROM keywords 
-							WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-							(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) OR (coverage like  @K8) ;
-					END 
-					ELSE IF (@k7 IS NOT NULL) AND (@K7 != '')
-						BEGIN
-						 INSERT INTO @T_Result
-								SELECT  DISTINCT etlloadid
-								, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-								, [AgencyDescription]
-								, [PhysicalAddress]
-								, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-								, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]							 
-								, taxonomyterm AS STerm
-								, taxonomyterms AS LTerms
-								FROM keywords 
-								WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-								(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) ;
-						END 
-						ELSE IF (@k6 IS NOT NULL) AND (@K6 != '')
-							BEGIN
-							 INSERT INTO @T_Result
-									SELECT  DISTINCT etlloadid
-									, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-									, [AgencyDescription] 
-									, [PhysicalAddress]
-									, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-									, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
-									, taxonomyterm AS STerm
-									, taxonomyterms AS LTerms
-									FROM keywords 
-									WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-										(coverage like  @K5) OR (coverage like  @K6)  ;
-							END 
-							ELSE IF (@k5 IS NOT NULL) AND (@K5 != '')
-								BEGIN
-								 INSERT INTO @T_Result
-										SELECT  DISTINCT etlloadid
-										, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
-										, [AgencyDescription]
-										, [PhysicalAddress]
-										, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-										, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]									 
-										, taxonomyterm AS STerm
-										, taxonomyterms AS LTerms
-										FROM keywords 
-										WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR (coverage like  @K5)  ;
-											
-								END
-								ELSE IF (@k4 IS NOT NULL) AND (@K4 != '')
-									BEGIN
-									 INSERT INTO @T_Result
-											SELECT  DISTINCT etlloadid
-											, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]  
-											, [AgencyDescription]
-											, [PhysicalAddress]
-											, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-											, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]										 
-											, taxonomyterm AS STerm
-											, taxonomyterms AS LTerms
-											FROM keywords 
-											WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4)   ;
-									END
-									ELSE IF (@k3 IS NOT NULL) AND (@K3 != '')
-										BEGIN
-										 INSERT INTO @T_Result
-												SELECT  DISTINCT etlloadid
-												, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-												, [AgencyDescription]
-												, [PhysicalAddress]
-												, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-												, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]											 
-												, taxonomyterm AS STerm
-												, taxonomyterms AS LTerms
-												FROM keywords 
-												WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3)   ;
-										END 
-										ELSE IF (@k2 IS NOT NULL) AND (@K2 != '')
-											BEGIN
-											 INSERT INTO @T_Result
-													SELECT  DISTINCT etlloadid
-													, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-													, [AgencyDescription]
-													, [PhysicalAddress]
-													, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-													, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]												 
-													, taxonomyterm AS STerm
-													, taxonomyterms AS LTerms
-													FROM keywords 
-													WHERE  (coverage like  @K1) OR (coverage like  @K2)    ;
-											END
-											ELSE IF (@k1 IS NOT NULL) AND (@K1 != '')
-												BEGIN
-												 INSERT INTO @T_Result
-														SELECT  DISTINCT etlloadid
-														, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p> '+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
-														, [AgencyDescription]
-														, [PhysicalAddress]
-														, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-														, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]													 
-														, taxonomyterm AS STerm
-														, taxonomyterms AS LTerms
-														FROM keywords 
-														WHERE  (coverage like  @K1)  ;
-												END
-												ELSE
-													BEGIN
-													 INSERT INTO @T_Result
-															SELECT  DISTINCT etlloadid
-															, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000), '<p>' + publicname+'</p> '+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-															, [AgencyDescription]
-															, [PhysicalAddress]
-															, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-															, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]														 
-															, taxonomyterm AS STerm
-															, taxonomyterms AS LTerms
-															FROM keywords 
-															ORDER BY PublicNames  
-
-													END;
-
-    
-END TRY
-BEGIN CATCH
-		 INSERT INTO @T_Result
-					SELECT  DISTINCT etlloadid
-					, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-					, [AgencyDescription] 
-					, [PhysicalAddress]
-					, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-					, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
-					, taxonomyterm AS STerm
-					, taxonomyterms AS LTerms
-					FROM keywords 
-		;
-END CATCH
-;
-
-
-
-
-
-
-
-
-
---select 'FREETEXT',* from @T_Result
 --------------------------------
 -- default langauge is English
 --------------------------------
@@ -5860,7 +5935,7 @@ END CATCH
 					JOIN		F_Get_ALL_Allow_City  (@token)  AS ACID ON ACID.CityID = A.PhysicalCityID 
 				--JOIN  @allow_TopCategory as ATC ON ATC.ATID = A.TOPCategoryID -- Return only those resources whose TopCategoryID is in the allowing TopCategory list
 				--JOIN (SELECT * FROM  [dbo].[F_Get_ALL_Allow_City]  (@token) ) AS ACID ON ACID.CityID = A.PhysicalCityID -- Return only those resources whose PhysicalCityID is in the allowing City list
-			WHERE ---a.LanguageOfRecord = @lang   AND  
+			WHERE   a.LanguageOfRecord = @lang   AND  
 					SC.Active = 1   AND   TC.Active = 1
 			
 			ORDER BY        
@@ -5878,67 +5953,6 @@ END CATCH
 	-----------------
 	--  END OF THE SP
 	-----------------
-
- 
-
-
-
-
-
-
-
-
-
------------------------------------------------
---- below are commented on Feb.28, 2017
------------------------------------------------
---	Set @s = LTRIM(RTRIM(@s))  ;
-
-
-
-
---SELECT			DISTINCT
---				a.etlloadid
---				, a. coverage 
---				, a.ResourceAgencyNum
---				, Map
---				, A.[SubCategoryID]
---				, CASE @lang WHEN 'EN' THEN SC.SubCategory ELSE SC.SubCategory_fr END AS [SubCategory]
---				, A.[TOPCategoryID]
---				, CASE @lang WHEN 'EN' THEN TC.TopCategory ELSE TC.TopCategory_fr END AS [TopCategory]
---				, A.[PublicName] AS [Name]
---				, A.[PhysicalAddress]
---				, A.PhysicalAddressIsPrivate 
---				, CASE C.CityName  	WHEN 'TBD' THEN '' ELSE C.CityName END AS [City]
---				, CASE P.[Province]   WHEN 'OTHS' THEN '' WHEN 'Others' THEN '' ELSE P.[Province] END AS [Province]
---				, REPLACE(ETL.TaxonomyTerm,'/',' ')  AS STerm
---				, a.Latitude
---				, a.Longitude
---				, a.Phone
---				, a.WebsiteAddress
---FROM ramresource as a  
---					-- Return only those resources whose TopCategoryID is in the allowing TopCategory list
---					JOIN		F_Get_Allow_TopCategory (@token) AS ATC ON ATC.TopCategoryID = A.TOPCategoryID 
---					-- Return only those resources whose PhysicalCityID is in the allowing City list
---					JOIN		F_Get_ALL_Allow_City  (@token)  AS ACID ON ACID.CityID = A.PhysicalCityID 
-		 
---					JOIN [dbo].[SubCategory] AS SC	ON SC.[SubCategoryID] = A.SubCategoryID
---					JOIN [dbo].[TopCategory] AS TC	ON TC.TopCategoryID = A.TOPCategoryID
---					INNER JOIN  CityLocation AS c   ON a.PhysicalCityID = c.CityId 
---					INNER JOIN  Province     AS p   ON a.PhysicalProvinceID = p.ProvinceID 
---					INNER JOIN  ETLLoad      AS ETL ON a.ETLLoadID = ETL.ETLLoadID 
---					--CROSS APPLY 	( 
---					--					select ¡¡   f.id,  f.KEYWORD   from   F_Splite_Coverage_into_word   (a.etlloadid )  as f  
---					--				)  AS K	
---WHERE   a.LanguageOfRecord = @lang     
---		AND		SC.Active = 1   
---		AND		TC.Active = 1   
---		--AND		K.KEYWORD  like   ''   + @s  +   '%'  +  '' 
---		AND		A.Coverage	LIKE	''	+	'%'	+	@s	+	'%'	+	''
---ORDER BY  a.TOPCategoryID,  a.SubCategoryID, a.Map
-
-
-
 END
 
 GO
@@ -5978,6 +5992,10 @@ DROP PROCEDURE Proc_Get_Resource_By_Coverage
 -- thus, the speed/performance improved a lot
 --           on Feb.28, 2017
 --           commented all of old codes, replaced new code by using clusting search style,  
+-- On March 7, 2017, (1) changed 'LIKE' TO FREETEXT (SQL Server FreeText Search function), 
+--					 (2) Commented Try catch content and last ELSE content
+--					 (3) Added perfix (kws*)  supfix (*kws) and include (*kws*) by using LIKE '%KKEY WORDS%'
+-- Reversion: Mar.30, 2017  ; using language filter
 -- =======================================================================================================================================
 GO
 CREATE PROCEDURE Proc_Get_Resource_By_Coverage 
@@ -5992,13 +6010,16 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 	SET ansi_warnings OFF;
-------------------------------------------------------------
+	------------------------------------------------------------
 -- Feb.28, 2017
 -- declare a var @SearchWordS NVARCHAR(255) = N' ',
 -- becausr old stored procedure is @s
 ------------------------------------------------------------
 declare @SearchWordS NVARCHAR(255)  
 select @SearchWordS = @s;
+
+
+
 
 --------------------------------------------------------------
 -- Searched raw results put in this table variable 
@@ -6075,7 +6096,40 @@ IF LEN(@ToBeCheckedKWS) > 0 -- user input keywords in a double quotation pair, w
 		INSERT INTO  @T_KEYWORD  (KEYWORD) VALUES(@SearchWordS);
 
 		--  constructing freetext search contain 
-		SELECT @K1  =  CONCAT('', '%',KeyWord , '%','')     FROM  @T_KEYWORD  WHERE ID =  1 ;  
+		SELECT @K1  =  CONCAT('FORMSOF (THESAURUS,"', KeyWord , '")','  OR "' , KeyWord , '*"' )     FROM  @T_KEYWORD  WHERE ID =  1 ;  
+
+
+		-------------------------------------------------------------------
+		-- Select double quotation content by using FULLTEXT's CONTAINS
+		-------------------------------------------------------------------
+		INSERT INTO @T_Result
+			SELECT  DISTINCT etlloadid
+			, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS PublicNames
+			, [AgencyDescription] 
+			, [PhysicalAddress]
+			, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+			, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+			, taxonomyterm AS STerm
+			, taxonomyterms AS LTerms
+			FROM keywords 
+			WHERE  CONTAINS(Coverage, @K1) ;
+
+
+
+		------------------------------------------------------------
+		-- Select double quotation content by using LIKE "%kws%'
+		------------------------------------------------------------
+		INSERT INTO @T_Result
+			SELECT  DISTINCT etlloadid
+			, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS PublicNames
+			, [AgencyDescription] 
+			, [PhysicalAddress]
+			, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+			, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+			, taxonomyterm AS STerm
+			, taxonomyterms AS LTerms
+			FROM keywords 
+			WHERE  Coverage		like	''	+	'%'	+ @K1	+'%'	+	''  ;
 	END
 ELSE  -- user input multiple keywords, will process those words into @k1--@k11
 	BEGIN
@@ -6145,166 +6199,186 @@ ELSE  -- user input multiple keywords, will process those words into @k1--@k11
 		  ----------------------------------------------------------------------------------------------------------
 		 -- Extract splited search keywords from Table variable @T_KEYWORD, then constructing CONTAIN textsearch 
 		 ----------------------------------------------------------------------------------------------------------
-			SELECT @K1  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  1 ;  
-			SELECT @K2  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  2 ;  
-			SELECT @K3  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  3 ;  
-			SELECT @K4  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  4 ;  
-			SELECT @K5  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  5 ;  
-			SELECT @K6  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  6 ;  
-			SELECT @K7  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  7 ;  
-			SELECT @K8  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  8 ;  
-			SELECT @K9  =  CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID =  9 ;  
-			SELECT @K10  = CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID = 10 ;  
-			SELECT @K11  = CONCAT('', '%',KeyWord , '%','')      FROM  @T_KEYWORD  WHERE ID = 11 ; 
-			 
-
-
- END  -- END OF processing user inputed keywords into @k1--@k11
+			SELECT @K1   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  1 ;  
+			SELECT @K2   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  2 ;  
+			SELECT @K3   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  3 ;  
+			SELECT @K4   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  4 ;  
+			SELECT @K5   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  5 ;  
+			SELECT @K6   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  6 ;  
+			SELECT @K7   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  7 ;  
+			SELECT @K8   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  8 ;  
+			SELECT @K9   =    KeyWord      FROM  @T_KEYWORD  WHERE ID =  9 ;  
+			SELECT @K10  =    KeyWord      FROM  @T_KEYWORD  WHERE ID = 10 ;  
+			SELECT @K11  =    KeyWord      FROM  @T_KEYWORD  WHERE ID = 11 ; 
 
 
 
-
-
-
-
-
-
-
-
-
+			-----------------------------------------------
+			-- Feb.1, 2016, add freetext(*,@SearchWordS)
+			-----------------------------------------------
  
- 
- 	----------------------------------------------
-	-- beginning like search on coverage field
-	---------------------------------------------
+			IF (@PressLetter IS NOT NULL) AND (@PressLetter != '') AND (@PressLetter != ' ')
+					INSERT INTO @T_Result
+						SELECT  DISTINCT etlloadid
+						, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p> '+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
+						, [AgencyDescription]
+						, [PhysicalAddress]
+						, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+						, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]													 
+						, taxonomyterm AS STerm
+						, taxonomyterms AS LTerms
+						FROM keywords 
+						WHERE  FREETEXT(Coverage, @PressLetter) ;
 
+
+
+
+
+
+
+-------------------------------------
+-- select usine like '%keywords%'
+-------------------------------------
 BEGIN TRY
  
   
-		IF (@k11 IS NOT NULL) AND (@K11 != '')
+IF (@k11 IS NOT NULL) AND (@K11 != '')
+	BEGIN
+	 INSERT INTO @T_Result
+			SELECT  DISTINCT etlloadid
+			, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS PublicNames
+			, [AgencyDescription] 
+			, [PhysicalAddress]
+			, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
+			, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+			, taxonomyterm AS STerm
+			, taxonomyterms AS LTerms
+			FROM keywords 
+			  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+					 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'') OR  (Coverage like ''+'%'+@K8+'%'+'') OR 
+					 (Coverage like ''+'%'+@K9+'%'+'') OR  (Coverage like ''+'%'+@K10+'%'+'') OR  (Coverage like ''+'%'+@K11+'%'+'');
+	END 
+	ELSE IF (@k10 IS NOT NULL) AND (@K10 != '')
 		BEGIN
 		 INSERT INTO @T_Result
 				SELECT  DISTINCT etlloadid
-				, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS PublicNames
+				, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
 				, [AgencyDescription] 
 				, [PhysicalAddress]
 				, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
 				, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
 				, taxonomyterm AS STerm
 				, taxonomyterms AS LTerms
-				FROM KeyWords 
-				  --WHERE CONTAINS(([PublicName],[AgencyDescription],[PhysicalCity],[PhysicalProvince],[TaxonomyTerm],[TaxonomyTerms]), @Searching)
-				  WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-						(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) OR (coverage like  @K8) OR 
-						(coverage like  @K9) OR (coverage like  @K10) OR (coverage like  @K11);
+				FROM keywords 
+				  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+						 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'') OR  (Coverage like ''+'%'+@K8+'%'+'') OR 
+						 (Coverage like ''+'%'+@K9+'%'+'') OR  (Coverage like ''+'%'+@K10+'%'+'')  ;
 		END 
-		ELSE IF (@k10 IS NOT NULL) AND (@K10 != '')
+		ELSE IF (@k9 IS NOT NULL) AND (@K9 != '')
 			BEGIN
 			 INSERT INTO @T_Result
 					SELECT  DISTINCT etlloadid
 					, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-					, [AgencyDescription] 
+					, [AgencyDescription]
 					, [PhysicalAddress]
 					, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-					, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+					, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]					 
 					, taxonomyterm AS STerm
 					, taxonomyterms AS LTerms
 					FROM keywords 
-					WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-						(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) OR (coverage like  @K8) OR 
-						(coverage like  @K9) OR (coverage like  @K10) ;
-			END 
-			ELSE IF (@k9 IS NOT NULL) AND (@K9 != '')
+					  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+							 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'') OR  (Coverage like ''+'%'+@K8+'%'+'') OR 
+							 (Coverage like ''+'%'+@K9+'%'+'') ;
+			END 		
+			ELSE IF (@k8 IS NOT NULL) AND (@K8 != '')
 				BEGIN
 				 INSERT INTO @T_Result
 						SELECT  DISTINCT etlloadid
 						, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-						, [AgencyDescription]
+						, [AgencyDescription] 
 						, [PhysicalAddress]
 						, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-						, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]					 
+						, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
 						, taxonomyterm AS STerm
 						, taxonomyterms AS LTerms
 						FROM keywords 
-						WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-							(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) OR (coverage like  @K8) OR 
-							(coverage like  @K9) ;
-				END 		
-				ELSE IF (@k8 IS NOT NULL) AND (@K8 != '')
+						  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+								 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'') OR  (Coverage like ''+'%'+@K8+'%'+'') ;
+				END 
+				ELSE IF (@k7 IS NOT NULL) AND (@K7 != '')
 					BEGIN
 					 INSERT INTO @T_Result
 							SELECT  DISTINCT etlloadid
 							, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-							, [AgencyDescription] 
+							, [AgencyDescription]
 							, [PhysicalAddress]
 							, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-							, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+							, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]							 
 							, taxonomyterm AS STerm
 							, taxonomyterms AS LTerms
 							FROM keywords 
-							WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-							(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) OR (coverage like  @K8) ;
+							  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+									 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'') OR  (Coverage like ''+'%'+@K7+'%'+'')  ;
 					END 
-					ELSE IF (@k7 IS NOT NULL) AND (@K7 != '')
+					ELSE IF (@k6 IS NOT NULL) AND (@K6 != '')
 						BEGIN
 						 INSERT INTO @T_Result
 								SELECT  DISTINCT etlloadid
 								, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-								, [AgencyDescription]
+								, [AgencyDescription] 
 								, [PhysicalAddress]
 								, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-								, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]							 
+								, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
 								, taxonomyterm AS STerm
 								, taxonomyterms AS LTerms
 								FROM keywords 
-								WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-								(coverage like  @K5) OR (coverage like  @K6) OR (coverage like  @K7) ;
+								  WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+										 (Coverage like ''+'%'+@K5+'%'+'') OR  (Coverage like ''+'%'+@K6+'%'+'')  ;
 						END 
-						ELSE IF (@k6 IS NOT NULL) AND (@K6 != '')
+						ELSE IF (@k5 IS NOT NULL) AND (@K5 != '')
 							BEGIN
 							 INSERT INTO @T_Result
 									SELECT  DISTINCT etlloadid
-									, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-									, [AgencyDescription] 
+									, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
+									, [AgencyDescription]
 									, [PhysicalAddress]
 									, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-									, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
+									, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]									 
 									, taxonomyterm AS STerm
 									, taxonomyterms AS LTerms
 									FROM keywords 
-									WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR 
-										(coverage like  @K5) OR (coverage like  @K6)  ;
-							END 
-							ELSE IF (@k5 IS NOT NULL) AND (@K5 != '')
+									WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') OR 
+											(Coverage like ''+'%'+@K5+'%'+'')  ;
+							END
+							ELSE IF (@k4 IS NOT NULL) AND (@K4 != '')
 								BEGIN
 								 INSERT INTO @T_Result
 										SELECT  DISTINCT etlloadid
-										, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
+										, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]  
 										, [AgencyDescription]
 										, [PhysicalAddress]
 										, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-										, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]									 
+										, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]										 
 										, taxonomyterm AS STerm
 										, taxonomyterms AS LTerms
 										FROM keywords 
-										WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4) OR (coverage like  @K5)  ;
-											
+										WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'') OR  (Coverage like ''+'%'+@K4+'%'+'') ;
 								END
-								ELSE IF (@k4 IS NOT NULL) AND (@K4 != '')
+								ELSE IF (@k3 IS NOT NULL) AND (@K3 != '')
 									BEGIN
 									 INSERT INTO @T_Result
 											SELECT  DISTINCT etlloadid
-											, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]  
+											, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
 											, [AgencyDescription]
 											, [PhysicalAddress]
 											, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-											, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]										 
+											, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]											 
 											, taxonomyterm AS STerm
 											, taxonomyterms AS LTerms
 											FROM keywords 
-											WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3) OR (coverage like  @K4)   ;
-									END
-									ELSE IF (@k3 IS NOT NULL) AND (@K3 != '')
+											WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'') OR  (Coverage like ''+'%'+@K3+'%'+'')  ;
+									END 
+									ELSE IF (@k2 IS NOT NULL) AND (@K2 != '')
 										BEGIN
 										 INSERT INTO @T_Result
 												SELECT  DISTINCT etlloadid
@@ -6312,72 +6386,37 @@ BEGIN TRY
 												, [AgencyDescription]
 												, [PhysicalAddress]
 												, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-												, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]											 
+												, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]												 
 												, taxonomyterm AS STerm
 												, taxonomyterms AS LTerms
 												FROM keywords 
-												WHERE  (coverage like  @K1) OR (coverage like  @K2) OR (coverage like  @K3)   ;
-										END 
-										ELSE IF (@k2 IS NOT NULL) AND (@K2 != '')
+												WHERE (Coverage like ''+'%'+@K1+'%'+'') OR (Coverage like ''+'%'+@K2+'%'+'')  ;
+										END
+										ELSE IF (@k1 IS NOT NULL) AND (@K1 != '')
 											BEGIN
 											 INSERT INTO @T_Result
 													SELECT  DISTINCT etlloadid
-													, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
+													, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p> '+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
 													, [AgencyDescription]
 													, [PhysicalAddress]
 													, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-													, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]												 
+													, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]													 
 													, taxonomyterm AS STerm
 													, taxonomyterms AS LTerms
 													FROM keywords 
-													WHERE  (coverage like  @K1) OR (coverage like  @K2)    ;
+													WHERE (Coverage like ''+'%'+@K1+'%'+'')  ;
 											END
-											ELSE IF (@k1 IS NOT NULL) AND (@K1 != '')
-												BEGIN
-												 INSERT INTO @T_Result
-														SELECT  DISTINCT etlloadid
-														, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p> '+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames] 
-														, [AgencyDescription]
-														, [PhysicalAddress]
-														, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-														, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]													 
-														, taxonomyterm AS STerm
-														, taxonomyterms AS LTerms
-														FROM keywords 
-														WHERE  (coverage like  @K1)  ;
-												END
-												ELSE
-													BEGIN
-													 INSERT INTO @T_Result
-															SELECT  DISTINCT etlloadid
-															, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000), '<p>' + publicname+'</p> '+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-															, [AgencyDescription]
-															, [PhysicalAddress]
-															, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-															, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]														 
-															, taxonomyterm AS STerm
-															, taxonomyterms AS LTerms
-															FROM keywords 
-															ORDER BY PublicNames  
-
-													END;
-
-    
 END TRY
 BEGIN CATCH
-		 INSERT INTO @T_Result
-					SELECT  DISTINCT etlloadid
-					, CASE physicalcity  	WHEN 'TBD' THEN publicname  ELSE CONVERT(NVARCHAR(2000),  '<p>' + publicname+'</p>'+ physicalcity+', '+ physicalprovince)	 END  AS [PublicNames]
-					, [AgencyDescription] 
-					, [PhysicalAddress]
-					, CASE physicalcity  	WHEN 'TBD' THEN '' ELSE physicalcity END AS [City]
-					, CASE [PhysicalProvince]   WHEN 'OTHS' THEN '' ELSE [PhysicalProvince] END AS [Province]
-					, taxonomyterm AS STerm
-					, taxonomyterms AS LTerms
-					FROM keywords 
-		;
+ 
 END CATCH
-;
+
+ END  -- END OF processing user inputed keywords into @k1--@k11
+
+
+
+
+
 
 
 --------------------------------
@@ -6431,7 +6470,7 @@ END CATCH
 				JOIN  F_Get_Allow_TopCategory (@token) AS ATC 	ON ATC.TOPCategoryID = A.TOPCategoryID 
 				-- Return only those resources whose PhysicalCityID is in the allowing City list
 				JOIN  F_Get_ALL_Allow_City (@token) AS ACID ON ACID.CityID = A.PhysicalCityID 
-			WHERE ---a.LanguageOfRecord = @lang   AND  
+			WHERE   a.LanguageOfRecord = @lang   AND  
 					SC.Active = 1   AND   TC.Active = 1
 			
 			ORDER BY        
@@ -6449,90 +6488,6 @@ END CATCH
 	-----------------
 	--  END OF THE SP
 	-----------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
------------------------------------------------------
--- Commented below on Feb.28, 2017, 
------------------------------------------------------
-    -- Insert statements for procedure here
-	--Set @s = LTRIM(RTRIM(@s))  ;
-
-
-	--SELECT		DISTINCT
-	--					a.ETLLoadID, 
-	--					a.ResourceAgencyNum,
-	--					a.Map, 
-	--					a.SubCategoryID, 
-	--					CASE @lang WHEN 'EN' THEN SC.SubCategory ELSE SC.SubCategory_fr END AS SubCategory, 
-	--					a.TOPCategoryID, 
- --                       CASE @lang WHEN 'EN' THEN TC.TopCategory ELSE TC.TopCategory_fr END AS TopCategory, 
-	--					a.PublicName AS Name, 
-	--					--CASE c.CityName WHEN 'TBD' THEN a.publicname ELSE CONVERT(NVARCHAR(2000), 
- --                       --a.publicname + ', ' + c.CityName + ', ' + p.[ProvinceAlias]) END AS PublicNames, 
-	--					a.AgencyDescription, 
-	--					a.PhysicalAddress, 
-	--					a.PhysicalCityID, 
- --                       CASE c.CityName WHEN 'TBD' THEN '' ELSE c.CityName END AS City, 
-	--					a.PhysicalProvinceID, 
-	--					CASE p.[ProvinceAlias] WHEN 'OTHS' THEN '' WHEN 'Others' THEN '' ELSE p.[ProvinceAlias] END AS Province, 
- --                       a.PhysicalCountry, 
-	--					a.PhysicalPostalCode, 
-	--					REPLACE(ETL.TaxonomyTerm, '/', ' ') AS STerm, 
-	--					REPLACE(ETL.TaxonomyTerms, '/', ' ') AS LTerms, 
-	--					a.PhysicalAddressIsPrivate, 
-	--					a.Latitude, 
-	--					a.Longitude, 
- --                       a.HoursOfOperation, 
-	--					a.Phone, 
-	--					a.WebsiteAddress, 
-	--					a.Eligibility, 
-	--					a.DisabilitiesAccess, 
-	--					a.FeeStructureSource, 
-	--					a.ApplicationProcess, 
-	--					a.DocumentsRequired, 
-	--					a.LanguagesOfferedList, 
-	--					a.LanguageOfRecord, 
- --                       a.WorkHours, 
-	--					a.CustomEligibilitybyAge, 
-	--					a.Coverage, 
-	--					a.CoverageArea, 
-	--					a.NormalWaitTime 
-	--FROM ramresource as a  
-	--				-- Return only those resources whose TopCategoryID is in the allowing TopCategory list
-	--				JOIN		F_Get_Allow_TopCategory (@token) AS ATC ON ATC.TopCategoryID = A.TOPCategoryID 
-	--				-- Return only those resources whose PhysicalCityID is in the allowing City list
-	--				JOIN		F_Get_ALL_Allow_City  (@token)  AS ACID ON ACID.CityID = A.PhysicalCityID 
-		 
-	--				JOIN [dbo].[SubCategory] AS SC	ON SC.[SubCategoryID] = A.SubCategoryID
-	--				JOIN [dbo].[TopCategory] AS TC	ON TC.TopCategoryID = A.TOPCategoryID
-	--				INNER JOIN  CityLocation AS c   ON a.PhysicalCityID = c.CityId 
-	--				INNER JOIN  Province     AS p   ON a.PhysicalProvinceID = p.ProvinceID 
-	--				INNER JOIN  ETLLoad      AS ETL ON a.ETLLoadID = ETL.ETLLoadID 
-	--				--CROSS APPLY 	( 
-	--				--					select ¡¡   f.id,  f.KEYWORD   from   F_Splite_Coverage_into_word   (a.etlloadid )  as f  
-	--				--				)  AS K	
-	--WHERE   a.LanguageOfRecord = @lang     
-	--		AND		SC.Active = 1   
-	--		AND		TC.Active = 1   
-	--		--AND		K.KEYWORD  like   ''   + @s  +   '%'  +  ''  
-	--		AND		a.Coverage	LIKE ''	+	'%'	+	@s	+	'%'	+	''
-	--ORDER BY  a.TOPCategoryID,  a.SubCategoryID, a.Map
-
-
 END
 GO
 
@@ -6930,6 +6885,82 @@ GO
 
 
 
+
+
+
+
+USE [RAM]
+GO
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'Proc_Get_Google_City_By_GoogleCityID')
+DROP PROCEDURE Proc_Get_Google_City_By_GoogleCityID
+GO
+/****** Object:  StoredProcedure [dbo].[Proc_Get_Google_City_By_GoogleCityID]    Script Date: 3/13/2017 11:08:29 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		William Chen
+-- Create date: March 4, 2017
+-- Description:	get Google City BY googlelocationID
+-- =============================================
+CREATE PROCEDURE [dbo].[Proc_Get_Google_City_By_GoogleCityID]
+	-- Add the parameters for the stored procedure here
+@cid int
+WITH ENCRYPTION
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+  SELECT googlelocationID as GoogleCityID, googlecity as GoogleCity, p.ProvinceAlias as province 
+		FROM [GoogleLocation] as g join Province as p  on p.ProvinceID  = g.[GoogleProvinceID] 
+		WHERE G.googlelocationID = @CID
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'Proc_Get_Blocked_IP')
+DROP PROCEDURE Proc_Get_Blocked_IP
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		William Chen
+-- Create date: March.14, 2017
+-- Description:	Get all Blocked IP addresses
+-- =============================================
+CREATE PROCEDURE [dbo].[Proc_Get_Blocked_IP]
+WITH ENCRYPTION
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT		[BlockIP]	FROM	[dbo].[BlockList]		WHERE	[BlockIPActivity]	=	1;
+END
+GO
+
+
 -- ======================================================================================================
 -- ======================================================================================================
 --
@@ -6937,6 +6968,8 @@ GO
 --
 -- ======================================================================================================
 -- ======================================================================================================
+use RAM
+GO
 --- load thesaurus_file
 EXEC sys.sp_fulltext_load_thesaurus_file 0;
 GO

@@ -36,12 +36,12 @@ namespace WebApi.Filters
                 bool ipAllowed = CheckAllowedIPs(userIpAddress);
 
                 // Check that the IP is not denied to access
-                //bool ipDenied = CheckDeniedIPs(userIpAddress);
+                bool ipDenied = CheckDeniedIPs(userIpAddress);
 
                 // Only allowed if allowed and not denied
                 //bool finallyAllowed = ipAllowed && !ipDenied;
 
-                bool finallyAllowed = ipAllowed;
+                 bool finallyAllowed = ipAllowed;
 
                 return finallyAllowed;
             }
@@ -53,10 +53,6 @@ namespace WebApi.Filters
             return true; // if there was an exception, then we return true
         }
 
-        //private bool CheckDeniedIPs(string userIpAddress)
-        //{
-        //    // throw new NotImplementedException();
-        //}
 
 
 
@@ -64,69 +60,136 @@ namespace WebApi.Filters
 
 
 
-        static AuthServices authservices = new AuthServices();
-        /// <summary>
-        /// get all of allowable ips 
-        /// </summary>
-        /// <returns></returns>
-        public static List<string> GetAuthIPs()
-        {
-            List<string> ips = authservices.GetAllowIps();
-            return ips;
-        }
-
-
-        /// <summary>
-        /// Checks the allowed IPs.
-        /// </summary>
-        /// <param name="userIpAddress">The user ip address.</param>
-        /// <returns></returns>
-        private bool CheckAllowedIPs(string userIpAddress)
-        {
-            //Split the users IP address into it's 4 octets (Assumes IPv4) 
-            string[] incomingOctets = userIpAddress.Trim().Split(new char[] { '.' });
-
-
-
-            string[] validIpAddresses = GetAuthIPs().ToArray();
-
-            //Iterate through each valid IP address 
-            foreach (var validIpAddress in validIpAddresses)
+        #region allow IP
+            static AuthServices authservices = new AuthServices();
+            /// <summary>
+            /// get all of allowable ips 
+            /// </summary>
+            /// <returns></returns>
+            public static List<string> GetAuthIPs()
             {
-                //Return true if valid IP address matches the users 
-                if (validIpAddress.Trim() == userIpAddress)
+                List<string> ips = authservices.GetAllowIps();
+                return ips;
+            }
+
+
+
+
+            /// <summary>
+            /// Checks the allowed IPs.
+            /// </summary>
+            /// <param name="userIpAddress">The user ip address.</param>
+            /// <returns></returns>
+            private bool CheckAllowedIPs(string userIpAddress)
+            {
+                //Split the users IP address into it's 4 octets (Assumes IPv4) 
+                string[] incomingOctets = userIpAddress.Trim().Split(new char[] { '.' });
+
+
+
+                string[] validIpAddresses = GetAuthIPs().ToArray();
+
+                //Iterate through each valid IP address 
+                foreach (var validIpAddress in validIpAddresses)
                 {
-                    return true;
-                }
-
-                //Split the valid IP address into it's 4 octets 
-                string[] validOctets = validIpAddress.Trim().Split(new char[] { '.' });
-
-                bool matches = true;
-
-                //Iterate through each octet 
-                for (int index = 0; index < validOctets.Length; index++)
-                {
-                    //Skip if octet is an asterisk indicating an entire 
-                    //subnet range is valid 
-                    if (validOctets[index] != "*")
+                    //Return true if valid IP address matches the users 
+                    if (validIpAddress.Trim() == userIpAddress)
                     {
-                        if (validOctets[index] != incomingOctets[index])
+                        return true;
+                    }
+
+                    //Split the valid IP address into it's 4 octets 
+                    string[] validOctets = validIpAddress.Trim().Split(new char[] { '.' });
+
+                    bool matches = true;
+
+                    //Iterate through each octet 
+                    for (int index = 0; index < validOctets.Length; index++)
+                    {
+                        //Skip if octet is an asterisk indicating an entire 
+                        //subnet range is valid 
+                        if (validOctets[index] != "*")
                         {
-                            matches = false;
-                            break; //Break out of loop 
+                            if (validOctets[index] != incomingOctets[index])
+                            {
+                                matches = false;
+                                break; //Break out of loop 
+                            }
                         }
                     }
-                }
 
-                if (matches)
+                    if (matches)
+                    {
+                        return true;
+                    }
+                } //foreach 
+
+                //Found no matches 
+                return false;
+            }
+        #endregion allow IP
+
+
+
+        #region Blocked IP
+            /// <summary>
+            /// get all of Blocked ips 
+            /// </summary>
+            /// <returns></returns>
+            public static List<string> GetBlockedIPs()
+            {
+                List<string> ips = authservices.GetBlockedIPs();
+                return ips;
+            }
+
+            private bool CheckDeniedIPs(string userIpAddress)
+            {
+                //Split the users IP address into it's 4 octets (Assumes IPv4) 
+                string[] incomingOctets = userIpAddress.Trim().Split(new char[] { '.' });
+
+
+                string[] blockedIpAddresses = GetBlockedIPs().ToArray();
+
+                //Iterate through each blocked IP address 
+                foreach (var blockedIpAddress in blockedIpAddresses)
                 {
-                    return true;
-                }
-            } //foreach 
+                    //Return true if blocked IP address matches the users 
+                    if (blockedIpAddress.Trim() == userIpAddress)
+                    {
+                        return true;
+                    }
 
-            //Found no matches 
-            return false;
-        }
+                    //Split the valid IP address into it's 4 octets 
+                    string[] blockedOctets = blockedIpAddress.Trim().Split(new char[] { '.' });
+
+                    bool matches = true;
+
+                    //Iterate through each octet 
+                    for (int index = 0; index < blockedOctets.Length; index++)
+                    {
+                        //Skip if octet is an asterisk indicating an entire 
+                        //subnet range is blocked 
+                        if (blockedOctets[index] != "*")
+                        {
+                            if (blockedOctets[index] != incomingOctets[index])
+                            {
+                                matches = false;
+                                break; //Break out of loop 
+                            }
+                        }
+                    }
+
+                    if (matches)
+                    {
+                        return true;
+                    }
+                } //foreach 
+
+
+
+                return false;
+            }
+
+        #endregion Blocked IP
     }
 }

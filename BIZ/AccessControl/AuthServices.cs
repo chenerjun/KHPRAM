@@ -1,8 +1,6 @@
-﻿using System;
-using DATA.EF;
+﻿using DATA.EF;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace BIZ.AccessControl
 {
@@ -13,6 +11,13 @@ namespace BIZ.AccessControl
         public  List<string> GetAllowIps()
         {
             var response = db.Proc_Get_Allow_IP().ToList();
+
+            return response;
+        }
+
+        public List<string> GetBlockedIPs()
+        {
+            var response = db.Proc_Get_Blocked_IP().ToList();
 
             return response;
         }

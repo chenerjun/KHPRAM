@@ -15,8 +15,8 @@ namespace WebApi.Controllers
     /// <summary>
     /// Provide a sample data set for user's testing, response format in JSON and XML. 
     /// </summary>
-    //[EnableCors()]
     
+    //[EnableCors(cors)]
     [AuthorizeIPAddress]
     [FilterIP]
     public class TestController : ApiController

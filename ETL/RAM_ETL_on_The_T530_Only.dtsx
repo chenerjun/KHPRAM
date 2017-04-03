@@ -7,12 +7,12 @@
   DTS:CreatorName="T530\William"
   DTS:DTSID="{FE81994D-B429-43B8-ABC9-03E1C62BCD29}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="13.0.1601.5"
+  DTS:LastModifiedProductVersion="13.0.2164.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="RAM_ETL_on_The_T530_Only"
   DTS:PackageType="5"
-  DTS:VersionBuild="338"
-  DTS:VersionGUID="{1AF6EA8E-52D8-4170-9690-2DD4CD36D4FB}">
+  DTS:VersionBuild="340"
+  DTS:VersionGUID="{2BD5090B-A5DB-4CF1-9385-D6948E892FAB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -77,7 +77,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="65001"
-          DTS:ConnectionString="D:\Users\erjun\Documents\Test\RAM\iCarolExport-KidsHelpPhone-Resources-20161118_163330.csv">
+          DTS:ConnectionString="D:\Users\erjun\Documents\Test\RAM\www.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -1728,7 +1728,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Create_Table_KHPETLLoadID_InterestTaxonomyCode_CategoryID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1745,7 +1745,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_KHPETLLoadID_InterestTaxonomyCode_CategoryID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4300,7 +4300,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4317,7 +4317,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4334,7 +4334,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4351,7 +4351,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6826,7 +6826,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6894,7 +6894,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6911,7 +6911,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6928,7 +6928,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6945,7 +6945,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6962,7 +6962,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6979,7 +6979,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6996,7 +6996,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7030,7 +7030,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14447,7 +14447,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Adjust_LatLong"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14566,7 +14566,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_InCompleteRAMResource"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14600,7 +14600,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Map"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14651,7 +14651,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Shelter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14854,7 +14854,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_ Build_NewRAM"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14872,7 +14872,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Map"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14889,7 +14889,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_PhoneWeb"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14906,7 +14906,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Shelter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14965,6 +14965,22 @@ ORDER BY R.ETLLoadID</property>
           DTS:ObjectName="Constraint 5"
           DTS:To="Package\Constructing New interest Resource\SQL_Truncate_Table_Map" />
       </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ExecuteSQLTask_Insert_Table_UpdateLog"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{790F0A59-74A7-4C04-B3F8-7E19C43CAAFC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ExecuteSQLTask_Insert_Table_UpdateLog"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0F6BD84F-BD54-48DE-8201-666D91840F53}"
+          SQLTask:SqlStatementSource="DECLARE @ETLLoad                        int = 0;&#xA;DECLARE @RAMResource_fr                 int = 0;&#xA;DECLARE @Coverage&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @CustomEligibilitybyAge&#x9;&#x9;    int = 0;&#xA;DECLARE @ETLLoadID_TaxonomyCode&#x9;&#x9;    int = 0;&#xA;DECLARE @InterestTaxonomyID_ETLLoadID   int = 0&#xA;DECLARE @KeyWords&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @WorkHour&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @ProgramRAW&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @RAMRAW&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @TaxonomyRAW&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @SuggestionWord&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @RamResource&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @mapped&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @Lists&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @Boths&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @shelter&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @publicname&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @LatLon&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @PhysicalAddress&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @AgencyDescription&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @DisabilitiesAccess&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @LanguagesOfferedList&#x9;&#x9;    int = 0;&#xA;DECLARE @CoverageArea&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;DECLARE @ICoverage&#x9;&#x9;&#x9;&#x9;&#x9;    int = 0;&#xA;&#xA;&#xA;select @ETLLoad=COUNT(etlloadid) from  [dbo].[ETLLoad];&#xA;select @RAMResource_fr = count(etlloadid)   from [dbo].[RAMResource] where LanguageOfRecord = 'fr' AND  (RamResource.PhysicalCityID &lt;&gt; 0) AND (RamResource.PhysicalProvinceID &lt;&gt; 99) ;&#xA;select @Coverage=COUNT(etlloadid) from [dbo].[Coverage];&#xA;select @CustomEligibilitybyAge=COUNT(etlloadid) from [dbo].[CustomEligibilitybyAge];&#xA;select @ETLLoadID_TaxonomyCode=COUNT(etlloadid) from [dbo].[ETLLoadID_TaxonomyCode];&#xA;select @InterestTaxonomyID_ETLLoadID=COUNT(etlloadid) from [dbo].[InterestTaxonomyID_ETLLoadID];&#xA;select @KeyWords=COUNT(etlloadid) from [dbo].[KeyWords];&#xA;select @WorkHour=COUNT(etlloadid) from [dbo].[WorkHour];&#xA;select @ProgramRAW=COUNT(etlloadid) from [dbo].[ProgramRAW];&#xA;select @RAMRAW=COUNT(etlloadid) from [dbo].[RAMRAW];&#xA;select @TaxonomyRAW=COUNT(etlloadid) from [dbo].[TaxonomyRAW];&#xA;select @SuggestionWord=COUNT(SuggestionWordid) from [dbo].[SuggestionWord];&#xA;select @RamResource=COUNT(etlloadid) from  [dbo].[RamResource] WHERE (RamResource.PhysicalCityID &lt;&gt; 0) AND (RamResource.PhysicalProvinceID &lt;&gt; 99) ;&#xA;select @mapped=COUNT(etlloadid) from  [dbo].[RamResource] where Map ='mapped' AND  (RamResource.PhysicalCityID &lt;&gt; 0) AND (RamResource.PhysicalProvinceID &lt;&gt; 99) ;&#xA;select @Lists=COUNT(etlloadid) from  [dbo].[RamResource] where Map ='List' AND  (RamResource.PhysicalCityID &lt;&gt; 0) AND (RamResource.PhysicalProvinceID &lt;&gt; 99) ;&#xA;select @Boths=COUNT(etlloadid) from  [dbo].[RamResource] where Map ='Both' AND  (RamResource.PhysicalCityID &lt;&gt; 0) AND (RamResource.PhysicalProvinceID &lt;&gt; 99) ;&#xA;select @shelter=COUNT(etlloadid) from  [dbo].[RamResource] where Map ='shelter' AND  (RamResource.PhysicalCityID &lt;&gt; 0) AND (RamResource.PhysicalProvinceID &lt;&gt; 99) ;&#xA;select distinct @publicname=count(etlloadid) from  [dbo].[RamResource] where Len(publicname ) &lt;2;&#xA;select distinct @LatLon=count(etlloadid) from  [dbo].[RamResource] where ( map='mapped' or map='both') and Latitude =0.0;&#xA;select distinct @PhysicalAddress=count(ETLLoadID)  from  [dbo].[RamResource] where (map != 'shelter') and len(PhysicalAddress) &lt;2;&#xA;select distinct @AgencyDescription=count(etlloadid) from  [dbo].[RamResource] where Len(AgencyDescription ) &lt;2;&#xA;select distinct @DisabilitiesAccess=count(etlloadid) from  [dbo].[RamResource] where Len(DisabilitiesAccess ) &lt;2;&#xA;select distinct @LanguagesOfferedList=count(etlloadid) from  [dbo].[RamResource] where Len( LanguagesOfferedList ) &lt;2;&#xA;select distinct @CoverageArea=count(etlloadid) from  [dbo].[RamResource] where Len( CoverageArea ) &lt;2;&#xA;select distinct @ICoverage=count(etlloadid) from  [dbo].[RamResource] where Len( Coverage ) &lt;2;&#xA;&#xA;INSERT INTO updatelog&#xA;                         (UpdatedDate, CommunityResource, PCoverage, PCustomEligibilitybyAge, ETLLoadID_TaxonomyCode, InterestTaxonomyID_ETLLoadID, KeyWords, PWorkHour, &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; ProgramRAW, RAMRAW, TaxonomyRAW, &#xA;                         SuggestionWords, RAMResource, RAMResource_fr, [Mapped], [Lists], [Boths], shelter, &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; IPublicName, ILatLong, IAddress, IAgencyDesc, IDisabilitiesAccess, ILanguagesOfferedList, ICoverageArea, ICoverage)&#xA;VALUES        (CONVERT(DATE,GETDATE()),@ETLLoad,@Coverage,@CustomEligibilitybyAge,@ETLLoadID_TaxonomyCode,@InterestTaxonomyID_ETLLoadID,@KeyWords,@WorkHour,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; @ProgramRAW,@RAMRAW,@TaxonomyRAW,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; @SuggestionWord,@RamResource,@RAMRESOURCE_FR,@mapped,@Lists,@Boths,@shelter,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; @publicname,@LatLon,@PhysicalAddress,@AgencyDescription,@DisabilitiesAccess,@LanguagesOfferedList,@CoverageArea,@ICoverage)&#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Pivot_ProgramRAW_TaxonomyCode"
@@ -15067,7 +15083,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Changing_Table_CityLocation_to_Upcase"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -24993,7 +25009,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLLOAD"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25010,7 +25026,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLLoadError"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25026,7 +25042,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_NoMatched"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -35104,7 +35120,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Bridge_table_ETLloadID_CategoryID_ClassificationID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -35123,7 +35139,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Changing_Table_City_to_Upcase"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -35142,7 +35158,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLloadID_CategoryID_ClassificationID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -38004,6 +38020,14 @@ ORDER BY ETLLoadID</property>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
       DTS:To="Package\Construct RAMResource" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{5563F419-22AD-488D-9DED-517FD7AFD636}"
+      DTS:From="Package\Construct RAMResource"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\ExecuteSQLTask_Insert_Table_UpdateLog" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -39506,6 +39530,10 @@ ORDER BY ETLLoadID</property>
           Id="Package\Constructing New interest Resource"
           TopLeft="172.5,1137.5" />
         <NodeLayout
+          Size="278,42"
+          Id="Package\ExecuteSQLTask_Insert_Table_UpdateLog"
+          TopLeft="681,3396" />
+        <NodeLayout
           Size="324,42"
           Id="Package\Pivot_ProgramRAW_TaxonomyCode\SQL_Add_FK_on_Table_ETLLoadID_TaxonomyCode"
           TopLeft="10.5,218.5" />
@@ -40112,6 +40140,28 @@ ORDER BY ETLLoadID</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,96.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="820.25,3323.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,72.5"
+              Start="0,0"
+              End="0,65">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

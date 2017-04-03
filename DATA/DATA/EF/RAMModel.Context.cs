@@ -648,5 +648,10 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CityList>("Proc_Increment_Loaction_Search", tokenParameter, lParameter);
         }
+    
+        public virtual ObjectResult<string> Proc_Get_Blocked_IP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Proc_Get_Blocked_IP");
+        }
     }
 }
