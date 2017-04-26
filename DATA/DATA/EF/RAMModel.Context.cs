@@ -653,5 +653,22 @@ namespace DATA.EF
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Proc_Get_Blocked_IP");
         }
+    
+        public virtual ObjectResult<RamResource> Proc_Get_Resource_by_Classification(string type, string lang, string token)
+        {
+            var typeParameter = type != null ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(string));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RamResource>("Proc_Get_Resource_by_Classification", typeParameter, langParameter, tokenParameter);
+        }
     }
 }

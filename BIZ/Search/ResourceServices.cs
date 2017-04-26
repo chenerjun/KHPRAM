@@ -130,5 +130,13 @@ namespace BIZ.Search
         }
 
 
+        public List<RamResource> GetResourceByType(string type, string lang, string token)
+        {
+            List<RamResource> response = new List<RamResource>();
+            response = db.Proc_Get_Resource_by_Classification(type, lang, token).ToList();
+            return response;
+        }
+
+
     }
 }

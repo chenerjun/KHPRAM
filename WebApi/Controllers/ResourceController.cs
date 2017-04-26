@@ -214,21 +214,135 @@ namespace WebApi.Controllers
                     }
                 }
 
-            #endregion XML
+        #endregion XML
         #endregion Get All Resource
 
 
+        #region Get Resource By Type
+        #region JSON
+        #region Path
+        /// <summary>
+        /// Path resource type to get allowable resource list filter by language.
+        /// </summary>
+        /// <param name="type">Resource type Map:"M"; List:"L"; Both:"B"; Shelter:"S";</param>
+        /// <param name="token">Access token</param>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <returns>Return allowable resource list format in json</returns>
+        [ActionName("Resource")]
+        [Route("api/v2/resource/type/json/{token}/{lang}/{type}")]
+        [Route("api/v2/ressource/type/json/{token}/{lang}/{type}")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetResourcesByType(string type, string lang, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetResourceByType(type,lang,token).ToList();
+            return toJson(json, lang);
+        }
+        #endregion Path
+
+        #region queryString
+        /// <summary>
+        /// Query resource type to get allowable resource list filter by language.
+        /// </summary>
+        /// <param name="type">Resource type Map:"M"; List:"L"; Both:"B"; Shelter:"S";</param>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return allowable resource list format in json</returns>
+        [ActionName("Resource")]
+        [Route("api/v2/resource/type/json")]
+        [Route("api/v2/ressource/type/json")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetResourcesByType_QS(string type, string lang, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetResourceByType(type, lang, token).ToList();
+            return toJson(json, lang);
+        }
+        #endregion queryString
+        #endregion JSON
+
+        #region XML
+        #region Path
+        /// <summary>
+        /// Path resource type to get allowable resource xml list filter by language.
+        /// </summary>
+        /// <param name="type">Resource type Map:"M"; List:"L"; Both:"B"; Shelter:"S";</param>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return allowable resource list format in XML</returns>
+        [ActionName("Resource")]
+        [Route("api/v2/resource/type/xml/{token}/{lang}/{type}")]
+        [Route("api/v2/ressource/type/xml/{token}/{lang}/{type}")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetResourcesByType_XML(string type, string lang, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetResourceByType(type, lang, token).ToList();
+            return createResourcehTypeResult(type, lang, token);
+        }
+        #endregion Path
+
+        #region queryString
+        /// <summary>
+        /// Query resource type to get allowable resource xml list filter by language.
+        /// </summary>
+        /// <param name="type">Resource type Map:"M"; List:"L"; Both:"B"; Shelter:"S";</param>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return allowable resource list format in XML</returns>
+        [ActionName("Resource")]
+        [Route("api/v2/resource/type/xml")]
+        [Route("api/v2/ressource/type/xml")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetResourcesByType_XML_QS(string type, string lang, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetResourceByType(type, lang, token).ToList();
+            return createResourcehTypeResult(type, lang, token);
+        }
+        #endregion queryString
+        private HttpResponseMessage createResourcehTypeResult(string type, string lang, string token)
+        {
+            lang = lang.ToLower();
+            if ((lang == "en") || (lang == "fr"))
+            {
+                var xml = resourceservice.GetResourceByType(type, lang, token).ToList();
+
+                if (xml.Count > 0)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                    return response;
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NoContent);
+                }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+
+        #endregion XML
+        #endregion Get Resource By Type
+
+
         #region Get Resource By ID
-            #region JSON
-                //Friendly
-                /// <summary>
-                ///  Get specific allowable resource by its id, filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="rid">resource id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a JSON format specific resource's detail information</returns>
-                [ActionName("json")]
+        #region JSON
+        //Friendly
+        /// <summary>
+        ///  Get specific allowable resource by its id, filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="rid">resource id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format specific resource's detail information</returns>
+        [ActionName("json")]
                 [Route("api/v2/resource/json/{token}/{lang}/{rid}")]
                 [Route("api/v2/Ressource/json/{token}/{lang}/{rid}")]
                 [ResponseType(typeof(RamResource))]

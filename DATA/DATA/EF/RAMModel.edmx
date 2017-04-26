@@ -72,6 +72,11 @@
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Proc_Get_Resource_by_Classification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="type" Type="nvarchar" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Proc_Get_Resource_By_Coverage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="s" Type="nvarchar" Mode="In" />
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
@@ -377,6 +382,11 @@
             <Parameter Name="L" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Proc_Get_Blocked_IP" ReturnType="Collection(String)" />
+          <FunctionImport Name="Proc_Get_Resource_by_Classification" ReturnType="Collection(RAMModel.RamResource)">
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
           <Property Type="Int32" Name="TopCategoryID" Nullable="false" />
@@ -1402,6 +1412,48 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Proc_Get_Blocked_IP" FunctionName="RAMModel.Store.Proc_Get_Blocked_IP" />
+          <FunctionImportMapping FunctionImportName="Proc_Get_Resource_by_Classification" FunctionName="RAMModel.Store.Proc_Get_Resource_by_Classification">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.RamResource">
+                <ScalarProperty Name="ETLLoadID" ColumnName="ETLLoadID" />
+                <ScalarProperty Name="ResourceAgencyNum" ColumnName="ResourceAgencyNum" />
+                <ScalarProperty Name="Map" ColumnName="Map" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="TOPCategoryID" ColumnName="TOPCategoryID" />
+                <ScalarProperty Name="TopCategory" ColumnName="TopCategory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AgencyDescription" ColumnName="AgencyDescription" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="PhysicalCityID" ColumnName="PhysicalCityID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PhysicalProvinceID" ColumnName="PhysicalProvinceID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="PhysicalCountry" ColumnName="PhysicalCountry" />
+                <ScalarProperty Name="PhysicalPostalCode" ColumnName="PhysicalPostalCode" />
+                <ScalarProperty Name="STerm" ColumnName="STerm" />
+                <ScalarProperty Name="LTerms" ColumnName="LTerms" />
+                <ScalarProperty Name="PhysicalAddressIsPrivate" ColumnName="PhysicalAddressIsPrivate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HoursOfOperation" ColumnName="HoursOfOperation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="WebsiteAddress" ColumnName="WebsiteAddress" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="DisabilitiesAccess" ColumnName="DisabilitiesAccess" />
+                <ScalarProperty Name="FeeStructureSource" ColumnName="FeeStructureSource" />
+                <ScalarProperty Name="ApplicationProcess" ColumnName="ApplicationProcess" />
+                <ScalarProperty Name="DocumentsRequired" ColumnName="DocumentsRequired" />
+                <ScalarProperty Name="LanguagesOfferedList" ColumnName="LanguagesOfferedList" />
+                <ScalarProperty Name="LanguageOfRecord" ColumnName="LanguageOfRecord" />
+                <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
+                <ScalarProperty Name="CustomEligibilitybyAge" ColumnName="CustomEligibilitybyAge" />
+                <ScalarProperty Name="Coverage" ColumnName="Coverage" />
+                <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
+                <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
