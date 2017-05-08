@@ -25,7 +25,7 @@ namespace WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool ssl {
             get {
                 return ((bool)(this["ssl"]));
@@ -34,7 +34,7 @@ namespace WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("K1dsH3lp15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("R3k!hd89s$")]
         public string pwd {
             get {
                 return ((string)(this["pwd"]));
@@ -43,7 +43,7 @@ namespace WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Resources@kidshelpphone.ca")]
+        [global::System.Configuration.DefaultSettingValueAttribute("rameml@kidshelpphone.ca")]
         public string sendfrom {
             get {
                 return ((string)(this["sendfrom"]));
@@ -70,7 +70,7 @@ namespace WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10.0.0.69")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mail.kidshelpphone.ca")]
         public string host {
             get {
                 return ((string)(this["host"]));
@@ -79,7 +79,7 @@ namespace WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("25")]
+        [global::System.Configuration.DefaultSettingValueAttribute("587")]
         public int port {
             get {
                 return ((int)(this["port"]));
@@ -88,7 +88,7 @@ namespace WebApi.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Resources")]
+        [global::System.Configuration.DefaultSettingValueAttribute("rameml")]
         public string loginname {
             get {
                 return ((string)(this["loginname"]));

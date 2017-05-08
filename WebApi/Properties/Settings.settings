@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="ssl" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="pwd" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">K1dsH3lp15</Value>
+      <Value Profile="(Default)">R3k!hd89s$</Value>
     </Setting>
     <Setting Name="sendfrom" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Resources@kidshelpphone.ca</Value>
+      <Value Profile="(Default)">rameml@kidshelpphone.ca</Value>
     </Setting>
     <Setting Name="displayname" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Resources Around Me/Ressources autour de moi</Value>
@@ -18,13 +18,13 @@
       <Value Profile="(Default)">My Favourites List</Value>
     </Setting>
     <Setting Name="host" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">10.0.0.69</Value>
+      <Value Profile="(Default)">mail.kidshelpphone.ca</Value>
     </Setting>
     <Setting Name="port" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">25</Value>
+      <Value Profile="(Default)">587</Value>
     </Setting>
     <Setting Name="loginname" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Resources</Value>
+      <Value Profile="(Default)">rameml</Value>
     </Setting>
     <Setting Name="subject_fr" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Mes Signets</Value>
