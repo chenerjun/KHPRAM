@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="RAM_ETL_on_The_T530_Only"
   DTS:PackageType="5"
-  DTS:VersionBuild="340"
-  DTS:VersionGUID="{2BD5090B-A5DB-4CF1-9385-D6948E892FAB}">
+  DTS:VersionBuild="342"
+  DTS:VersionGUID="{A8A8A18A-D53A-4DC3-9C17-3DBD774ADEAE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1728,7 +1728,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Create_Table_KHPETLLoadID_InterestTaxonomyCode_CategoryID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1745,7 +1745,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_KHPETLLoadID_InterestTaxonomyCode_CategoryID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4300,7 +4300,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4317,7 +4317,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4334,7 +4334,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4351,7 +4351,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6826,7 +6826,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6843,7 +6843,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6860,7 +6860,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6877,7 +6877,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_from_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6894,7 +6894,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6911,7 +6911,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6928,7 +6928,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6945,7 +6945,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6962,7 +6962,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6979,7 +6979,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6996,7 +6996,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7030,7 +7030,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14447,7 +14447,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Adjust_LatLong"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14464,7 +14464,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Keywords"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14481,7 +14481,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Suggetsion_Words"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14566,7 +14566,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_InCompleteRAMResource"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14583,7 +14583,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_table_keywords"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14600,7 +14600,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Map"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14617,7 +14617,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_PhoneWeb"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14651,7 +14651,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Shelter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14668,7 +14668,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_SuggestionWord"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14889,7 +14889,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_PhoneWeb"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14906,7 +14906,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Shelter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -19007,28 +19007,6 @@ ORDER BY R.ETLLoadID</property>
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[CustomResourceSpecialist]"
-                          codePage="1252"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].ExternalColumns[CustomResourceSpecialist]"
-                          length="255"
-                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[CustomResourceSpecialist]"
-                          name="CustomResourceSpecialist"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indicates whether the data is in binary format."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
                           refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[ProgramAgencyNamePublic]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
@@ -19964,12 +19942,6 @@ ORDER BY R.ETLLoadID</property>
                           dataType="str"
                           length="255"
                           name="IsLinkOnly" />
-                        <externalMetadataColumn
-                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].ExternalColumns[CustomResourceSpecialist]"
-                          codePage="1252"
-                          dataType="str"
-                          length="255"
-                          name="CustomResourceSpecialist" />
                         <externalMetadataColumn
                           refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].ExternalColumns[ProgramAgencyNamePublic]"
                           dataType="wstr"
@@ -25026,7 +24998,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLLoadError"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25042,7 +25014,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_NoMatched"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -41095,22 +41067,22 @@ ORDER BY ETLLoadID</property>
         <NodeLayout
           Size="248,42"
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180"
-          TopLeft="243,60" />
+          TopLeft="212,166" />
         <NodeLayout
           Size="354,42"
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError"
-          TopLeft="60,326" />
+          TopLeft="29,432" />
         <NodeLayout
           Size="216,42"
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_ERR_Read_CSV_With_Err"
-          TopLeft="542,204" />
+          TopLeft="511,310" />
         <NodeLayout
           Size="345,42"
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad"
-          TopLeft="63.5,194.5" />
+          TopLeft="32.5,300.5" />
         <EdgeLayout
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8.Paths[Flat File Source Output]"
-          TopLeft="327,102">
+          TopLeft="296,208">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -41139,14 +41111,12 @@ ORDER BY ETLLoadID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8.Paths[Flat File Source Error Output]"
-          TopLeft="407,102">
+          TopLeft="376,208">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -41182,7 +41152,7 @@ ORDER BY ETLLoadID</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8.Paths[OLE DB Destination Error Output]"
-          TopLeft="236.5,236.5">
+          TopLeft="205.5,342.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -41204,6 +41174,13 @@ ORDER BY ETLLoadID</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="On May 29, 2017, Removed Column &quot;Custom_Resource Specialist&quot;, Final 183 Columns"
+          ParentId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8"
+          FontInfo="{x:Null}"
+          Size="481,60"
+          Id="5d499381-c3b6-4ae4-b957-cd00ba6e13d9"
+          TopLeft="22,12" />
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
