@@ -238,6 +238,8 @@ namespace WebApi.Controllers
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetResourceByType(type,lang,token).ToList();
             return toJson(json, lang);
+
+
         }
         #endregion Path
 
@@ -258,7 +260,10 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetResourceByType(type, lang, token).ToList();
-            return toJson(json, lang);
+            return   toJson(json, lang);
+
+
+            
         }
         #endregion queryString
         #endregion JSON
@@ -995,8 +1000,13 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetResourceByKeywords(kws, lang, token).ToList();
-                return toJson(json, lang);
-            }
+            return toJson(json, lang);
+
+            //var response = Request.CreateResponse(HttpStatusCode.Moved);
+            //response = toJson(json, lang);
+            //response.Headers.Location = new Uri(Properties.Settings.Default.newdir);
+            //return response;
+        }
             //Query String
             /// <summary>
             /// Query String style pass interest keyword(s), response allowable JSON resource list.  
@@ -1430,17 +1440,20 @@ namespace WebApi.Controllers
                 {
                     string thisJson = JsonConvert.SerializeObject(r, Formatting.None);
 
-                    if (thisJson.Length < 5)
+                if (thisJson.Length < 5)
                     {
                         var response = this.Request.CreateResponse(HttpStatusCode.NoContent);
+
                         response.Content = new StringContent(string.Empty, Encoding.UTF8, "application/json");
                         return response;
                     }
                     else
                     {
                         var response = this.Request.CreateResponse(HttpStatusCode.OK);
-                        response.Content = new StringContent(thisJson, Encoding.UTF8, "application/json");
-                        return response;
+                      // --- this is old one, it brings IE offering "SAVE/DOWNLOAD" issue response.Content = new StringContent(thisJson, Encoding.UTF8, "--changed to below--application/json---");
+                    response.Content = new StringContent(thisJson, Encoding.UTF8, "text/html");
+
+                    return response;
                     }
                 }
                 else

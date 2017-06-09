@@ -227,7 +227,7 @@ namespace WebApi.Controllers
                         else
                         {
                             var response = this.Request.CreateResponse(HttpStatusCode.OK);
-                            response.Content = new StringContent(thisJson, Encoding.UTF8, "application/json");
+                            response.Content = new StringContent(thisJson, Encoding.UTF8, "text/html");
                             return response;
                         }
                     }
