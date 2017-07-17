@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="RAM_ETL_on_The_T530_Only"
   DTS:PackageType="5"
-  DTS:VersionBuild="355"
-  DTS:VersionGUID="{B6708580-1475-42F8-8961-C2DBE0F0F205}">
+  DTS:VersionBuild="356"
+  DTS:VersionGUID="{AF3ADA2C-39BC-4F72-A286-C41BF426E5E7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -4295,7 +4295,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4312,7 +4312,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4329,7 +4329,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4346,7 +4346,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6867,7 +6867,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6901,7 +6901,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_from_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6918,7 +6918,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6935,7 +6935,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6952,7 +6952,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6969,7 +6969,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6986,7 +6986,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7003,7 +7003,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7020,7 +7020,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7054,7 +7054,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14471,7 +14471,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Adjust_LatLong"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14624,7 +14624,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Map"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14675,7 +14675,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Shelter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14896,7 +14896,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Map"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14913,7 +14913,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_PhoneWeb"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14930,7 +14930,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Shelter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14994,7 +14994,6 @@ ORDER BY R.ETLLoadID</property>
       DTS:refId="Package\ExecuteSQLTask_Insert_Table_UpdateLog"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{790F0A59-74A7-4C04-B3F8-7E19C43CAAFC}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -15108,7 +15107,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Changing_Table_CityLocation_to_Upcase"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25182,7 +25181,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLLOAD"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25199,7 +25198,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLLoadError"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25215,7 +25214,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_NoMatched"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -35293,7 +35292,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Bridge_table_ETLloadID_CategoryID_ClassificationID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -35312,7 +35311,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Changing_Table_City_to_Upcase"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -35331,7 +35330,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLloadID_CategoryID_ClassificationID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -38245,7 +38244,7 @@ ORDER BY ETLLoadID</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="256" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="256" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="417,42"
           Id="Package\Build_Bridge_table_KHPCategoryID_TaxonomyCode_ETLLoadID\SQL_Create_Table_KHPETLLoadID_InterestTaxonomyCode_CategoryID"
@@ -38259,7 +38258,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="219.5,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,242.5"
               Start="0,0"
               End="0,235">
@@ -38281,7 +38280,7 @@ ORDER BY ETLLoadID</property>
         <AnnotationLayout
           Text="Select Program and Interesting Taxonomy code records&#xA;Accounting to Table ProgramRAW, create table KHPETLLoadID_InterestTaxonomyCode_CategoryID&#xA;in this table, &#xA;1) pivot column TaxonomyCodes&#xA;2) mapping KHP Category&#xA;3) when TaxonomyCode is active&#xA;&#xA;so it looks like: ETLLoadID -- KHPInterest Taxonomy Code -- KHP Category ID&#xA;&#xA;here, one rescore(record) has multiple TaxonomyCode, ,but not all of Taxonomycode, KHP is intested in&#xA;&#xA;one taxonomycode may belongs to multiple category "
           ParentId="Package\Build_Bridge_table_KHPCategoryID_TaxonomyCode_ETLLoadID"
-          FontInfo="{x:Null}"
+          FontInfo="{assembly:Null}"
           Size="200,NaN"
           Id="4dbe2be7-b8c0-4d47-8b86-f4a170de2bfb"
           TopLeft="488.5,107.5" />
@@ -38309,7 +38308,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="175.625,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60"
               Start="0,0"
               End="0,52.5">
@@ -38331,7 +38330,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="175,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60"
               Start="0,0"
               End="0,52.5">
@@ -38351,7 +38350,7 @@ ORDER BY ETLLoadID</property>
         <AnnotationLayout
           Text="Get TaxonomyLevel Name is &quot;Program&quot;"
           ParentId="Package\Build_Table_ProgramRAW"
-          FontInfo="{x:Null}"
+          FontInfo="{assembly:Null}"
           Size="237,40"
           Id="9a9d6a6c-ad12-48ef-82c8-1b517298c0bc"
           TopLeft="355.5,210.5" />
@@ -38439,7 +38438,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="631.1,258.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-387.6,52.9999999999999"
               Start="0,0"
               End="-387.6,45.4999999999999">
@@ -38473,7 +38472,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="676.7,258.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-113.2,52.9999999999999"
               Start="0,0"
               End="-113.2,45.4999999999999">
@@ -38507,7 +38506,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="1254.5,47.4999999999998">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-485.2,68"
               Start="0,0"
               End="-485.2,60.5">
@@ -38541,7 +38540,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="561.5,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,61.0000000000001"
               Start="0,0"
               End="0,53.5000000000001">
@@ -38563,7 +38562,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="480.5,47.4999999999998">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="190.4,68"
               Start="0,0"
               End="190.4,60.5">
@@ -38597,7 +38596,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="133.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="488.2,67.9999999999998"
               Start="0,0"
               End="488.2,60.4999999999998">
@@ -38631,7 +38630,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="882.5,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60"
               Start="0,0"
               End="0,52.5">
@@ -38653,7 +38652,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="882.5,47.4999999999998">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-162.4,68"
               Start="0,0"
               End="-162.4,60.5">
@@ -38687,7 +38686,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="1229,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60.0000000000002"
               Start="0,0"
               End="0,52.5000000000002">
@@ -38709,7 +38708,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="722.3,258.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="160.2,52.9999999999998"
               Start="0,0"
               End="160.2,45.4999999999998">
@@ -38743,7 +38742,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="767.9,258.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="457.6,52.9999999999998"
               Start="0,0"
               End="457.6,45.4999999999998">
@@ -38777,7 +38776,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="242.5,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60"
               Start="0,0"
               End="0,52.5">
@@ -38799,7 +38798,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="563,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60"
               Start="0,0"
               End="0,52.5">
@@ -38821,7 +38820,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="882.5,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60"
               Start="0,0"
               End="0,52.5">
@@ -38843,7 +38842,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="1226,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60"
               Start="0,0"
               End="0,52.5">
@@ -38865,7 +38864,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="697.5,157.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,59.0000000000002"
               Start="0,0"
               End="0,51.5000000000002">
@@ -38887,7 +38886,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="237.5,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,59.0000000000001"
               Start="0,0"
               End="0,51.5000000000001">
@@ -38976,7 +38975,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="582,48.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,49"
               Start="0,0"
               End="0,41.5">
@@ -38998,7 +38997,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="504.6,139.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-348.6,69.9999999999999"
               Start="0,0"
               End="-348.6,62.4999999999999">
@@ -39032,7 +39031,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="522.25,364.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-410.25,51"
               Start="0,0"
               End="-410.25,43.5">
@@ -39066,7 +39065,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="567,364.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="138,53"
               Start="0,0"
               End="138,45.5">
@@ -39100,7 +39099,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="611.75,364.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="418.25,52"
               Start="0,0"
               End="418.25,44.5">
@@ -39134,7 +39133,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="1030.5,458.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,46"
               Start="0,0"
               End="0,38.5">
@@ -39156,7 +39155,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="704.5,459.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,54"
               Start="0,0"
               End="0,46.5">
@@ -39178,7 +39177,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="549.1,364.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-145.1,53.5"
               Start="0,0"
               End="-145.1,46">
@@ -39212,7 +39211,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="401.5,460">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,53"
               Start="0,0"
               End="0,45.5">
@@ -39234,7 +39233,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="554.2,139.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-79.1999999999999,69.9999999999999"
               Start="0,0"
               End="-79.1999999999999,62.4999999999999">
@@ -39268,7 +39267,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="603.8,139.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="156.2,69.9999999999998"
               Start="0,0"
               End="156.2,62.4999999999998">
@@ -39302,7 +39301,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="653.4,139.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="384.6,69.9999999999998"
               Start="0,0"
               End="384.6,62.4999999999998">
@@ -39336,7 +39335,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="1038,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-417.3,71.0000000000002"
               Start="0,0"
               End="-417.3,63.5000000000002">
@@ -39370,7 +39369,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="112,457.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-14,57"
               Start="0,0"
               End="-14,49.5">
@@ -39404,7 +39403,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="760,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-175.1,71.0000000000002"
               Start="0,0"
               End="-175.1,63.5000000000002">
@@ -39438,7 +39437,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="475,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="74.0999999999999,71.0000000000001"
               Start="0,0"
               End="74.0999999999999,63.5000000000001">
@@ -39472,7 +39471,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="156,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="357.3,71.0000000000001"
               Start="0,0"
               End="357.3,63.5000000000001">
@@ -39533,7 +39532,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="303,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-189.5,60.0000000000001"
               Start="0,0"
               End="-189.5,52.5000000000001">
@@ -39569,7 +39568,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="113.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="191.5,66.9999999999999"
               Start="0,0"
               End="191.5,59.4999999999999">
@@ -39605,7 +39604,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="398.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,67"
               Start="0,0"
               End="0,59.5">
@@ -39629,7 +39628,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="676.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-184.5,67"
               Start="0,0"
               End="-184.5,59.5">
@@ -39665,7 +39664,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="398.5,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60"
               Start="0,0"
               End="0,52.5">
@@ -39689,7 +39688,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="494,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="182.5,60"
               Start="0,0"
               End="182.5,52.5">
@@ -39723,7 +39722,7 @@ ORDER BY ETLLoadID</property>
         <AnnotationLayout
           Text="Apply Biz-Logic to build New RAM resource record&#xA;Forx, lookup chain, never use PS ...."
           ParentId="Package\Constructing New interest Resource"
-          FontInfo="{x:Null}"
+          FontInfo="{assembly:Null}"
           Size="298,NaN"
           Id="cc5f559d-ace1-473c-8133-1aea3f853e99"
           TopLeft="650.5,209.5" />
@@ -39755,7 +39754,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="167.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,60"
               Start="0,0"
               End="0,52.5">
@@ -39777,7 +39776,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="170,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,69"
               Start="0,0"
               End="0,61.5">
@@ -39797,7 +39796,7 @@ ORDER BY ETLLoadID</property>
         <AnnotationLayout
           Text="Select Program and Interesting Taxonomy code records&#xA;Accounting to Table ProgramRAW, create table ETLLoadID_TaxonomyCode&#xA;&#xA;in this table, &#xA;1) pivot column TaxonomyCodes from ProgramRAW&#xA;2 ) when TaxonomyCode is active and the code is interest Taxonomy&#xA;&#xA;so it looks like: ETLLoadID --Taxonomy Code &#xA;&#xA;here, one rescore(record) has multiple TaxonomyCode, ,but not all of Taxonomycode, KHP is intested in&#xA;&#xA;one taxonomycode may belongs to multiple ETLLoadID"
           ParentId="Package\Pivot_ProgramRAW_TaxonomyCode"
-          FontInfo="{x:Null}"
+          FontInfo="{assembly:Null}"
           Size="575,216"
           Id="d24d6a9f-f3d2-4933-910d-20e26c9f074a"
           TopLeft="350,28.5" />
@@ -39845,7 +39844,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="119,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="108.833333333333,42"
               Start="0,0"
               End="108.833333333333,34.5">
@@ -39879,7 +39878,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="416,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-121.833333333333,42"
               Start="0,0"
               End="-121.833333333333,34.5">
@@ -39913,7 +39912,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="259.25,131.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,26.5"
               Start="0,0"
               End="0,19">
@@ -39935,7 +39934,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="256.5,200">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,32"
               Start="0,0"
               End="0,24.5">
@@ -39957,7 +39956,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="259.25,274">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,28"
               Start="0,0"
               End="0,20.5">
@@ -39979,7 +39978,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="261.75,344">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,36"
               Start="0,0"
               End="0,28.5">
@@ -40001,7 +40000,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="695.5,50">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-384.75,39.5"
               Start="0,0"
               End="-384.75,32">
@@ -40033,14 +40032,14 @@ ORDER BY ETLLoadID</property>
         <AnnotationLayout
           Text="changing column PhysicalStateProvince] &#xA;'alb' to 'AB';   'NF' to 'NL';  'YK' to 'YT'&#xA;'NY' ,'CA' TO 'OTHS'"
           ParentId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File"
-          FontInfo="{x:Null}"
+          FontInfo="{assembly:Null}"
           Size="245,72"
           Id="91df50e2-46b0-4a3c-a1f5-bd803582e2dd"
           TopLeft="466,141" />
         <AnnotationLayout
           Text="When City appears in iCarol CSV, Add new city to table Citylocation "
           ParentId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File"
-          FontInfo="{x:Null}"
+          FontInfo="{assembly:Null}"
           Size="388,40"
           Id="3a5cf7db-0412-4732-8a12-a9694affaea6"
           TopLeft="403,243" />
@@ -40096,7 +40095,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="1274,47.4999999999998">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,112"
               Start="0,0"
               End="0,104.5">
@@ -40118,7 +40117,7 @@ ORDER BY ETLLoadID</property>
         <AnnotationLayout
           Text="excute KHP category mapping"
           ParentId="264c8263-0595-4804-86c6-a18afa5012b9"
-          FontInfo="{x:Null}"
+          FontInfo="{assembly:Null}"
           Size="189,NaN"
           Id="d45f0c3e-aee5-4566-9886-0453db3b5e14"
           TopLeft="5.5,6.5" />
@@ -40164,7 +40163,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="171,56.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,35.0000000000001"
               Start="0,0"
               End="0,27.5000000000001">
@@ -40186,7 +40185,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="170,133.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="48,39"
               Start="0,0"
               End="48,31.5">
@@ -40218,7 +40217,7 @@ ORDER BY ETLLoadID</property>
         <AnnotationLayout
           Text="Truncate RAMRAW Table , load new RAM &#xA;records &#xA;English and French resourceAgencyNum, &#xA;Synchronize with  Latitude, Longitude  "
           ParentId="Package\Sequence Container select RAM rocords  save into RAMRAW table"
-          FontInfo="{x:Null}"
+          FontInfo="{assembly:Null}"
           Size="252,88"
           Id="4fdee4da-4a3d-4bea-b18f-1e5f5a782ec6"
           TopLeft="403,22.5" />
@@ -40238,7 +40237,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="810.75,908.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,39"
               Start="0,0"
               End="0,31.5">
@@ -40260,7 +40259,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="808,523.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,72"
               Start="0,0"
               End="0,64.5">
@@ -40282,7 +40281,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="815,989.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,56"
               Start="0,0"
               End="0,48.5">
@@ -40304,7 +40303,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="821.5,1801.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,99"
               Start="0,0"
               End="0,91.5">
@@ -40326,7 +40325,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="820,1394.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,98"
               Start="0,0"
               End="0,90.5">
@@ -40348,7 +40347,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="820.5,2555.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,104"
               Start="0,0"
               End="0,96.5">
@@ -40370,7 +40369,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="820.25,3323.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,72.5"
               Start="0,0"
               End="0,65">
