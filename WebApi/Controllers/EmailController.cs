@@ -48,7 +48,7 @@ namespace WebApi.Controllers
 
 
 
-
+            //sendfromInternal(host, port, ssl, loginname, pwd, sendfrom, displayname, receiver, subject, body)
 
             try
             {
@@ -76,6 +76,129 @@ namespace WebApi.Controllers
             }
 
         }
+
+
+
+        /// <summary>
+        /// Sending KHP eCard
+        /// </summary>
+        /// <param name="_eCard">user's email account. Using "，" (comma) to separate each receivers if you have multiple receivers.
+        /// JSON format. 
+        /// {"lang":"en",
+        /// "receiver":"user1@example.com; user2@example.com;",
+        /// "sendFrom":"KHP_eCard@kidshelpphone.ca",
+        /// "displayName":"Kids Help Phone",
+        /// "subject":"Happy Holiday!"
+        /// "body":"Happy Holiday!<br/><div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque </div>
+        /// <ul><li> venenatis vitae, justo.</li> 
+        /// <li> Nam quam nunc, blandit vel, luctus</li>
+        /// <li>an vulputate eleifend</li>
+        /// <li>massa quis enim. Donec pede justo</li>
+        /// </ul> <br/>KHP"}
+        /// </param>
+        /// <returns>successful sent return "OK", otherwise will say "Failed" </returns>
+        [ResponseType(typeof(eCard))]
+        [ActionName("Send")]
+        [Route("api/v2/eCard/send")]
+        [HttpPost]
+        public HttpResponseMessage send([FromBody] eCard _eCard)
+        {
+            string host = Properties.Settings.Default.host;
+            int port = Properties.Settings.Default.port;
+            bool ssl = Properties.Settings.Default.ssl;
+            string loginName = Properties.Settings.Default.eCardloginname;
+            string pwd = Properties.Settings.Default.eCardpwd;
+            string lang = _eCard.lang;
+            string receiver = _eCard.receiver;
+            string sendfrom = _eCard.sendfrom; //***??
+            string displayName = _eCard.displayName; //***
+            string subject = _eCard.subject; // ***??
+            string body = _eCard.body;   
+            bool result = false;
+            //sendfromInternal(host, port, ssl, loginname, pwd, sendfrom, displayname, receiver, subject, body)
+            try
+            {
+                result = es.sendfromInternal(host, port, ssl, loginName, pwd, sendfrom,
+                    displayName, receiver, subject, body);
+            }
+            catch (Exception e)
+            {
+                e.Message.ToString();
+            }
+
+            if (result)
+            {
+                var response = this.Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                return response;
+            }
+            else
+            {
+                var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
+                response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                return response;
+            }
+        }
+
+
+
+        [ResponseType(typeof(eCard))]
+        [ActionName("Send")]
+        [Route("api/v2/eCard/submit")]
+        [HttpGet]
+        public HttpResponseMessage submit(string lang, string receiver, string sendfrom,
+            string displayName, string subject, string body)
+        {
+            string host = Properties.Settings.Default.host;
+            int port = Properties.Settings.Default.port;
+            bool ssl = Properties.Settings.Default.ssl;
+            string loginName = Properties.Settings.Default.eCardloginname;
+            string pwd = Properties.Settings.Default.eCardpwd;
+            //string lang = _eCard.lang;
+            //string receiver = _eCard.receiver;
+            //string sendfrom = _eCard.sendfrom; //***??
+            //string displayName = _eCard.displayName; //***
+            //string subject = _eCard.subject; // ***??
+            //string body = _eCard.body;
+            bool result = false;
+
+            try
+            {
+                result = es.sendfromInternal(host, port, ssl, loginName, pwd, sendfrom,
+                    displayName, receiver, subject, body);
+            }
+            catch (Exception e)
+            {
+                e.Message.ToString();
+            }
+
+            if (result)
+            {
+                var response = this.Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                return response;
+            }
+            else
+            {
+                var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
+                response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                return response;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -11,54 +11,11 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="RAM_ETL_on_The_T530_Only"
   DTS:PackageType="5"
-  DTS:VersionBuild="342"
-  DTS:VersionGUID="{A8A8A18A-D53A-4DC3-9C17-3DBD774ADEAE}">
+  DTS:VersionBuild="355"
+  DTS:VersionGUID="{B6708580-1475-42F8-8961-C2DBE0F0F205}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[FF_CM_Unload_rows]"
-      DTS:CreationName="FLATFILE"
-      DTS:DTSID="{BD2B98B5-44FB-4E02-BB87-8A8A8A41F47F}"
-      DTS:ObjectName="FF_CM_Unload_rows">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:Format="Delimited"
-          DTS:LocaleID="1033"
-          DTS:HeaderRowDelimiter="_x000D__x000A_"
-          DTS:RowDelimiter=""
-          DTS:TextQualifier="_x003C_none_x003E_"
-          DTS:CodePage="28591"
-          DTS:ConnectionString="D:\Users\erjun\Documents\Test\RAM\unload_row.txt">
-          <DTS:FlatFileColumns>
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="302"
-              DTS:TextQualified="True"
-              DTS:ObjectName="Flat File Source Error Output Column"
-              DTS:DTSID="{6B4F092D-326A-4214-8FC8-E28F0C2FCF53}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x007C_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="ErrorCode"
-              DTS:DTSID="{A5FDF802-6576-4EA3-8261-DB56E3B737C3}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x000D__x000A_"
-              DTS:DataType="3"
-              DTS:TextQualified="True"
-              DTS:ObjectName="ErrorColumn"
-              DTS:DTSID="{2D690927-5724-4E07-BC1A-FA14B8C44197}"
-              DTS:CreationName="" />
-          </DTS:FlatFileColumns>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager 1]"
       DTS:CreationName="FLATFILE"
@@ -1695,6 +1652,16 @@
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.RAM]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0F6BD84F-BD54-48DE-8201-666D91840F53}"
+      DTS:ObjectName="localhost.RAM">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=T530;Initial Catalog=RAM;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-RAM_ETL_on_The_T530_Only-{F6DA524B-15C3-48DF-8E51-7A25806F806E}localhost.RAM;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
@@ -1728,7 +1695,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Create_Table_KHPETLLoadID_InterestTaxonomyCode_CategoryID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1745,7 +1712,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_KHPETLLoadID_InterestTaxonomyCode_CategoryID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1848,8 +1815,8 @@
                   <connections>
                     <connection
                       refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_DST_Save_to_Table_ProgramRAM.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2336,6 +2303,12 @@
                           cachedName="Map"
                           externalMetadataColumnId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_DST_Save_to_Table_ProgramRAM.Inputs[OLE DB Destination Input].ExternalColumns[Map]"
                           lineageId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Output].Columns[Map]" />
+                        <inputColumn
+                          refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_DST_Save_to_Table_ProgramRAM.Inputs[OLE DB Destination Input].Columns[IsLinkOnly]"
+                          cachedDataType="bool"
+                          cachedName="IsLinkOnly"
+                          externalMetadataColumnId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_DST_Save_to_Table_ProgramRAM.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          lineageId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Output].Columns[IsLinkOnly]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -2672,6 +2645,10 @@
                           dataType="wstr"
                           length="50"
                           name="Map" />
+                        <externalMetadataColumn
+                          refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_DST_Save_to_Table_ProgramRAM.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          dataType="bool"
+                          name="IsLinkOnly" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -2753,8 +2730,8 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                   <connections>
                     <connection
                       refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -3451,6 +3428,15 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                           lineageId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Output].Columns[Map]"
                           name="Map"
                           truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Output].Columns[IsLinkOnly]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Output].ExternalColumns[IsLinkOnly]"
+                          lineageId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Output].Columns[IsLinkOnly]"
+                          name="IsLinkOnly"
+                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -3787,6 +3773,10 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                           dataType="wstr"
                           length="50"
                           name="Map" />
+                        <externalMetadataColumn
+                          refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Output].ExternalColumns[IsLinkOnly]"
+                          dataType="bool"
+                          name="IsLinkOnly" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -4149,6 +4139,11 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                           lineageId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Error Output].Columns[LanguageOfRecord]"
                           name="LanguageOfRecord" />
                         <outputColumn
+                          refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Error Output].Columns[IsLinkOnly]"
+                          dataType="bool"
+                          lineageId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Error Output].Columns[IsLinkOnly]"
+                          name="IsLinkOnly" />
+                        <outputColumn
                           refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW.Outputs[OLE DB Source Error Output].Columns[Categories]"
                           dataType="wstr"
                           length="2000"
@@ -4235,7 +4230,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_from_Table_ETLLoadID_TaxonomyCode"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4252,7 +4247,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ProgramRAW"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4317,7 +4312,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4334,7 +4329,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4432,8 +4427,8 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                   <connections>
                     <connection
                       refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_DST_Store_Interest_Resource_to_Table_TaxonomyRAW.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -4920,6 +4915,12 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                           cachedName="createdDate"
                           externalMetadataColumnId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_DST_Store_Interest_Resource_to_Table_TaxonomyRAW.Inputs[OLE DB Destination Input].ExternalColumns[createdDate]"
                           lineageId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Output].Columns[createdDate]" />
+                        <inputColumn
+                          refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_DST_Store_Interest_Resource_to_Table_TaxonomyRAW.Inputs[OLE DB Destination Input].Columns[IsLinkOnly]"
+                          cachedDataType="bool"
+                          cachedName="IsLinkOnly"
+                          externalMetadataColumnId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_DST_Store_Interest_Resource_to_Table_TaxonomyRAW.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          lineageId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Output].Columns[IsLinkOnly]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -5256,6 +5257,10 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                           refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_DST_Store_Interest_Resource_to_Table_TaxonomyRAW.Inputs[OLE DB Destination Input].ExternalColumns[createdDate]"
                           dataType="dbTimeStamp"
                           name="createdDate" />
+                        <externalMetadataColumn
+                          refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_DST_Store_Interest_Resource_to_Table_TaxonomyRAW.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          dataType="bool"
+                          name="IsLinkOnly" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -5314,11 +5319,12 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                          Phone2IsPrivate, Phone3Number, Phone3IsPrivate, Phone4Number, Phone4IsPrivate, Phone5Number, Phone5IsPrivate, PhoneFax, PhoneFaxIsPrivate, PhoneTTY, PhoneTTYIsPrivate, PhoneTollFree, 
                          PhoneTollFreeIsPrivate, PhoneNumberHotline, PhoneNumberHotlineIsPrivate, PhoneNumberBusinessLine, PhoneNumberBusinessLineIsPrivate, PhoneNumberOutOfArea, PhoneNumberOutOfAreaIsPrivate, 
                          PhoneNumberAfterHours, PhoneNumberAfterHoursIsPrivate, WebsiteAddress, AgencyDescription, CoverageArea, CoverageAreaText, Eligibility, DisabilitiesAccess, FeeStructureSource, ApplicationProcess, 
-                         DocumentsRequired, LanguagesOffered, LanguagesOfferedList, NormalWaitTime, EnteredOn, UpdatedOn, MadeInactiveOn, ConnectsToSiteNum, ConnectsToProgramNum, LanguageOfRecord, Categories, 
-                         TaxonomyCodes, Coverage, WorkHours, CustomEligibilitybyAge, CustomAnonymityPolicy, CustomRecordType, changedDate, createdDate
+                         DocumentsRequired, LanguagesOffered, LanguagesOfferedList, NormalWaitTime, EnteredOn, UpdatedOn, MadeInactiveOn, ConnectsToSiteNum, ConnectsToProgramNum, LanguageOfRecord, IsLinkOnly, 
+                         Categories, TaxonomyCodes, Coverage, WorkHours, CustomEligibilitybyAge, CustomAnonymityPolicy, CustomRecordType, changedDate, createdDate
 FROM            ProgramRAW
 WHERE        (ETLLoadID IN
-                             (SELECT DISTINCT ETLLoadID   FROM           [dbo].[ETLLoadID_TaxonomyCode]))</property>
+                             (SELECT DISTINCT ETLLoadID
+                               FROM            ETLLoadID_TaxonomyCode))</property>
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
@@ -5344,8 +5350,8 @@ WHERE        (ETLLoadID IN
                   <connections>
                     <connection
                       refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -6042,6 +6048,15 @@ WHERE        (ETLLoadID IN
                           lineageId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Output].Columns[createdDate]"
                           name="createdDate"
                           truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Output].Columns[IsLinkOnly]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Output].ExternalColumns[IsLinkOnly]"
+                          lineageId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Output].Columns[IsLinkOnly]"
+                          name="IsLinkOnly"
+                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -6378,6 +6393,10 @@ WHERE        (ETLLoadID IN
                           refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Output].ExternalColumns[createdDate]"
                           dataType="dbTimeStamp"
                           name="createdDate" />
+                        <externalMetadataColumn
+                          refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Output].ExternalColumns[IsLinkOnly]"
+                          dataType="bool"
+                          name="IsLinkOnly" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -6740,6 +6759,11 @@ WHERE        (ETLLoadID IN
                           lineageId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Error Output].Columns[LanguageOfRecord]"
                           name="LanguageOfRecord" />
                         <outputColumn
+                          refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Error Output].Columns[IsLinkOnly]"
+                          dataType="bool"
+                          lineageId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Error Output].Columns[IsLinkOnly]"
+                          name="IsLinkOnly" />
+                        <outputColumn
                           refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW.Outputs[OLE DB Source Error Output].Columns[Categories]"
                           dataType="wstr"
                           length="2000"
@@ -6826,7 +6850,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6843,7 +6867,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6860,7 +6884,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6877,7 +6901,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_from_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6911,7 +6935,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6928,7 +6952,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6979,7 +7003,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6996,7 +7020,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7013,7 +7037,7 @@ WHERE        (ETLLoadID IN
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_TaxonomyRAW"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -8158,8 +8182,8 @@ WHERE        (ETLLoadID IN
                   <connections>
                     <connection
                       refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_DST_Incomplete_RAMResource.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -8617,8 +8641,8 @@ WHERE        (ETLLoadID IN
                   <connections>
                     <connection
                       refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_DST_Map.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -9097,8 +9121,8 @@ WHERE        (ETLLoadID IN
                   <connections>
                     <connection
                       refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_DST_PhoneWeb.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -9577,8 +9601,8 @@ WHERE        (ETLLoadID IN
                   <connections>
                     <connection
                       refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_DST_Shelter.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -10061,8 +10085,8 @@ ORDER BY R.ETLLoadID</property>
                   <connections>
                     <connection
                       refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_SRC_Get_All_RAMResource.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -14447,7 +14471,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Adjust_LatLong"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14464,7 +14488,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Keywords"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14481,7 +14505,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Suggetsion_Words"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14498,7 +14522,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Table_Combine_Categories"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14515,7 +14539,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Constructe_Tabel_RAMResource"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14532,7 +14556,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_remove_HTMLatg"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14549,7 +14573,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_table_Combine_Categories"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14566,7 +14590,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_InCompleteRAMResource"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14583,7 +14607,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_table_keywords"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14600,7 +14624,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Map"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14617,7 +14641,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_PhoneWeb"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14634,7 +14658,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_RAMResource"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14651,7 +14675,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Shelter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14668,7 +14692,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_SuggestionWord"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14872,7 +14896,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Map"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14889,7 +14913,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_PhoneWeb"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14906,7 +14930,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Shelter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14970,11 +14994,12 @@ ORDER BY R.ETLLoadID</property>
       DTS:refId="Package\ExecuteSQLTask_Insert_Table_UpdateLog"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{790F0A59-74A7-4C04-B3F8-7E19C43CAAFC}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExecuteSQLTask_Insert_Table_UpdateLog"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -15001,7 +15026,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_ETLLoadID_TaxonomyCode"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -15018,7 +15043,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_TableETLLoadID_Taxonomy"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -15035,7 +15060,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="Truncate_Table_ETLLoadID_TaxonomyCode"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -15083,7 +15108,7 @@ ORDER BY R.ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Changing_Table_CityLocation_to_Upcase"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -18986,12 +19011,11 @@ ORDER BY R.ETLLoadID</property>
                         </outputColumn>
                         <outputColumn
                           refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[IsLinkOnly]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="RedirectRow"
                           externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].ExternalColumns[IsLinkOnly]"
-                          length="255"
+                          length="2000"
                           lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[IsLinkOnly]"
                           name="IsLinkOnly"
                           truncationRowDisposition="RedirectRow">
@@ -20042,8 +20066,8 @@ ORDER BY R.ETLLoadID</property>
                   <connections>
                     <connection
                       refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -21293,6 +21317,27 @@ ORDER BY R.ETLLoadID</property>
                           cachedName="Custom_Please suggest keywords that would be helpful when searching for this service "
                           externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].ExternalColumns[CustomSuggestKeyword]"
                           lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Please suggest keywords that would be helpful when searching for this service ]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].Columns[IsLinkOnly]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="IsLinkOnly"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[IsLinkOnly]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].Columns[ProgramAgencyNamePublic]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="ProgramAgencyNamePublic"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].ExternalColumns[ProgramAgencyNamePublic]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[ProgramAgencyNamePublic]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].Columns[SiteAgencyNamePublic]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="SiteAgencyNamePublic"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].ExternalColumns[SiteAgencyNamePublic]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[SiteAgencyNamePublic]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -22175,6 +22220,21 @@ ORDER BY R.ETLLoadID</property>
                           refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].ExternalColumns[createdDate]"
                           dataType="dbTimeStamp"
                           name="createdDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          dataType="wstr"
+                          length="2000"
+                          name="IsLinkOnly" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].ExternalColumns[ProgramAgencyNamePublic]"
+                          dataType="wstr"
+                          length="2000"
+                          name="ProgramAgencyNamePublic" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Inputs[OLE DB Destination Input].ExternalColumns[SiteAgencyNamePublic]"
+                          dataType="wstr"
+                          length="2000"
+                          name="SiteAgencyNamePublic" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -22262,8 +22322,8 @@ ORDER BY R.ETLLoadID</property>
                   <connections>
                     <connection
                       refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -23420,6 +23480,132 @@ ORDER BY R.ETLLoadID</property>
                           cachedName="ErrorColumn"
                           externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
                           lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[IsLinkOnly]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="IsLinkOnly"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[IsLinkOnly]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[ProgramAgencyNamePublic]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="ProgramAgencyNamePublic"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[ProgramAgencyNamePublic]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[ProgramAgencyNamePublic]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[SiteAgencyNamePublic]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="SiteAgencyNamePublic"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[SiteAgencyNamePublic]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[SiteAgencyNamePublic]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Source Database]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Source Database"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomSourceDatabase]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Source Database]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Record Type]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Record Type"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomRecordType]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Record Type]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Please suggest keywords that would be helpful when searching for this service ]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="Custom_Please suggest keywords that would be helpful when searching for this service "
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomSuggestKeyword]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Please suggest keywords that would be helpful when searching for this service ]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Hours]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Hours"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[WorkHours]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Hours]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Are services provided to LGBTQ persons?]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Are services provided to LGBTQ persons?"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomServicesToLGBTQ]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Are services provided to LGBTQ persons?]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Automated Status]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Automated Status"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomAutomatedStatus]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Automated Status]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Batch ID]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Batch ID"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomBatchID]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Batch ID]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Does your program offer a harm reduction approach to service?]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Does your program offer a harm reduction approach to service?"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomProgramHarmReductionService]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Does your program offer a harm reduction approach to service?]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Eligibility by Age]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Eligibility by Age"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomEligibilitybyAge]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Eligibility by Age]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Eligibility by Gender]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Eligibility by Gender"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomEligibilityByGender]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Eligibility by Gender]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_In what language would you prefer to receive correspondence from Kids Help Phone?]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_In what language would you prefer to receive correspondence from Kids Help Phone?"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomLanguagePrefer]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_In what language would you prefer to receive correspondence from Kids Help Phone?]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Is this a bilingual service?]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Is this a bilingual service?"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomBilingualService]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Is this a bilingual service?]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Manual Status]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_Manual Status"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomManualStatus]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Manual Status]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_MCYS Transfer Payment Account Number]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="Custom_MCYS Transfer Payment Account Number"
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomMCYSAccountNumber]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_MCYS Transfer Payment Account Number]" />
+                        <inputColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].Columns[Custom_Please share your anonymity and confidentiality policy in regards to serving clients (please consider caller id age of consent client records application parental permission etc in your description) ]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="Custom_Please share your anonymity and confidentiality policy in regards to serving clients (please consider caller id age of consent client records application parental permission etc in your description) "
+                          externalMetadataColumnId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[CustomAnonymityPolicy]"
+                          lineageId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180.Outputs[Flat File Source Output].Columns[Custom_Please share your anonymity and confidentiality policy in regards to serving clients (please consider caller id age of consent client records application parental permission etc in your description) ]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -24338,6 +24524,21 @@ ORDER BY R.ETLLoadID</property>
                           dataType="wstr"
                           length="2000"
                           name="ErrorColumn" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          dataType="wstr"
+                          length="2000"
+                          name="IsLinkOnly" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[ProgramAgencyNamePublic]"
+                          dataType="wstr"
+                          length="2000"
+                          name="ProgramAgencyNamePublic" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError.Inputs[OLE DB Destination Input].ExternalColumns[SiteAgencyNamePublic]"
+                          dataType="wstr"
+                          length="2000"
+                          name="SiteAgencyNamePublic" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -24473,8 +24674,8 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                   <connections>
                     <connection
                       refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Updating_Table_CityLocation\Lookup_Table_CityLocation.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="Connection manager used to access lookup data."
                       name="OleDbConnection" />
                   </connections>
@@ -24711,8 +24912,8 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                   <connections>
                     <connection
                       refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Updating_Table_CityLocation\OLEDB_DST_Store_New_City_In_TEMP_Table_NoMatched.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -24832,8 +25033,8 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                   <connections>
                     <connection
                       refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Updating_Table_CityLocation\OLEDB_SRT_ETLLOAD.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -24932,7 +25133,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_new_City_to_Table_CityLocation"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -24948,7 +25149,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Get_First_Letter_of_CityName_Upcase_in_Table_CityLocation"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -24964,7 +25165,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_NORMALZATION_Column_PhysicalStateProvince"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -24981,7 +25182,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLLOAD"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25014,7 +25215,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_NoMatched"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25129,8 +25330,8 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                   <connections>
                     <connection
                       refId="Package\Sequence Container\DFT_Load_Original_CSV\FF_DST_Error_Rows.Connections[FlatFileConnection]"
-                      connectionManagerID="Package.ConnectionManagers[FF_CM_Unload_rows]"
-                      connectionManagerRefId="Package.ConnectionManagers[FF_CM_Unload_rows]"
+                      connectionManagerID="{BD2B98B5-44FB-4E02-BB87-8A8A8A41F47F}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[FF_CM_Unload_rows]"
                       name="FlatFileConnection" />
                   </connections>
                   <inputs>
@@ -35092,7 +35293,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Bridge_table_ETLloadID_CategoryID_ClassificationID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -35111,7 +35312,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Changing_Table_City_to_Upcase"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -35130,7 +35331,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLloadID_CategoryID_ClassificationID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -35525,8 +35726,8 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                   <connections>
                     <connection
                       refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_DST_Save_RAM_to_TABLE_RAMRAW.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -36000,6 +36201,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                           cachedScale="10"
                           externalMetadataColumnId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_DST_Save_RAM_to_TABLE_RAMRAW.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
                           lineageId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\Derived Column convert null to empty and trim.Outputs[Derived Column Output].Columns[nLong]" />
+                        <inputColumn
+                          refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_DST_Save_RAM_to_TABLE_RAMRAW.Inputs[OLE DB Destination Input].Columns[IsLinkOnly]"
+                          cachedDataType="wstr"
+                          cachedLength="2000"
+                          cachedName="IsLinkOnly"
+                          externalMetadataColumnId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_DST_Save_RAM_to_TABLE_RAMRAW.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          lineageId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Output].Columns[IsLinkOnly]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -36336,6 +36544,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                           refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_DST_Save_RAM_to_TABLE_RAMRAW.Inputs[OLE DB Destination Input].ExternalColumns[createdDate]"
                           dataType="dbTimeStamp"
                           name="createdDate" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_DST_Save_RAM_to_TABLE_RAMRAW.Inputs[OLE DB Destination Input].ExternalColumns[IsLinkOnly]"
+                          dataType="bool"
+                          name="IsLinkOnly" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -36394,8 +36606,8 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                          Phone3Number, Phone3IsPrivate, Phone4Number, Phone4IsPrivate, Phone5Number, Phone5IsPrivate, PhoneFax, PhoneFaxIsPrivate, PhoneTTY, PhoneTTYIsPrivate, PhoneTollFree, PhoneTollFreeIsPrivate, 
                          PhoneNumberHotline, PhoneNumberHotlineIsPrivate, PhoneNumberBusinessLine, PhoneNumberBusinessLineIsPrivate, PhoneNumberOutOfArea, PhoneNumberOutOfAreaIsPrivate, PhoneNumberAfterHours, 
                          PhoneNumberAfterHoursIsPrivate, WebsiteAddress, AgencyDescription, CoverageArea, CoverageAreaText, Eligibility, DisabilitiesAccess, FeeStructureSource, ApplicationProcess, DocumentsRequired, 
-                         LanguagesOffered, LanguagesOfferedList, NormalWaitTime, EnteredOn, UpdatedOn, MadeInactiveOn, ConnectsToSiteNum, ConnectsToProgramNum, LanguageOfRecord, Categories, TaxonomyCodes, Coverage, 
-                         WorkHours, CustomEligibilitybyAge, CustomAnonymityPolicy, CustomRecordType, changedDate, createdDate
+                         LanguagesOffered, LanguagesOfferedList, NormalWaitTime, EnteredOn, UpdatedOn, MadeInactiveOn, ConnectsToSiteNum, ConnectsToProgramNum, LanguageOfRecord, IsLinkOnly, Categories, TaxonomyCodes,
+                          Coverage, WorkHours, CustomEligibilitybyAge, CustomAnonymityPolicy, CustomRecordType, changedDate, createdDate
 FROM            ETLLoad
 WHERE        (CustomRecordType LIKE '%RAM%')
 ORDER BY ETLLoadID</property>
@@ -36424,8 +36636,8 @@ ORDER BY ETLLoadID</property>
                   <connections>
                     <connection
                       refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Connections[OleDbConnection]"
-                      connectionManagerID="{0F6BD84F-BD54-48DE-8201-666D91840F53}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[T530.RAM]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -37105,6 +37317,16 @@ ORDER BY ETLLoadID</property>
                           lineageId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Output].Columns[CustomAnonymityPolicy]"
                           name="CustomAnonymityPolicy"
                           truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Output].Columns[IsLinkOnly]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Output].ExternalColumns[IsLinkOnly]"
+                          length="2000"
+                          lineageId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Output].Columns[IsLinkOnly]"
+                          name="IsLinkOnly"
+                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -37434,6 +37656,11 @@ ORDER BY ETLLoadID</property>
                           refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Output].ExternalColumns[CustomAnonymityPolicy]"
                           dataType="nText"
                           name="CustomAnonymityPolicy" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Output].ExternalColumns[IsLinkOnly]"
+                          dataType="wstr"
+                          length="2000"
+                          name="IsLinkOnly" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -37787,6 +38014,12 @@ ORDER BY ETLLoadID</property>
                           lineageId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Error Output].Columns[LanguageOfRecord]"
                           name="LanguageOfRecord" />
                         <outputColumn
+                          refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Error Output].Columns[IsLinkOnly]"
+                          dataType="wstr"
+                          length="2000"
+                          lineageId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Error Output].Columns[IsLinkOnly]"
+                          name="IsLinkOnly" />
+                        <outputColumn
                           refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM.Outputs[OLE DB Source Error Output].Columns[Categories]"
                           dataType="wstr"
                           length="2000"
@@ -37878,7 +38111,7 @@ ORDER BY ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Synchronize_LocationInfo_In_Table_RAMRAW"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -37896,7 +38129,7 @@ ORDER BY ETLLoadID</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_RAMRAW"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -37933,7 +38166,7 @@ ORDER BY ETLLoadID</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL_Normalizing_CityID"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -38062,7 +38295,7 @@ ORDER BY ETLLoadID</property>
         <NodeLayout
           Size="240,42"
           Id="Package\Build_Table_ProgramRAW\DFT_Get_Program"
-          TopLeft="55.0000000000001,209.5" />
+          TopLeft="56.2500000000002,209.5" />
         <NodeLayout
           Size="339,42"
           Id="Package\Build_Table_ProgramRAW\SQL_Drop_FK_from_Table_ETLLoadID_TaxonomyCode"
@@ -38073,7 +38306,7 @@ ORDER BY ETLLoadID</property>
           TopLeft="52.5000000000001,107.5" />
         <EdgeLayout
           Id="Package\Build_Table_ProgramRAW.PrecedenceConstraints[Constraint]"
-          TopLeft="175,149.5">
+          TopLeft="175.625,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -39915,7 +40148,7 @@ ORDER BY ETLLoadID</property>
           Id="Package\Sequence Container"
           TopLeft="185.5,1210.83333333333" />
         <NodeLayout
-          Size="321,42"
+          Size="221,42"
           Id="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM"
           TopLeft="59.5,91.5" />
         <NodeLayout
@@ -39923,12 +40156,12 @@ ORDER BY ETLLoadID</property>
           Id="Package\Sequence Container select RAM rocords  save into RAMRAW table\SQL_Synchronize_LocationInfo_In_Table_RAMRAW"
           TopLeft="57.5,172.5" />
         <NodeLayout
-          Size="321,42"
+          Size="227,42"
           Id="Package\Sequence Container select RAM rocords  save into RAMRAW table\SQL_Truncate_Table_RAMRAW"
           TopLeft="58.5,14.4999999999999" />
         <EdgeLayout
           Id="Package\Sequence Container select RAM rocords  save into RAMRAW table.PrecedenceConstraints[Constraint]"
-          TopLeft="219.5,56.4999999999999">
+          TopLeft="171,56.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -39950,18 +40183,30 @@ ORDER BY ETLLoadID</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Sequence Container select RAM rocords  save into RAMRAW table.PrecedenceConstraints[Constraint 1]"
-          TopLeft="219,133.5">
+          TopLeft="170,133.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,39"
+              EndConnector="48,39"
               Start="0,0"
-              End="0,31.5">
+              End="48,31.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5" />
+                    End="0,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5"
+                    Point2="0,19.5"
+                    Point3="4,19.5" />
+                  <mssgle:LineSegment
+                    End="44,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="44,19.5"
+                    Point2="48,19.5"
+                    Point3="48,23.5" />
+                  <mssgle:LineSegment
+                    End="48,31.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -39980,8 +40225,8 @@ ORDER BY ETLLoadID</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="679,239"
-          Size="679,282"
+          PanelSize="679,270"
+          Size="679,313"
           Id="Package\Sequence Container select RAM rocords  save into RAMRAW table"
           TopLeft="469.5,595.5" />
         <NodeLayout
@@ -39990,18 +40235,18 @@ ORDER BY ETLLoadID</property>
           TopLeft="715.5,947.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="810.75,877.5">
+          TopLeft="810.75,908.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
-              EndConnector="0,70"
+              EndConnector="0,39"
               Start="0,0"
-              End="0,62.5">
+              End="0,31.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,62.5" />
+                    End="0,31.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -40190,7 +40435,7 @@ ORDER BY ETLLoadID</property>
     design-time-name="Package\Build_Table_ProgramRAW\DFT_Get_Program">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="315,42"
           Id="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_DST_Save_to_Table_ProgramRAM"
@@ -40218,9 +40463,7 @@ ORDER BY ETLLoadID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -40251,7 +40494,7 @@ ORDER BY ETLLoadID</property>
     design-time-name="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="383,42"
           Id="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_DST_Store_Interest_Resource_to_Table_TaxonomyRAW"
@@ -40279,9 +40522,7 @@ ORDER BY ETLLoadID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -41069,17 +41310,41 @@ ORDER BY ETLLoadID</property>
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180"
           TopLeft="212,166" />
         <NodeLayout
-          Size="354,42"
-          Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError"
-          TopLeft="29,432" />
+          Size="345,42"
+          Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad"
+          TopLeft="32.5,300.5" />
         <NodeLayout
           Size="216,42"
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_ERR_Read_CSV_With_Err"
           TopLeft="511,310" />
         <NodeLayout
-          Size="345,42"
-          Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad"
-          TopLeft="32.5,300.5" />
+          Size="354,42"
+          Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError"
+          TopLeft="29,432" />
+        <EdgeLayout
+          Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8.Paths[OLE DB Destination Error Output]"
+          TopLeft="205.5,342.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,89.5"
+              Start="0,0"
+              End="0,82">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-73.20890625,35.283203125,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8.Paths[Flat File Source Output]"
           TopLeft="296,208">
@@ -41150,42 +41415,18 @@ ORDER BY ETLLoadID</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8.Paths[OLE DB Destination Error Output]"
-          TopLeft="205.5,342.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,89.5"
-              Start="0,0"
-              End="0,82">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,82" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-73.20890625,35.283203125,146.4178125,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <AnnotationLayout
           Text="On May 29, 2017, Removed Column &quot;Custom_Resource Specialist&quot;, Final 183 Columns"
           ParentId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8"
           FontInfo="{x:Null}"
-          Size="481,60"
+          Size="481,40"
           Id="5d499381-c3b6-4ae4-b957-cd00ba6e13d9"
           TopLeft="22,12" />
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError">
+    design-time-name="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -41198,7 +41439,7 @@ ORDER BY ETLLoadID</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad">
+    design-time-name="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -41246,9 +41487,7 @@ ORDER BY ETLLoadID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -41472,7 +41711,7 @@ ORDER BY ETLLoadID</property>
     design-time-name="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="293,42"
           Id="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_DST_Save_RAM_to_TABLE_RAMRAW"
@@ -41504,9 +41743,7 @@ ORDER BY ETLLoadID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -41528,16 +41765,14 @@ ORDER BY ETLLoadID</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <AnnotationLayout
           Text="normalize Taxonomy Level Name column and PhysicalProvince&#xA;1-Agency; 2-Site; 3-Program; 4-program@site&#xA;1-AB, 2-BC,...,9-ON,....,11-QC, 12-SK, 13-YT"
           ParentId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM"
           FontInfo="{x:Null}"
-          Size="361,NaN"
+          Size="361,72"
           Id="cca46943-6e66-4e0b-8d33-83f897c0178f"
           TopLeft="618,119" />
       </GraphLayout>

@@ -37,7 +37,7 @@ namespace PerScan.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("iCarolExport-KidsHelpPhone-Resources-20161118_163330")]
+        [global::System.Configuration.DefaultSettingValueAttribute("www")]
         public string default_File {
             get {
                 return ((string)(this["default_File"]));
@@ -73,7 +73,7 @@ namespace PerScan.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("184")]
+        [global::System.Configuration.DefaultSettingValueAttribute("183")]
         public int default_Col {
             get {
                 return ((int)(this["default_Col"]));

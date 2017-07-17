@@ -221,6 +221,7 @@
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\DocController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\GeoLocationController.cs" />
     <Compile Include="Controllers\GoogleLocationController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ProvinceController.cs" />
@@ -276,6 +277,7 @@
     <Content Include="Content\img\Swagger_explorer_min.png" />
     <Content Include="Content\img\throbber.gif" />
     <Content Include="Content\img\wordnik_api.png" />
+    <Content Include="eCardDemo.html" />
     <Content Include="Scripts\backbone-min.js" />
     <Content Include="Scripts\handlebars-2.0.0.js" />
     <Content Include="Scripts\highlight.7.3.pack.js" />

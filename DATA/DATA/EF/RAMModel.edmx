@@ -193,6 +193,10 @@
           <Parameter Name="LANG" Type="nvarchar" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Proc_Get_Canadaip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="geo">
+          <Parameter Name="ip" Type="bigint" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="RAMModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -387,6 +391,10 @@
             <Parameter Name="lang" Mode="In" Type="String" />
             <Parameter Name="token" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Proc_Get_Canadaip" ReturnType="Collection(RAMModel.geolocation)">
+            <Parameter Name="ip" Mode="In" Type="Int64" />
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
           <Property Type="Int32" Name="TopCategoryID" Nullable="false" />
@@ -479,6 +487,9 @@
           <Property Type="Int32" Name="GoogleCityID" Nullable="false" />
           <Property Type="String" Name="GoogleCity" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="province" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="geolocation">
+          <Property Type="String" Name="country" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1451,6 +1462,13 @@
                 <ScalarProperty Name="Coverage" ColumnName="Coverage" />
                 <ScalarProperty Name="CoverageArea" ColumnName="CoverageArea" />
                 <ScalarProperty Name="NormalWaitTime" ColumnName="NormalWaitTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_Get_Canadaip" FunctionName="RAMModel.Store.Proc_Get_Canadaip" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RAMModel.geolocation">
+                <ScalarProperty Name="country" ColumnName="country" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -84,8 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessControl\AuthServices.cs" />
+    <Compile Include="EmailMe\eCard.cs" />
     <Compile Include="EmailMe\email.cs" />
     <Compile Include="EmailMe\emailSenderServices.cs" />
+    <Compile Include="GeoLocation\GeoLocationServices.cs" />
     <Compile Include="Locations\CityServices.cs" />
     <Compile Include="Locations\LocationServices.cs" />
     <Compile Include="Locations\ProvinceServices.cs" />

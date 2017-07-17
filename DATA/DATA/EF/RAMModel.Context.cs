@@ -670,5 +670,18 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RamResource>("Proc_Get_Resource_by_Classification", typeParameter, langParameter, tokenParameter);
         }
+    
+        public virtual ObjectResult<geolocation> Proc_Get_Canadaip(Nullable<long> ip, string token)
+        {
+            var ipParameter = ip.HasValue ?
+                new ObjectParameter("ip", ip) :
+                new ObjectParameter("ip", typeof(long));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<geolocation>("Proc_Get_Canadaip", ipParameter, tokenParameter);
+        }
     }
 }

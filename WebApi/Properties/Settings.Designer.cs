@@ -123,5 +123,23 @@ namespace WebApi.Properties {
                 return ((string)(this["AuthorizeIPAddresses"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("rameml")]
+        public string eCardloginname {
+            get {
+                return ((string)(this["eCardloginname"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("R3k!hd89s$")]
+        public string eCardpwd {
+            get {
+                return ((string)(this["eCardpwd"]));
+            }
+        }
     }
 }

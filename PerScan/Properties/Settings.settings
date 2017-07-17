@@ -6,7 +6,7 @@
       <Value Profile="(Default)">D:\Users\erjun\Documents\Test\RAM\</Value>
     </Setting>
     <Setting Name="default_File" Type="System.String" Scope="User">
-      <Value Profile="(Default)">iCarolExport-KidsHelpPhone-Resources-20161118_163330</Value>
+      <Value Profile="(Default)">www</Value>
     </Setting>
     <Setting Name="errorletter" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">|</Value>
     </Setting>
     <Setting Name="default_Col" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">184</Value>
+      <Value Profile="(Default)">183</Value>
     </Setting>
   </Settings>
 </SettingsFile>
