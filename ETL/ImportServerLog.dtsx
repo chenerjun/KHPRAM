@@ -1,20 +1,20 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="7/16/2017 6:20:53 PM"
-  DTS:CreationName="Microsoft.Package"
+  DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="T530"
   DTS:CreatorName="T530\William"
   DTS:DTSID="{C8C0996E-E426-4E75-B213-60A233CDA4D1}"
-  DTS:ExecutableType="Microsoft.Package"
+  DTS:ExecutableType="SSIS.Package.3"
   DTS:LastModifiedProductVersion="13.0.2164.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="ImportServerLog"
   DTS:PackageType="5"
-  DTS:VersionBuild="48"
-  DTS:VersionGUID="{BED6964A-A0FE-4354-A90A-FFEBFEE2CD6A}">
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{44E10991-ACF6-4BE9-990A-19494865E39C}">
   <DTS:Property
-    DTS:Name="PackageFormatVersion">8</DTS:Property>
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager ErrorRecorders]"
@@ -211,6 +211,16 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.RAM]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3BFEB3E1-7887-42C3-ABB0-C8F92934A9CE}"
+      DTS:ObjectName="localhost.RAM">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=RAM;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.RAM1]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{2A939F59-57B4-45DC-B634-0F7C7473CFB6}"
@@ -252,7 +262,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Foreach Loop Container">
       <DTS:ForEachEnumerator
-        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
         DTS:DTSID="{93AB2970-59F5-47B7-B738-29D1134C83E9}"
         DTS:ObjectName="{93AB2970-59F5-47B7-B738-29D1134C83E9}">
         <DTS:ObjectData>
@@ -272,10 +282,10 @@
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Foreach Loop Container\Data Flow Task Read server log"
-          DTS:CreationName="Microsoft.Pipeline"
+          DTS:CreationName="SSIS.Pipeline.3"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{249D2027-0575-4D43-84E6-A77903F3A2BE}"
-          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:ExecutableType="SSIS.Pipeline.3"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task Read server log"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
@@ -286,7 +296,7 @@
               <components>
                 <component
                   refId="Package\Foreach Loop Container\Data Flow Task Read server log\Conditional Split Skip comment recorder"
-                  componentClassID="Microsoft.ConditionalSplit"
+                  componentClassID="DTSTransform.ConditionalSplit.3"
                   contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
                   name="Conditional Split Skip comment recorder"
@@ -376,7 +386,7 @@
                 </component>
                 <component
                   refId="Package\Foreach Loop Container\Data Flow Task Read server log\Derived Column Splite column cs_uri_stem"
-                  componentClassID="Microsoft.DerivedColumn"
+                  componentClassID="DTSTransform.DerivedColumn.3"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
                   name="Derived Column Splite column cs_uri_stem"
@@ -780,7 +790,7 @@
                 </component>
                 <component
                   refId="Package\Foreach Loop Container\Data Flow Task Read server log\Flat File Destination Error Recorders"
-                  componentClassID="Microsoft.FlatFileDestination"
+                  componentClassID="DTSAdapter.FlatFileDestination.3"
                   contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Flat File Destination"
                   localeId="1033"
@@ -850,7 +860,7 @@
                 </component>
                 <component
                   refId="Package\Foreach Loop Container\Data Flow Task Read server log\Flat File Source Read Server lof files from folder C_System_logfile"
-                  componentClassID="Microsoft.FlatFileSource"
+                  componentClassID="DTSAdapter.FlatFileSource.3"
                   contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
                   description="Flat File Source"
                   localeId="1033"
@@ -1295,7 +1305,7 @@
                 </component>
                 <component
                   refId="Package\Foreach Loop Container\Data Flow Task Read server log\OLE DB Destination"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLE DB Destination"
@@ -1318,7 +1328,7 @@
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1790,10 +1800,10 @@
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Foreach Loop Container\File System Task Move processed file to Archived folder"
-          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="File System Task"
           DTS:DTSID="{025A9C8E-246D-425F-937D-8B25FDBF73C4}"
-          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="File System Task Move processed file to Archived folder"
           DTS:ThreadHint="0">
@@ -1833,7 +1843,7 @@
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="sql12">
+  Version="sql11">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -1886,21 +1896,47 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="388,42"
-          Id="Package\Foreach Loop Container\Data Flow Task Read server log\Flat File Source Read Server lof files from folder C_System_logfile"
-          TopLeft="337,65" />
+          Size="249,42"
+          Id="Package\Foreach Loop Container\Data Flow Task Read server log\Flat File Destination Error Recorders"
+          TopLeft="941,66" />
+        <NodeLayout
+          Size="280,42"
+          Id="Package\Foreach Loop Container\Data Flow Task Read server log\Derived Column Splite column cs_uri_stem"
+          TopLeft="384,304" />
         <NodeLayout
           Size="171,42"
           Id="Package\Foreach Loop Container\Data Flow Task Read server log\OLE DB Destination"
           TopLeft="432,428" />
         <NodeLayout
+          Size="388,42"
+          Id="Package\Foreach Loop Container\Data Flow Task Read server log\Flat File Source Read Server lof files from folder C_System_logfile"
+          TopLeft="337,65" />
+        <NodeLayout
           Size="268,42"
           Id="Package\Foreach Loop Container\Data Flow Task Read server log\Conditional Split Skip comment recorder"
           TopLeft="391,186" />
-        <NodeLayout
-          Size="249,42"
-          Id="Package\Foreach Loop Container\Data Flow Task Read server log\Flat File Destination Error Recorders"
-          TopLeft="941,66" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Data Flow Task Read server log.Paths[Flat File Source Output]"
+          TopLeft="528,107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task Read server log.Paths[Flat File Source Error Output]"
           TopLeft="725,86.5">
@@ -1926,19 +1962,19 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container\Data Flow Task Read server log.Paths[Flat File Source Output]"
-          TopLeft="528,107">
+          Id="Package\Foreach Loop Container\Data Flow Task Read server log.Paths[Derived Column Output]"
+          TopLeft="520.75,346">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,79"
+              EndConnector="0,82"
               Start="0,0"
-              End="0,71.5">
+              End="0,74.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,71.5" />
+                    End="0,74.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1947,10 +1983,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="280,42"
-          Id="Package\Foreach Loop Container\Data Flow Task Read server log\Derived Column Splite column cs_uri_stem"
-          TopLeft="384,304" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\Data Flow Task Read server log.Paths[API]"
           TopLeft="524.5,228">
@@ -1973,28 +2005,6 @@
             <mssgm:EdgeLabel
               BoundingBox="-8.41759765625,29.61474609375,16.8351953125,9.2705078125"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container\Data Flow Task Read server log.Paths[Derived Column Output]"
-          TopLeft="520.75,346">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,82"
-              Start="0,0"
-              End="0,74.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,74.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -83,6 +83,7 @@ namespace WebApi.Controllers
         /// Query String Style gets allowable province list in XML format filter by language.
         /// </summary>
         /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        ///  <param name="token">Language. English = "en"; French = "fr"</param>
         /// <returns>Return a province list, [ProvinceID], [Province], [Province ALias],format in XML</returns>
         [ActionName("xml")]
                 [Route("api/v2/Province/xml")]

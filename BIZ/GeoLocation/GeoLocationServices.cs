@@ -1,7 +1,7 @@
 ﻿using DATA.EF;
 using System.Collections.Generic;
-using System.Net;
 using System.Linq;
+using System.Net;
 
 namespace BIZ.GeoLocation
 {
@@ -14,6 +14,8 @@ namespace BIZ.GeoLocation
             long ipnum = 0;
             ipnum = (long)(uint)IPAddress.NetworkToHostOrder((int)IPAddress.Parse(ip).Address);
             var response = db.Proc_Get_Canadaip(ipnum,token).ToList()  ;
+            //db.Proc_apilog("GET", string.Empty, token, "IPlookup", "geolocation", ip);
+
             return response;
         }
     }

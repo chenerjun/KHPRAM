@@ -25,6 +25,23 @@
           <Parameter Name="pid" Type="int" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Proc_apilog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dbschema" Type="nvarchar" Mode="In" />
+          <Parameter Name="csmethod" Type="nvarchar" Mode="In" />
+          <Parameter Name="format" Type="nvarchar" Mode="In" />
+          <Parameter Name="para" Type="nvarchar" Mode="In" />
+          <Parameter Name="lang" Type="nvarchar" Mode="In" />
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="cscontent" Type="nvarchar" Mode="In" />
+          <Parameter Name="csendpoint" Type="nvarchar" Mode="In" />
+          <Parameter Name="keywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="csip" Type="nvarchar" Mode="In" />
+          <Parameter Name="csstatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="cscode" Type="int" Mode="In" />
+          <Parameter Name="cshost" Type="nvarchar" Mode="In" />
+          <Parameter Name="csurl" Type="nvarchar" Mode="In" />
+          <Parameter Name="csuseragent" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Proc_Cluster_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SearchWordS" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="lang" Type="nvarchar" Mode="In" />
@@ -394,6 +411,23 @@
           <FunctionImport Name="Proc_Get_Canadaip" ReturnType="Collection(RAMModel.geolocation)">
             <Parameter Name="ip" Mode="In" Type="Int64" />
             <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_apilog">
+            <Parameter Name="dbschema" Mode="In" Type="String" />
+            <Parameter Name="csmethod" Mode="In" Type="String" />
+            <Parameter Name="format" Mode="In" Type="String" />
+            <Parameter Name="para" Mode="In" Type="String" />
+            <Parameter Name="lang" Mode="In" Type="String" />
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="cscontent" Mode="In" Type="String" />
+            <Parameter Name="csendpoint" Mode="In" Type="String" />
+            <Parameter Name="keywords" Mode="In" Type="String" />
+            <Parameter Name="csip" Mode="In" Type="String" />
+            <Parameter Name="csstatus" Mode="In" Type="String" />
+            <Parameter Name="cscode" Mode="In" Type="Int32" />
+            <Parameter Name="cshost" Mode="In" Type="String" />
+            <Parameter Name="csurl" Mode="In" Type="String" />
+            <Parameter Name="csuseragent" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
@@ -1472,6 +1506,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_apilog" FunctionName="RAMModel.Store.Proc_apilog" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

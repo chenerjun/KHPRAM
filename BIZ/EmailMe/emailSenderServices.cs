@@ -1,10 +1,12 @@
-﻿using System.Net;
+﻿using DATA.EF;
+using System.Net;
 using System.Net.Mail;
 
 namespace BIZ.EmailMe
 {
     public class emailSenderServices
     {
+        private RAMEntities db = new RAMEntities();
         public bool sendfromInternal(string host, int port, bool ssl, string loginname, string pwd, string sendfrom, string displayname,
             string receiver, string subject, string body)
         {
@@ -25,10 +27,14 @@ namespace BIZ.EmailMe
                 mm.IsBodyHtml = true;
                 mm.Body = body;
                 smtp.Send(mm);
+                //db.Proc_apilog("POST", host, sendfrom, subject, "email", receiver + "/OK");
+
                 return true;
             }
             catch
             {
+                //db.Proc_apilog("POST", host, sendfrom, subject, "email", receiver + "/No");
+
                 return false;
             }
 
@@ -55,11 +61,15 @@ namespace BIZ.EmailMe
             mm.Body = body;
             smtp.Send(mm);
 
-            return true;
+                //db.Proc_apilog("POST", "gmail", string.Empty, subject, "email", Receiver + "/OK");
+
+                return true;
                 
             }
             catch
             {
+                //db.Proc_apilog("POST", "gmail", string.Empty, subject, "email", Receiver + "/No");
+
                 return false;
             }
         }

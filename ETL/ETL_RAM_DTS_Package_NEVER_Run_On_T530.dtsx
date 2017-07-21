@@ -1,21 +1,21 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="3/14/2015 9:18:11 PM"
-  DTS:CreationName="Microsoft.Package"
+  DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="T530"
   DTS:CreatorName="T530\William"
   DTS:DTSID="{1E4B778E-8808-40CD-8E3A-67E64BEDD7D9}"
   DTS:EnableConfig="True"
-  DTS:ExecutableType="Microsoft.Package"
+  DTS:ExecutableType="SSIS.Package.3"
   DTS:LastModifiedProductVersion="13.0.2164.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="ETL_RAM_DTS_Package_NEVER_Run_On_T530"
   DTS:PackageType="5"
   DTS:VersionBuild="440"
-  DTS:VersionGUID="{7960CC94-6AE1-4E0A-8C53-ECF5F10DC62A}">
+  DTS:VersionGUID="{DD4EE1B5-5BC0-45C9-B1A6-3E7DE25BA062}">
   <DTS:Property
-    DTS:Name="PackageFormatVersion">8</DTS:Property>
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[FF_CM_Unload_rows]"
@@ -1785,7 +1785,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAFWPJCJ4H7k+gp38/fPccSwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADNj+M0ra7NG6788EnYppjogV+JEk9MZO73zB7pi830GgAAAAAOgAAAAAIAACAAAADIMnpSmTvrkvNzLYIVJrIy2ENRCk+ImVq2GSNOONFG6iAAAADWzZHecKNcgrpvmS3SryBJWRde8M+h92se+mb5SHnolUAAAABlEnDSbdSdtMC1U1CviiTc8W+U0MDR8G23EfececOSEJOXBBZKJK9nDB6j/1Gx1uLdZ9fCBz4NNPX2qkRbprhP</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwNLLpGkBH02ZxUGqC8Ys0QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAB+zSQHNiB8nXAYLVsN2lhaBu6Molvk3asf0GRl5C3PngAAAAAOgAAAAAIAACAAAAC/8jUPm69nHCkCzq+NZ1ypmscQE07NAJV8A/JWf3T++iAAAAACkYHB5UO7DhjWlDZK7Oq6/XT5OGIehl0592eHsc2+EUAAAACq4Lhey3v5f2Hb1AULNxuZ+hej1ACXZEF7PH4yOaTvcAFZ22jBP+UCGx22rOaAtCRMv1EOH22oVRiZC4x5w1cF</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -1858,10 +1858,10 @@
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Build_Table_ProgramRAW\DFT_Get_Program"
-          DTS:CreationName="Microsoft.Pipeline"
+          DTS:CreationName="SSIS.Pipeline.3"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{68F06A40-690B-4DCF-A6A8-3B83F312FC19}"
-          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:ExecutableType="SSIS.Pipeline.3"
           DTS:LocaleID="-1"
           DTS:ObjectName="DFT_Get_Program"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
@@ -1872,7 +1872,7 @@
               <components>
                 <component
                   refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_DST_Save_to_Table_ProgramRAM"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_Save_to_Table_ProgramRAM"
@@ -1895,7 +1895,7 @@
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2783,7 +2783,7 @@
                 </component>
                 <component
                   refId="Package\Build_Table_ProgramRAW\DFT_Get_Program\OLEDB_SRC_Get_Program_From_Table_RAMRAW"
-                  componentClassID="Microsoft.OLEDBSource"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
                   name="OLEDB_SRC_Get_Program_From_Table_RAMRAW"
@@ -2806,7 +2806,7 @@
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        RAMRAW.*
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        RAMRAW.*
 FROM            RAMRAW
 WHERE        (TaxonomyLevelNameID = 3)</property>
                     <property
@@ -4309,10 +4309,10 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_Table_ProgramRAW\SQL_Drop_FK_from_Table_ETLLoadID_TaxonomyCode"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{43DD5A88-39B6-4934-8AB8-F50B85859B85}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_from_Table_ETLLoadID_TaxonomyCode"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -4326,10 +4326,10 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_Table_ProgramRAW\SQL_Truncate_Table_ProgramRAW"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{7BE4DFF1-0633-4EF3-968C-70AE5FAC6308}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ProgramRAW"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -4374,13 +4374,13 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\Execute SQL Task"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{3F00416F-26F7-4D36-B231-872F19FC2F02}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Execute SQL Task"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4390,13 +4390,13 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\Exe_SQL_Build_F_Coverage"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{B0BA6FFD-189A-4886-941E-F870DD9E683C}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Build_F_Coverage"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4406,13 +4406,13 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\Exe_SQL_Build_F_CustomEligibilitybyAge"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{928B5825-9BA3-4515-8DAA-E35857A51B2E}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Build_F_CustomEligibilitybyAge"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4422,13 +4422,13 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\Exe_SQL_Build_F_WorkHours"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{F4DEBCBF-F0BD-44AF-9ED1-CE6C7C8EE529}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Build_F_WorkHours"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4438,13 +4438,13 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\Exe_SQL_Drop_F_CustomEligibilitybyAge"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{C45BBD70-7F26-4B52-AAAB-58A48419C344}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_CustomEligibilitybyAge"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4454,13 +4454,13 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\Exe_SQL_Drop_F_WorkHours"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{521C7E98-9F2E-4422-98E3-1AE8FB076EB1}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_WorkHours"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4470,14 +4470,14 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Add_FK_on_Table_Coverage"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{9C085AFE-87E7-4620-B3E5-A63CD2D9166F}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4487,14 +4487,14 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Add_FK_on_Table_CustomEligibilitybyAge"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{01468453-FC4E-4FB9-A01B-4B472F3F4563}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4504,14 +4504,14 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Add_FK_on_Table_InterestTaxonomyID_ETLLoadID"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{AAF87752-0AE6-47ED-AF52-89CA229AA4BF}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4521,14 +4521,14 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Add_FK_on_Table_WorkHour"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{203EDF42-54E6-4F4B-9959-96D428815D40}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -4538,10 +4538,10 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW"
-          DTS:CreationName="Microsoft.Pipeline"
+          DTS:CreationName="SSIS.Pipeline.3"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{B53D0D50-F8D6-4DBD-946D-25A17E04E4CE}"
-          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:ExecutableType="SSIS.Pipeline.3"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Table_TaxonomyRAW"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
@@ -4552,7 +4552,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
               <components>
                 <component
                   refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_DST_Store_Interest_Resource_to_Table_TaxonomyRAW"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_Store_Interest_Resource_to_Table_TaxonomyRAW"
@@ -4575,7 +4575,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -5463,7 +5463,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                 </component>
                 <component
                   refId="Package\Build_TaxonomyRAW\SQL_Build_Table_TaxonomyRAW\OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW"
-                  componentClassID="Microsoft.OLEDBSource"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
                   name="OLEDB_SRC_Get_Interest_Resources_From_Table_ProgramRAW"
@@ -5486,7 +5486,7 @@ WHERE        (TaxonomyLevelNameID = 3)</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        ETLLoadID, ResourceAgencyNum, Map, PublicName, TaxonomyLevelNameID, ParentAgency, ParentAgencyNum, PhysicalAddress1, PhysicalAddress2, PhysicalCityID, PhysicalCity, PhysicalCounty, 
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        ETLLoadID, ResourceAgencyNum, Map, PublicName, TaxonomyLevelNameID, ParentAgency, ParentAgencyNum, PhysicalAddress1, PhysicalAddress2, PhysicalCityID, PhysicalCity, PhysicalCounty, 
                          PhysicalProvinceID, PhysicalStateProvince, PhysicalPostalCode, PhysicalCountry, PhysicalAddressIsPrivate, Latitude, Longitude, HoursOfOperation, Phone1Number, Phone1IsPrivate, Phone2Number, 
                          Phone2IsPrivate, Phone3Number, Phone3IsPrivate, Phone4Number, Phone4IsPrivate, Phone5Number, Phone5IsPrivate, PhoneFax, PhoneFaxIsPrivate, PhoneTTY, PhoneTTYIsPrivate, PhoneTollFree, 
                          PhoneTollFreeIsPrivate, PhoneNumberHotline, PhoneNumberHotlineIsPrivate, PhoneNumberBusinessLine, PhoneNumberBusinessLineIsPrivate, PhoneNumberOutOfArea, PhoneNumberOutOfAreaIsPrivate, 
@@ -6996,10 +6996,10 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Drop_FK_From_Table_Coverage"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{3CC6FEFA-4CD4-4FC2-90A5-8F9C93CEF03C}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -7013,14 +7013,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Drop_FK_From_Table_CustomEligibilitybyAge"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{71758F6C-CEE9-46C5-AC1B-01843218A3A7}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7030,14 +7030,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Drop_FK_From_Table_InterestTaxonomyID_ETLLoadID"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{C6CE4CF9-215E-44BE-AF72-D64AC158F509}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_From_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7047,14 +7047,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Drop_FK_from_Table_WorkHour"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{BE5BBD44-36CD-45B9-95AF-6A6D2021E533}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Drop_FK_from_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7064,14 +7064,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Generate_Table_Coverage"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{F20BF668-D849-4219-BDFE-91507AE397E6}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7081,14 +7081,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Generate_Table_CustomEligibilitybyAge"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{11AC2DFF-DEE7-497E-A924-93EC423C2785}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7098,14 +7098,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Generate_Table_InterestTaxonomyID_ETLLoadID"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{DA3CA886-EF0C-424C-B9C5-DCAE938F3A38}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7115,14 +7115,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Generate_Table_WorkHour"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{5414FF5A-D49F-4FEC-812C-4126CE1F7FDB}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Generate_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7132,14 +7132,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Truncate_Table_Coverage"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{CE162A1A-EFFD-47C9-84E6-8D1A9E5AC5F8}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Coverage"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7149,14 +7149,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Truncate_Table_CustomEligibilitybyAge"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{AFF77E78-33B4-40CD-96C0-D7384D8EBFF1}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_CustomEligibilitybyAge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7166,14 +7166,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Truncate_Table_InterestTaxonomyID_ETLLoadID"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{2EC56BE1-3EAC-4D01-B40F-BD09EB36899F}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_InterestTaxonomyID_ETLLoadID"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7183,10 +7183,10 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Truncate_Table_TaxonomyRAW"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{8469D475-92D6-4F2A-A09D-DCBD3DB2AF3E}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_TaxonomyRAW"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -7200,14 +7200,14 @@ WHERE        (ETLLoadID IN
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Build_TaxonomyRAW\SQL_Truncate_Table_WorkHour"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{528C9970-1CC9-4E39-8C12-32A4AF30BBA7}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_WorkHour"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -7415,11 +7415,11 @@ WHERE        (ETLLoadID IN
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\DFT_Splite_RAMResource"
-          DTS:CreationName="Microsoft.Pipeline"
+          DTS:CreationName="SSIS.Pipeline.3"
           DTS:Description="Data Flow Task"
           DTS:Disabled="True"
           DTS:DTSID="{970EF0E9-1150-4C80-9E57-61FB4CF435E1}"
-          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:ExecutableType="SSIS.Pipeline.3"
           DTS:LocaleID="-1"
           DTS:ObjectName="DFT_Splite_RAMResource"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
@@ -7430,7 +7430,7 @@ WHERE        (ETLLoadID IN
               <components>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\CSPL_GeoErr"
-                  componentClassID="Microsoft.ConditionalSplit"
+                  componentClassID="DTSTransform.ConditionalSplit.3"
                   contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
                   name="CSPL_GeoErr"
@@ -7562,7 +7562,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\CSPL_MAP_PW_Shelter"
-                  componentClassID="Microsoft.ConditionalSplit"
+                  componentClassID="DTSTransform.ConditionalSplit.3"
                   contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
                   name="CSPL_MAP_PW_Shelter"
@@ -7709,7 +7709,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\CSPL_PublicName_is_Null"
-                  componentClassID="Microsoft.ConditionalSplit"
+                  componentClassID="DTSTransform.ConditionalSplit.3"
                   contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
                   name="CSPL_PublicName_is_Null"
@@ -7866,7 +7866,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\CSPL_PW_Shelter"
-                  componentClassID="Microsoft.ConditionalSplit"
+                  componentClassID="DTSTransform.ConditionalSplit.3"
                   contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
                   name="CSPL_PW_Shelter"
@@ -7956,7 +7956,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\Derived Column CoverageAreaIsNull"
-                  componentClassID="Microsoft.DerivedColumn"
+                  componentClassID="DTSTransform.DerivedColumn.3"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
                   name="Derived Column CoverageAreaIsNull"
@@ -8030,7 +8030,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\Derived Column CoverageIsNull"
-                  componentClassID="Microsoft.DerivedColumn"
+                  componentClassID="DTSTransform.DerivedColumn.3"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
                   name="Derived Column CoverageIsNull"
@@ -8104,7 +8104,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\Derived Column LatLongIsZero"
-                  componentClassID="Microsoft.DerivedColumn"
+                  componentClassID="DTSTransform.DerivedColumn.3"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
                   name="Derived Column LatLongIsZero"
@@ -8178,7 +8178,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\Derived Column PhysicalAddressIsNull"
-                  componentClassID="Microsoft.DerivedColumn"
+                  componentClassID="DTSTransform.DerivedColumn.3"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
                   name="Derived Column PhysicalAddressIsNull"
@@ -8252,7 +8252,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\Derived Column PublicNameIsNull"
-                  componentClassID="Microsoft.DerivedColumn"
+                  componentClassID="DTSTransform.DerivedColumn.3"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
                   name="Derived Column PublicNameIsNull"
@@ -8326,7 +8326,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_DST_Incomplete_RAMResource"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_Incomplete_RAMResource"
@@ -8349,7 +8349,7 @@ WHERE        (ETLLoadID IN
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -8785,7 +8785,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_DST_Map"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_Map"
@@ -8808,7 +8808,7 @@ WHERE        (ETLLoadID IN
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -9265,7 +9265,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_DST_PhoneWeb"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_PhoneWeb"
@@ -9288,7 +9288,7 @@ WHERE        (ETLLoadID IN
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -9745,7 +9745,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_DST_Shelter"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_Shelter"
@@ -9768,7 +9768,7 @@ WHERE        (ETLLoadID IN
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -10225,7 +10225,7 @@ WHERE        (ETLLoadID IN
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\OLEDB_SRC_Get_All_RAMResource"
-                  componentClassID="Microsoft.OLEDBSource"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
                   name="OLEDB_SRC_Get_All_RAMResource"
@@ -10248,7 +10248,7 @@ WHERE        (ETLLoadID IN
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        R.ETLLoadID, R.ResourceAgencyNum, R.Map, R.SubCategoryID, R.TOPCategoryID, ISNULL(RTRIM(LTRIM(R.PublicName)), '') AS PublicName, ISNULL(RTRIM(LTRIM(R.AgencyDescription)), '') 
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        R.ETLLoadID, R.ResourceAgencyNum, R.Map, R.SubCategoryID, R.TOPCategoryID, ISNULL(RTRIM(LTRIM(R.PublicName)), '') AS PublicName, ISNULL(RTRIM(LTRIM(R.AgencyDescription)), '') 
                          AS AgencyDescription, ISNULL(RTRIM(LTRIM(R.PhysicalAddress)), '') AS PhysicalAddress, ISNULL(R.PhysicalCityID, 0) AS PhysicalCityID, ISNULL(RTRIM(LTRIM(C.CityName)), '') AS CityName, 
                          ISNULL(R.PhysicalProvinceID, 99) AS PhysicalProvinceID, ISNULL(P.ProvinceAlias, '') AS ProvinceAlias, ISNULL(R.PhysicalCountry, 'Canada') AS PhysicalCountry, ISNULL(RTRIM(LTRIM(R.PhysicalPostalCode)), 
                          '') AS PostalCode, ISNULL(RTRIM(LTRIM(R.Phone)), '') AS Phone, ISNULL(R.Latitude, 0.0) AS Latitude, ISNULL(R.Longitude, 0.0) AS Longitude, ISNULL(RTRIM(LTRIM(R.HoursOfOperation)), '') AS HoursOfOperation, 
@@ -10979,7 +10979,7 @@ ORDER BY R.ETLLoadID</property>
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\Sort_ETLoadID"
-                  componentClassID="Microsoft.Sort"
+                  componentClassID="DTSTransform.Sort.3"
                   contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
                   description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
                   name="Sort_ETLoadID"
@@ -12002,7 +12002,7 @@ ORDER BY R.ETLLoadID</property>
                 </component>
                 <component
                   refId="Package\Construct RAMResource\DFT_Splite_RAMResource\Union All"
-                  componentClassID="Microsoft.UnionAll"
+                  componentClassID="DTSTransform.UnionAll.3"
                   contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
                   description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
                   name="Union All"
@@ -14664,10 +14664,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\ExeSQL_Build_Function_CleanHTMLTags"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{67179844-8A4C-4690-8131-020C5BBDA47B}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExeSQL_Build_Function_CleanHTMLTags"
           DTS:ThreadHint="0">
@@ -14680,10 +14680,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\ExeSQL_Drop_Function_CleanHTMLTags"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{9DB3F9CF-F114-4D71-BE5B-359E3FE6560A}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExeSQL_Drop_Function_CleanHTMLTags"
           DTS:ThreadHint="0">
@@ -14696,10 +14696,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_Build_F_RAM"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{80C965EF-0F8F-48B1-A6B4-3951CA8E676C}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Build_F_RAM"
           DTS:ThreadHint="0">
@@ -14712,10 +14712,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_Build_F_Splite_TaxonomyTerm"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{BDBBED94-7E78-446C-B7A5-E5CB0C53CC4E}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Build_F_Splite_TaxonomyTerm"
           DTS:ThreadHint="0">
@@ -14728,10 +14728,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_Build_SP_Construct_RAMResource"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{441DCF61-2DF2-4852-89FB-52CDE9C2234D}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Build_SP_Construct_RAMResource"
           DTS:ThreadHint="0">
@@ -14744,10 +14744,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_DROP_F_RAM"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{BC081B28-3FBB-48EB-928E-08FAE8211583}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_DROP_F_RAM"
           DTS:ThreadHint="0">
@@ -14760,10 +14760,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_Drop_F_Splite_TaxonomyTerm"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{5F0EE823-A850-4CF2-AF0C-11E41FC97ABE}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_Splite_TaxonomyTerm"
           DTS:ThreadHint="0">
@@ -14776,10 +14776,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_Drop_F_Taxonomy_TermS"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{107F6850-F678-485F-8479-0C92E26AE904}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_Taxonomy_TermS"
           DTS:ThreadHint="0">
@@ -14792,10 +14792,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_Drop_SP_Build_Table_Keywords"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{49DED2BC-2FB3-4A16-B1C7-2221CEC5FD15}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_SP_Build_Table_Keywords"
           DTS:ThreadHint="1">
@@ -14808,10 +14808,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_DROP_SP_Construct_RAMResource"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{BC2D7C7F-A8EA-444B-B3B7-728301C13789}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_DROP_SP_Construct_RAMResource"
           DTS:ThreadHint="0">
@@ -14824,10 +14824,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_F_Splite_TaxonomyTermS"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{2F71340E-6AE4-41CD-A6B4-1381350BBDFE}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_F_Splite_TaxonomyTermS"
           DTS:ThreadHint="0">
@@ -14840,10 +14840,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\Exe_SQL_SP_Build_Table_Keywords"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{8448A545-EFEB-4639-B5EC-CF5DF5DD6322}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_SP_Build_Table_Keywords"
           DTS:ThreadHint="1">
@@ -14856,15 +14856,15 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Adjust_LatLong"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:Disabled="True"
           DTS:DTSID="{A48D4060-C0AE-4BC6-8DE2-BA9FD40FBC97}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Adjust_LatLong"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -14874,10 +14874,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Build_Keywords"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{8536A96C-C3F5-44C9-A6E1-2518A25B6442}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Keywords"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -14891,10 +14891,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Build_Suggetsion_Words"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{DBC095BF-52FD-447C-AE29-DFF18104F4AA}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Suggetsion_Words"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -14908,10 +14908,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Build_Table_Combine_Categories"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{0B613EE9-71A1-4859-8D98-A30294E998E0}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_Table_Combine_Categories"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -14925,10 +14925,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Constructe_Tabel_RAMResource"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{AA7AB4E5-04F6-446E-B7EB-1FDAB7DBC20F}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Constructe_Tabel_RAMResource"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -14942,10 +14942,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_remove_HTMLatg"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Exec a Scale-value-Function CleanHTMLTags&#xA;to Remove HTML tag from  Table RAMResource &#xA;AgencyDesc ,  Eligibility  column &#xA;remove  http://   or https://"
           DTS:DTSID="{24654223-512A-4DA9-8321-E70168C51750}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_remove_HTMLatg"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -14959,10 +14959,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Truncate_table_Combine_Categories"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{BB21DF89-2289-4A2F-BE03-072BCF6740DD}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_table_Combine_Categories"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -14976,10 +14976,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Truncate_Table_InCompleteRAMResource"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{6FC31B06-B0F2-451C-BCA4-FDF1E85788ED}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_InCompleteRAMResource"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -14993,10 +14993,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Truncate_table_keywords"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{52EEB8FA-F53A-4D34-8151-C45AC0AF7F7F}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_table_keywords"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -15010,14 +15010,14 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Truncate_Table_Map"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{2D856B21-CC87-49D6-870C-502203CECA76}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Map"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -15027,14 +15027,14 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Truncate_Table_PhoneWeb"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{BD803631-E82A-4419-94F5-7E9BD261AB63}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_PhoneWeb"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -15044,10 +15044,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Truncate_Table_RAMResource"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{85C2BCFA-93D6-4452-A03A-89250E5A6EE2}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_RAMResource"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -15061,10 +15061,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Truncate_Table_Shelter"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{F171397B-BA0A-43C4-88AF-4B1B1FC3C0CF}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_Shelter"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -15078,10 +15078,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Construct RAMResource\SQL_Truncate_Table_SuggestionWord"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{F51E5A88-6728-480A-A591-6F2BB4BF3B8B}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_SuggestionWord"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -15331,10 +15331,10 @@ ORDER BY R.ETLLoadID</property>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Execute SQL Task_Insert_table_Updatelog"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{A821DF7E-4D6E-4CC0-9B16-00AC71A4DB2F}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task_Insert_table_Updatelog"
       DTS:ThreadHint="0">
@@ -15347,10 +15347,10 @@ ORDER BY R.ETLLoadID</property>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExeSQL_Allow Advanced_Options"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="To allow advanced options to be changed."
       DTS:DTSID="{6F18A477-AE8C-4707-AA2B-50D58CABF2A8}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExeSQL_Allow Advanced_Options"
       DTS:ThreadHint="0">
@@ -15363,10 +15363,10 @@ ORDER BY R.ETLLoadID</property>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExeSQL_Enable_Feature"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="To enable the feature."
       DTS:DTSID="{E04F80DE-1A29-4A4F-B5F0-508463B69640}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExeSQL_Enable_Feature"
       DTS:ThreadHint="0">
@@ -15379,10 +15379,10 @@ ORDER BY R.ETLLoadID</property>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExeSQL_Remove_TEMP"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{1E97B494-05AE-42F3-B3E9-E69A272AF669}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExeSQL_Remove_TEMP"
       DTS:ThreadHint="0">
@@ -15395,10 +15395,10 @@ ORDER BY R.ETLLoadID</property>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExeSQL_Restore_currently_configured_value_for_this_feature"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="To update the currently configured value for this feature."
       DTS:DTSID="{426FE3EB-2523-413D-A427-BB4955B2D39D}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExeSQL_Restore_currently_configured_value_for_this_feature"
       DTS:ThreadHint="0">
@@ -15411,10 +15411,10 @@ ORDER BY R.ETLLoadID</property>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExeSQL_Shrink"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{049EF74C-0636-41EF-8A1E-4E3604C883AD}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExeSQL_Shrink"
       DTS:ThreadHint="0">
@@ -15427,10 +15427,10 @@ ORDER BY R.ETLLoadID</property>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\ExeSQL_update the currently configured value"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="To update the currently configured value for advanced options."
       DTS:DTSID="{4A16F370-66F4-460C-A0B7-86BD8877D8ED}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="ExeSQL_update the currently configured value"
       DTS:ThreadHint="0">
@@ -15453,10 +15453,10 @@ ORDER BY R.ETLLoadID</property>
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Pivot_ProgramRAW_TaxonomyCode\Exe_SQL_Build_F_taxonomyCode"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{A0B80FDE-7097-4BE6-A207-067A260C610F}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Build_F_taxonomyCode"
           DTS:ThreadHint="0">
@@ -15469,10 +15469,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Pivot_ProgramRAW_TaxonomyCode\Exe_SQL_Drop_F_TaxonomtCode"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{D1B3A174-5E6A-4627-BA7A-65B6591A99FA}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_TaxonomtCode"
           DTS:ThreadHint="0">
@@ -15485,10 +15485,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Pivot_ProgramRAW_TaxonomyCode\SQL_Add_FK_on_Table_ETLLoadID_TaxonomyCode"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{3B1C10EA-1606-4385-B913-AAFD08A6BC0A}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_FK_on_Table_ETLLoadID_TaxonomyCode"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -15502,10 +15502,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Pivot_ProgramRAW_TaxonomyCode\SQL_Build_TableETLLoadID_Taxonomy"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Pivot TaxonomyCode from Table ProgramRAW"
           DTS:DTSID="{8FD15910-6C46-4A0D-BECA-F1BC13906C64}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_TableETLLoadID_Taxonomy"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -15519,10 +15519,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Pivot_ProgramRAW_TaxonomyCode\Truncate_Table_ETLLoadID_TaxonomyCode"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{FD94F85D-0887-4C06-849A-DB2F184D7106}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Truncate_Table_ETLLoadID_TaxonomyCode"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -15582,10 +15582,10 @@ ORDER BY R.ETLLoadID</property>
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8"
-          DTS:CreationName="Microsoft.Pipeline"
+          DTS:CreationName="SSIS.Pipeline.3"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{D57C4826-DE0D-4E99-BB90-B80F5DF82296}"
-          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:ExecutableType="SSIS.Pipeline.3"
           DTS:LocaleID="-1"
           DTS:ObjectName="DFT_Get_iCarol_CSV_UTF8"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
@@ -15596,7 +15596,7 @@ ORDER BY R.ETLLoadID</property>
               <components>
                 <component
                   refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_ERR_Read_CSV_With_Err"
-                  componentClassID="Microsoft.FlatFileDestination"
+                  componentClassID="DTSAdapter.FlatFileDestination.3"
                   contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Flat File Destination"
                   localeId="1033"
@@ -15666,7 +15666,7 @@ ORDER BY R.ETLLoadID</property>
                 </component>
                 <component
                   refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\FF_SRC_Get_iCarol_UTF8_CSV_180"
-                  componentClassID="Microsoft.FlatFileSource"
+                  componentClassID="DTSAdapter.FlatFileSource.3"
                   contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
                   description="Flat File Source"
                   localeId="1033"
@@ -20489,7 +20489,7 @@ ORDER BY R.ETLLoadID</property>
                 </component>
                 <component
                   refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad"
@@ -20512,7 +20512,7 @@ ORDER BY R.ETLLoadID</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -22709,7 +22709,7 @@ ORDER BY R.ETLLoadID</property>
                 </component>
                 <component
                   refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Get_iCarol_CSV_UTF8\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError"
@@ -22732,7 +22732,7 @@ ORDER BY R.ETLLoadID</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -24893,10 +24893,10 @@ ORDER BY R.ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Updating_Table_CityLocation"
-          DTS:CreationName="Microsoft.Pipeline"
+          DTS:CreationName="SSIS.Pipeline.3"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{CD2A4E40-89F7-482C-B455-C4C306D6C6A5}"
-          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:ExecutableType="SSIS.Pipeline.3"
           DTS:LocaleID="-1"
           DTS:ObjectName="DFT_Updating_Table_CityLocation"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
@@ -24907,7 +24907,7 @@ ORDER BY R.ETLLoadID</property>
               <components>
                 <component
                   refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Updating_Table_CityLocation\Lookup_Table_CityLocation"
-                  componentClassID="Microsoft.Lookup"
+                  componentClassID="DTSTransform.Lookup.3"
                   contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
                   description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
                   name="Lookup_Table_CityLocation"
@@ -24919,14 +24919,14 @@ ORDER BY R.ETLLoadID</property>
                       description="Specifies the SQL statement that generates the lookup table."
                       expressionType="Notify"
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        CityId, LOWER(CityName) AS CityName, ProvinceID, latitude, longitude, ChangedDate
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        CityId, LOWER(CityName) AS CityName, ProvinceID, latitude, longitude, ChangedDate
 FROM            CityLocation</property>
                     <property
                       dataType="System.String"
                       description="Specifies a SQL statement that uses parameters to generate the lookup table."
                       expressionType="Notify"
                       name="SqlCommandParam"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT        CityId, LOWER(CityName) AS CityName, ProvinceID, latitude, longitude, ChangedDate
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT        CityId, LOWER(CityName) AS CityName, ProvinceID, latitude, longitude, ChangedDate
 FROM            CityLocation) [refTable]
 where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                     <property
@@ -25158,7 +25158,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                 </component>
                 <component
                   refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Updating_Table_CityLocation\OLEDB_DST_Store_New_City_In_TEMP_Table_NoMatched"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_Store_New_City_In_TEMP_Table_NoMatched"
@@ -25181,7 +25181,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -25283,7 +25283,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                 </component>
                 <component
                   refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\DFT_Updating_Table_CityLocation\OLEDB_SRT_ETLLOAD"
-                  componentClassID="Microsoft.OLEDBSource"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
                   name="OLEDB_SRT_ETLLOAD"
@@ -25306,7 +25306,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT  
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT  
   LOWER(RTRIM (LTRIM (physicalcity))) AS PhysicalCity, p.[ProvinceID] 
  FROM [dbo].[ETLLOAD]  AS E  JOIN [PROVINCE] AS P ON E.PhysicalStateProvince = P.[ProvinceAlias]
  WHERE PhysicalCity IS NOT NULL    AND [ProvinceID] != 99
@@ -25430,10 +25430,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\Exe_SQL_Drop_F_InitCap"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{BA78DC3C-266A-46A2-9FBB-5AED27D808F0}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_InitCap"
           DTS:ThreadHint="0">
@@ -25446,10 +25446,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\SQL_Add_new_City_to_Table_CityLocation"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{09B4BCA5-02E3-44BC-92D1-27E562FC96F1}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Add_new_City_to_Table_CityLocation"
           DTS:ThreadHint="0">
@@ -25462,10 +25462,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\SQL_Build_ Function_InitCap"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{D532C6F8-E4CC-444F-8FAD-38EE1201CD34}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Build_ Function_InitCap"
           DTS:ThreadHint="0">
@@ -25478,10 +25478,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\SQL_Get_First_Letter_of_CityName_Upcase_in_Table_CityLocation"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{A149B6C7-4746-4B42-9CE6-8C08F8F3A131}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Get_First_Letter_of_CityName_Upcase_in_Table_CityLocation"
           DTS:ThreadHint="0">
@@ -25494,10 +25494,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\SQL_NORMALZATION_Column_PhysicalStateProvince"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{E6BBFB8E-75A5-4A2F-9D84-A56BFDF55459}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_NORMALZATION_Column_PhysicalStateProvince"
           DTS:ThreadHint="0">
@@ -25510,14 +25510,14 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\SQL_Truncate_Table_ETLLOAD"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{BD63849C-E225-4981-A1EB-5E5D60024518}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLLOAD"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25527,14 +25527,14 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\SQL_Truncate_Table_ETLLoadError"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{A9C933AC-A0E8-4BFD-BB52-6BBAB958ADC8}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_ETLLoadError"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25544,13 +25544,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\SEQC_Truncate_Table_ETLLoad_ then_ Load_ CSV_ File\SQL_Truncate_Table_NoMatched"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{F0291B3F-53E3-48D7-91B4-B67071854A43}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_NoMatched"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25646,13 +25646,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\ExeSQL_Drop_ F_ram"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{99F6AEF0-94EE-4095-97C6-E9FBA0A9838C}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExeSQL_Drop_ F_ram"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25662,13 +25662,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\ExeSQL_Drop_Function_CleanHTMLTags"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{E0037052-38F3-4C8B-AFA7-352EDBAC7C3F}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExeSQL_Drop_Function_CleanHTMLTags"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25678,13 +25678,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_Function_InitCap"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{3F89FD8E-06EF-46F1-A88B-9B8326810484}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_Function_InitCap"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25694,13 +25694,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_F_Coverage"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{811AD45E-ACCE-4225-9346-FD6692971682}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_Coverage"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25710,13 +25710,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_F_CustomEligibilitybyAge"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{99230B74-C73D-4174-948A-F3A82308D5A1}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_CustomEligibilitybyAge"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25726,13 +25726,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_F_Splite_TaxonomyTerm"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{722D426C-7A37-4AB4-BAB3-1BDF3962829D}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_Splite_TaxonomyTerm"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25742,13 +25742,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_F_Splite_TaxonomyTermS"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{494270C5-0336-4533-BAB9-D251A245A0C9}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_Splite_TaxonomyTermS"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25758,13 +25758,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_F_syncLocationInfo"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{469897D4-3039-4AEB-8C59-B12D57C5B012}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_syncLocationInfo"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25774,13 +25774,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_DROP_F_taxonomyCode"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{2807714B-D53E-4222-8365-A54C639982B7}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_DROP_F_taxonomyCode"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25790,13 +25790,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_F_WorkHours"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{36D66EB4-A333-4D9E-BA2A-4E50F5621354}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_WorkHours"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25806,13 +25806,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_Lookup_Process"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{405A6FAE-97AC-4AEC-8584-98FA88F60CE0}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_Lookup_Process"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25822,13 +25822,13 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_SP_Building_Table_Keywords"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{2988B0F4-5876-4EB1-8F8A-A0943574400C}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_SP_Building_Table_Keywords"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -25838,10 +25838,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Exe_SQL_Drop_SP_Construct_RAMResource"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{D4FE134D-7D3B-429C-9D4A-E88B659C16D3}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_SP_Construct_RAMResource"
           DTS:ThreadHint="12">
@@ -25866,10 +25866,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Sequence Container 1\ExeSQL_Change_Stoplist"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{26B82BFE-01EA-4B70-8BE8-F1B9E8374EC1}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExeSQL_Change_Stoplist"
           DTS:ThreadHint="0">
@@ -25882,10 +25882,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container 1\ExeSQL_Load_Thesaurus_file"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{F99BA72F-2DA7-4A78-B5F3-EB53D8C557CE}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExeSQL_Load_Thesaurus_file"
           DTS:ThreadHint="1">
@@ -25898,10 +25898,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container 1\ExeSQL_Repopulate FT Index"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{2B477427-2BF8-449C-8652-A1B26673EB30}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="ExeSQL_Repopulate FT Index"
           DTS:ThreadHint="2">
@@ -25926,10 +25926,10 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM"
-          DTS:CreationName="Microsoft.Pipeline"
+          DTS:CreationName="SSIS.Pipeline.3"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{A6B6EE66-C5F8-4409-9CC5-63EDEBC34CC2}"
-          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:ExecutableType="SSIS.Pipeline.3"
           DTS:LocaleID="-1"
           DTS:ObjectName="DF_GET_RAM"
           DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
@@ -25940,7 +25940,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
               <components>
                 <component
                   refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\Derived Column convert null to empty and trim"
-                  componentClassID="Microsoft.DerivedColumn"
+                  componentClassID="DTSTransform.DerivedColumn.3"
                   contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
                   name="Derived Column convert null to empty and trim"
@@ -26231,7 +26231,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                 </component>
                 <component
                   refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_DST_Save_RAM_to_TABLE_RAMRAW"
-                  componentClassID="Microsoft.OLEDBDestination"
+                  componentClassID="DTSAdapter.OLEDBDestination.3"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
                   name="OLEDB_DST_Save_RAM_to_TABLE_RAMRAW"
@@ -26254,7 +26254,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -27129,7 +27129,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                 </component>
                 <component
                   refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\DF_GET_RAM\OLEDB_SRC_Get_Table_ETLLoad_With_RAM"
-                  componentClassID="Microsoft.OLEDBSource"
+                  componentClassID="DTSAdapter.OLEDBSource.3"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
                   name="OLEDB_SRC_Get_Table_ETLLoad_With_RAM"
@@ -27152,7 +27152,7 @@ where [refTable].[CityName] = ? and [refTable].[ProvinceID] = ?</property>
                       dataType="System.String"
                       description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        ETLLoadID, ResourceAgencyNum, PublicName, AlternateName, TaxonomyLevelName, ParentAgency, ParentAgencyNum, PhysicalAddress1, PhysicalAddress2, PhysicalCity, PhysicalCounty, 
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        ETLLoadID, ResourceAgencyNum, PublicName, AlternateName, TaxonomyLevelName, ParentAgency, ParentAgencyNum, PhysicalAddress1, PhysicalAddress2, PhysicalCity, PhysicalCounty, 
                          PhysicalStateProvince, PhysicalPostalCode, PhysicalCountry, PhysicalAddressIsPrivate, Latitude, Longitude, HoursOfOperation, Phone1Number, Phone1IsPrivate, Phone2Number, Phone2IsPrivate, 
                          Phone3Number, Phone3IsPrivate, Phone4Number, Phone4IsPrivate, Phone5Number, Phone5IsPrivate, PhoneFax, PhoneFaxIsPrivate, PhoneTTY, PhoneTTYIsPrivate, PhoneTollFree, PhoneTollFreeIsPrivate, 
                          PhoneNumberHotline, PhoneNumberHotlineIsPrivate, PhoneNumberBusinessLine, PhoneNumberBusinessLineIsPrivate, PhoneNumberOutOfArea, PhoneNumberOutOfAreaIsPrivate, PhoneNumberAfterHours, 
@@ -28634,10 +28634,10 @@ ORDER BY ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\Exe_SQL_Build_ F_SyncLocationInfo"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{7EEEA849-AB25-4CD9-A078-3A2865FE6F6F}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Build_ F_SyncLocationInfo"
           DTS:ThreadHint="0">
@@ -28650,10 +28650,10 @@ ORDER BY ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\Exe_SQL_Drop_F_SyncLocationInfo"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{812AA38B-5EC4-4734-912A-4265A6171C27}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="Exe_SQL_Drop_F_SyncLocationInfo"
           DTS:ThreadHint="0">
@@ -28666,10 +28666,10 @@ ORDER BY ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\SQL_Synchronize_LocationInfo_In_Table_RAMRAW"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{ECBEB09C-BBF7-4641-A40B-D813CB55A354}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Synchronize_LocationInfo_In_Table_RAMRAW"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -28684,10 +28684,10 @@ ORDER BY ETLLoadID</property>
         </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container select RAM rocords  save into RAMRAW table\SQL_Truncate_Table_RAMRAW"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{1042E367-26EE-421C-8A54-265E1ADF3D35}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
           DTS:LocaleID="-1"
           DTS:ObjectName="SQL_Truncate_Table_RAMRAW"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -28737,10 +28737,10 @@ ORDER BY ETLLoadID</property>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\SQL_Normalizing_CityID"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{1D1C7A29-8181-4CA2-B498-E7D169E706A0}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL_Normalizing_CityID"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -28881,7 +28881,7 @@ ORDER BY ETLLoadID</property>
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="sql12">
+  Version="sql11">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">

@@ -1,4 +1,5 @@
-﻿using DATA.EF;
+﻿using BIZ.Locations;
+using DATA.EF;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -8,21 +9,22 @@ using System.Text;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Filters;
-using System.Web.Http.Cors;
 
 namespace WebApi.Controllers
 {
     /// <summary>
     /// Provide a sample data set for user's testing, response format in JSON and XML. 
     /// </summary>
-    
+
     //[EnableCors(cors)]
     [AuthorizeIPAddress]
     [FilterIP]
     public class TestController : ApiController
     {
 
-        private RAMEntities db = new RAMEntities();
+        //private RAMEntities db = new RAMEntities();
+        private ProvinceServices provincesrvice = new ProvinceServices();
+
 
         #region response JSON
 
@@ -40,9 +42,11 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage Demo(string lang, string token)
         {
-
-            var en = db.getProvinceList(lang, token);
-            return toJson(en,lang);
+            var json = provincesrvice.GetAllProvinces(lang, token);
+            return toJson(json, lang);
+            //var en = db.getProvinceList(lang, token);
+            //db.Proc_apilog("GET", lang, token, "all", "test", string.Empty);
+            //return toJson(en, lang);
         }
     //Query String
         /// <summary>
@@ -58,8 +62,12 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage Demo_QS(string lang, string token)
         {
-            var en = db.getProvinceList(lang, token);
-            return toJson(en,lang);
+            //var en = db.getProvinceList(lang, token);
+            //db.Proc_apilog("GET", lang, token, "all", "test", string.Empty);
+            //return toJson(en, lang);
+            var json = provincesrvice.GetAllProvinces(lang, token).ToList();
+            return toJson(json, lang);
+
         }
         #endregion
 
@@ -102,10 +110,13 @@ namespace WebApi.Controllers
             lang = lang.ToLower();
             if ((lang == "en") || (lang == "fr"))
             {
-                var xml = db.getProvinceList(lang, token).ToList();
+                var xml = provincesrvice.GetAllProvinces(lang, token).ToList();
+                //var xml = db.getProvinceList(lang, token).ToList();
+                //db.Proc_apilog("GET", lang, token, "all", "test", string.Empty);
                 if (xml.Count > 0)
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+
                     return response;
                 }
                 else

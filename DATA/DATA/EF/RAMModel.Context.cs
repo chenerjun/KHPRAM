@@ -683,5 +683,70 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<geolocation>("Proc_Get_Canadaip", ipParameter, tokenParameter);
         }
+    
+        public virtual int Proc_apilog(string dbschema, string csmethod, string format, string para, string lang, string token, string cscontent, string csendpoint, string keywords, string csip, string csstatus, Nullable<int> cscode, string cshost, string csurl, string csuseragent)
+        {
+            var dbschemaParameter = dbschema != null ?
+                new ObjectParameter("dbschema", dbschema) :
+                new ObjectParameter("dbschema", typeof(string));
+    
+            var csmethodParameter = csmethod != null ?
+                new ObjectParameter("csmethod", csmethod) :
+                new ObjectParameter("csmethod", typeof(string));
+    
+            var formatParameter = format != null ?
+                new ObjectParameter("format", format) :
+                new ObjectParameter("format", typeof(string));
+    
+            var paraParameter = para != null ?
+                new ObjectParameter("para", para) :
+                new ObjectParameter("para", typeof(string));
+    
+            var langParameter = lang != null ?
+                new ObjectParameter("lang", lang) :
+                new ObjectParameter("lang", typeof(string));
+    
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            var cscontentParameter = cscontent != null ?
+                new ObjectParameter("cscontent", cscontent) :
+                new ObjectParameter("cscontent", typeof(string));
+    
+            var csendpointParameter = csendpoint != null ?
+                new ObjectParameter("csendpoint", csendpoint) :
+                new ObjectParameter("csendpoint", typeof(string));
+    
+            var keywordsParameter = keywords != null ?
+                new ObjectParameter("keywords", keywords) :
+                new ObjectParameter("keywords", typeof(string));
+    
+            var csipParameter = csip != null ?
+                new ObjectParameter("csip", csip) :
+                new ObjectParameter("csip", typeof(string));
+    
+            var csstatusParameter = csstatus != null ?
+                new ObjectParameter("csstatus", csstatus) :
+                new ObjectParameter("csstatus", typeof(string));
+    
+            var cscodeParameter = cscode.HasValue ?
+                new ObjectParameter("cscode", cscode) :
+                new ObjectParameter("cscode", typeof(int));
+    
+            var cshostParameter = cshost != null ?
+                new ObjectParameter("cshost", cshost) :
+                new ObjectParameter("cshost", typeof(string));
+    
+            var csurlParameter = csurl != null ?
+                new ObjectParameter("csurl", csurl) :
+                new ObjectParameter("csurl", typeof(string));
+    
+            var csuseragentParameter = csuseragent != null ?
+                new ObjectParameter("csuseragent", csuseragent) :
+                new ObjectParameter("csuseragent", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_apilog", dbschemaParameter, csmethodParameter, formatParameter, paraParameter, langParameter, tokenParameter, cscontentParameter, csendpointParameter, keywordsParameter, csipParameter, csstatusParameter, cscodeParameter, cshostParameter, csurlParameter, csuseragentParameter);
+        }
     }
 }

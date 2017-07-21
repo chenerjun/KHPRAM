@@ -1,4 +1,5 @@
-﻿using BIZ.Search;
+﻿using BIZ.Log;
+using BIZ.Search;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
@@ -19,7 +20,12 @@ namespace WebApi.Controllers
     [FilterIP]
     public class ResourceController : ApiController
     {
+
         private ResourceServices resourceservice = new ResourceServices();
+        HttpResponseMessage response = new HttpResponseMessage();
+        HttpRequest request = HttpContext.Current.Request;
+        LogServices logservices = new LogServices();
+
 
         #region Get Resource by Lang
         #region JSON
@@ -356,7 +362,11 @@ namespace WebApi.Controllers
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     var json = resourceservice.GetResourcesByID(lang,rid,token);
-                    return toJson(json, lang);
+                        response =toJson(json, lang);
+                        request = HttpContext.Current.Request;
+
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", rid.ToString());
+                    return response;
                 }
                 //Query String
                 /// <summary>

@@ -1,20 +1,20 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="7/11/2015 9:47:47 AM"
-  DTS:CreationName="Microsoft.Package"
+  DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="T530"
   DTS:CreatorName="T530\William"
   DTS:DTSID="{2E34C886-D154-4F27-BF71-A2CB7F034283}"
-  DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="12.0.2430.0"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="13.0.2164.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="iCarol_CSV_UTF8_Data_Hygiene"
   DTS:PackageType="5"
   DTS:VersionBuild="49"
-  DTS:VersionGUID="{1CFD7411-3868-407E-AEB2-75292229F97A}">
+  DTS:VersionGUID="{0ECC6AB6-75F9-47ED-998C-F619BE40249D}">
   <DTS:Property
-    DTS:Name="PackageFormatVersion">8</DTS:Property>
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[T530.RAM 1]"
@@ -31,10 +31,10 @@
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\DFT_Get_iCarl_UTF8_CSV_180"
-      DTS:CreationName="Microsoft.Pipeline"
+      DTS:CreationName="SSIS.Pipeline.3"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{e0987000-e022-4535-a7e9-2122f0a22a0b}"
-      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Get_iCarl_UTF8_CSV_180"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
@@ -45,7 +45,7 @@
           <components>
             <component
               refId="Package\DFT_Get_iCarl_UTF8_CSV_180\FF_ERR_Read_CSV_With_Err"
-              componentClassID="Microsoft.FlatFileDestination"
+              componentClassID="DTSAdapter.FlatFileDestination.3"
               contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Flat File Destination"
               localeId="1033"
@@ -64,8 +64,8 @@
               <connections>
                 <connection
                   refId="Package\DFT_Get_iCarl_UTF8_CSV_180\FF_ERR_Read_CSV_With_Err.Connections[FlatFileConnection]"
-                  connectionManagerID="{774664C0-ED80-458D-AEE5-7E33AA1A0D0B}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Flat File Connection Read With ERROR]"
+                  connectionManagerID="{774664C0-ED80-458D-AEE5-7E33AA1A0D0B}:invalid"
+                  connectionManagerRefId="{774664C0-ED80-458D-AEE5-7E33AA1A0D0B}:invalid"
                   name="FlatFileConnection" />
               </connections>
               <inputs>
@@ -115,7 +115,7 @@
             </component>
             <component
               refId="Package\DFT_Get_iCarl_UTF8_CSV_180\FF_SRC_Get_iCarol_UTF8_CSV_180"
-              componentClassID="Microsoft.FlatFileSource"
+              componentClassID="DTSAdapter.FlatFileSource.3"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
               localeId="1033"
@@ -135,8 +135,8 @@
               <connections>
                 <connection
                   refId="Package\DFT_Get_iCarl_UTF8_CSV_180\FF_SRC_Get_iCarol_UTF8_CSV_180.Connections[FlatFileConnection]"
-                  connectionManagerID="{2EA2437F-D8A1-41D7-938B-014E1B913232}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerID="{2EA2437F-D8A1-41D7-938B-014E1B913232}:invalid"
+                  connectionManagerRefId="{2EA2437F-D8A1-41D7-938B-014E1B913232}:invalid"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -4830,7 +4830,7 @@
             </component>
             <component
               refId="Package\DFT_Get_iCarl_UTF8_CSV_180\OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad"
-              componentClassID="Microsoft.OLEDBDestination"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
               name="OLEDB_DST_Load_iCarol_CSV_UTF8_to_Table_ETLLoad"
@@ -4853,7 +4853,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -7050,7 +7050,7 @@
             </component>
             <component
               refId="Package\DFT_Get_iCarl_UTF8_CSV_180\OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError"
-              componentClassID="Microsoft.OLEDBDestination"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
               name="OLEDB_DST_Save_Error_Roecord_to_Table_ETLLoadError"
@@ -7073,7 +7073,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -9234,10 +9234,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Execute SQL Task"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{64B830C3-BFFB-4F31-A57B-9BAFAD4DB3BB}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
@@ -9266,7 +9266,7 @@
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="sql12">
+  Version="sql11">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">

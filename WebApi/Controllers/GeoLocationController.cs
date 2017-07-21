@@ -85,7 +85,7 @@ namespace WebApi.Controllers
         /// </summary>
         /// <param name="ip">current request sends IP </param>
         /// <param name="token">Access token</param>
-        /// <returns>return detect result format in XML/returns>
+        /// <returns>return detect result format in XML</returns>
         [ActionName("value")]
         [Route("api/v2/geo/xml")]
         [ResponseType(typeof(string))]
