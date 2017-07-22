@@ -1,4 +1,5 @@
 ﻿using BIZ.GeoLocation;
+using BIZ.Log;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Filters;
@@ -21,7 +23,9 @@ namespace WebApi.Controllers
     public class GeoLocationController : ApiController
     {
         GeoLocationServices geolocationservices = new GeoLocationServices();
-
+        HttpResponseMessage response = new HttpResponseMessage();
+        HttpRequest request = HttpContext.Current.Request;
+        LogServices logservices = new LogServices();
         #region response JSON
 
         //Friendly
@@ -39,8 +43,12 @@ namespace WebApi.Controllers
         {
 
             var country = geolocationservices.GetIPCountry(ip, token);
-            
-            return toJson(country);
+            response = toJson(country);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "geo", "json", "path", string.Empty, token, string.Empty, "geo", ip);
+
+            return response;
+
         }
         //Query String
         /// <summary>
@@ -56,7 +64,11 @@ namespace WebApi.Controllers
         public HttpResponseMessage Geo_QS(string ip, string token)
         {
             var country = geolocationservices.GetIPCountry(ip, token);
-            return toJson(country);
+            response = toJson(country);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "geo", "json", "query", string.Empty, token, string.Empty, "geo", ip);
+
+            return response;
         }
         #endregion
 
@@ -77,7 +89,11 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GeoX(string ip, string token)
         {
-            return createXML(ip, token);
+            response = createXML(ip, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "geo", "xml", "path", string.Empty, token, string.Empty, "geo", ip);
+
+            return response;
         }
         //Query String
         /// <summary>
@@ -92,7 +108,11 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GeoX_QS(string ip, string token)
         {
-            return createXML(ip, token);
+            response = createXML(ip, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "geo", "xml", "query", string.Empty, token, string.Empty, "geo", ip);
+
+            return response;
         }
 
         private HttpResponseMessage createXML(string ip, string token)

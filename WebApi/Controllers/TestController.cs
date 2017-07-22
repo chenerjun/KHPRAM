@@ -1,4 +1,5 @@
 ﻿using BIZ.Locations;
+using BIZ.Log;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Filters;
@@ -24,7 +26,9 @@ namespace WebApi.Controllers
 
         //private RAMEntities db = new RAMEntities();
         private ProvinceServices provincesrvice = new ProvinceServices();
-
+        HttpResponseMessage response = new HttpResponseMessage();
+        HttpRequest request = HttpContext.Current.Request;
+        LogServices logservices = new LogServices();
 
         #region response JSON
 
@@ -43,10 +47,11 @@ namespace WebApi.Controllers
         public HttpResponseMessage Demo(string lang, string token)
         {
             var json = provincesrvice.GetAllProvinces(lang, token);
-            return toJson(json, lang);
-            //var en = db.getProvinceList(lang, token);
-            //db.Proc_apilog("GET", lang, token, "all", "test", string.Empty);
-            //return toJson(en, lang);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "JSON", "path", lang, token, string.Empty, "test", string.Empty);
+
+            return response;
         }
     //Query String
         /// <summary>
@@ -66,7 +71,11 @@ namespace WebApi.Controllers
             //db.Proc_apilog("GET", lang, token, "all", "test", string.Empty);
             //return toJson(en, lang);
             var json = provincesrvice.GetAllProvinces(lang, token).ToList();
-            return toJson(json, lang);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "JSON", "query", lang, token, string.Empty, "test", string.Empty);
+
+            return response;
 
         }
         #endregion
@@ -86,7 +95,11 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage DemoX(string lang, string token)
         {
-            return createDemo(lang, token);
+            response = createDemo(lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, string.Empty, "test", string.Empty);
+
+            return response;
         }
         //Query String
         /// <summary>
@@ -102,7 +115,11 @@ namespace WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage DemoX_QS(string lang, string token)
         {
-            return createDemo(lang,token);
+            response = createDemo(lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, string.Empty, "test", string.Empty);
+
+            return response;
         }
 
         private HttpResponseMessage createDemo(string lang, string token)

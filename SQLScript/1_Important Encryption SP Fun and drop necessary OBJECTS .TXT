@@ -7182,20 +7182,19 @@ CREATE PROCEDURE [dbo].[Proc_apilog]
 WITH ENCRYPTION
 AS
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
+
 	SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
 	DECLARE @aclid int = -1;
+	DECLARE @aclName NVARCHAR(255);
 	SELECT @aclid = [ACLID] FROM [dbo].AccessControlList WHERE [ACLToken]=@token;
+	SELECT @aclName = [ACLName] FROM [dbo].AccessControlList WHERE [ACLToken]=@token;
 
 
 
 INSERT INTO apilog
-             (dbschema, csmethod, [format],[para],[lang], aclid, cscontent, csendpoint, keywords, [csip], [csstatus], [cscode], cshost, csurl, csuseragent)
-VALUES        (@dbschema,@csmethod,@format,@para,@lang,@aclid,@cscontent,@csendpoint,@keywords,@csip,@csstatus,@cscode,@cshost,@csurl, @csuseragent)
-
+             (dbschema, csmethod, [format],[para],[lang], aclid, aclname, cscontent, csendpoint, keywords, [csip], [csstatus], [cscode], cshost, csurl, csuseragent)
+VALUES        (@dbschema,@csmethod,@format,@para,@lang,@aclid,@aclname,@cscontent,@csendpoint,@keywords,@csip,@csstatus,@cscode,@cshost,@csurl, @csuseragent)
 
 END
 

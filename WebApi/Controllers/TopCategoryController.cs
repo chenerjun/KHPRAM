@@ -1,4 +1,5 @@
-﻿using BIZ.TopCategories;
+﻿using BIZ.Log;
+using BIZ.TopCategories;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Filters;
@@ -20,26 +22,33 @@ namespace WebApi.Controllers
     public class TopCategoryController : ApiController
     {
         private TopCategoryServices topCategorysercice = new TopCategoryServices();
-        #region GetAllTopCategory List
-            #region json
+        HttpResponseMessage response = new HttpResponseMessage();
+        HttpRequest request = HttpContext.Current.Request;
+        LogServices logservices = new LogServices();
 
-                // Friendly
+        #region GetAllTopCategory List
+        #region json
+
+        // Friendly
         /// <summary>
         /// Get allowable TopCategory JSON list by language.
         /// </summary>
         /// <param name="lang">Language. English = "en", French = "fr"</param>
         /// <param name="token">Acess token </param>
         /// <returns>Authorized user get JSON style allowable Topcategory list, [TopCategoryID], [TOpCategory]. Filter by language and access token</returns>
-                [ActionName("json")]
+        [ActionName("json")]
                 [Route("api/v2/TopCategory/json/{token}/{lang}")]
                 [Route("api/v2/catégorie/json/{token}/{lang}")]
                 [ResponseType(typeof(TopCategoryList))]
                 [HttpGet]
                 public HttpResponseMessage GetAllTopCategories(string lang, string token)
                 {
-                    
                     var json = topCategorysercice.GetAllTopCategories(lang, token).ToList();
-                    return toJson(json,lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "all", "TopCategory", string.Empty);
+
+                    return response;
                 }
                 //Query String
                 /// <summary>
@@ -56,7 +65,10 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetAllTopCategories_QS(string lang, string token)
                 {
                     var json = topCategorysercice.GetAllTopCategories(lang,token).ToList();
-                    return toJson(json,lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "all", "TopCategory", string.Empty);
+                    return response;
                 }
             #endregion json
 
@@ -75,7 +87,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllTopCategories_xml(string lang, string token)
                 {
-                    return createAllTopCategory_XML(lang, token);
+                    response = createAllTopCategory_XML(lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "all", "TopCategory", string.Empty);
+
+                    return response;
                 }
 
                 // Query String
@@ -92,7 +108,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllTopCategories_xml_QS(string lang, string token)
                 {
-                    return createAllTopCategory_XML(lang, token);
+                    response = createAllTopCategory_XML(lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "all", "TopCategory", string.Empty);
+
+                    return response;
                 }
                 private HttpResponseMessage createAllTopCategory_XML(string lang, string token)
                 {
@@ -138,7 +158,11 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetTopCategoryByID(string lang, int tid, string token)
                 {
                     var json = topCategorysercice.GetTopCategoryByID(lang, tid, token);
-                    return toJson(json,lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "TopCategory", tid.ToString());
+
+                    return response;
                 }
                 // Query String
                 /// <summary>
@@ -156,7 +180,11 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetTopCategoryByID_QS(string lang, int tid, string token)
                 {
                     var json = topCategorysercice.GetTopCategoryByID(lang, tid, token);
-                    return toJson(json, lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "this", "TopCategory", tid.ToString());
+
+                    return response;
                 }
             #endregion JSON
 
@@ -176,7 +204,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetTopCategoryByID_XML(string lang, int tid, string token)
                 {
-                    return getTopCategoryByID_XML(lang, tid, token);
+                    response = getTopCategoryByID_XML(lang, tid, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "this", "TopCategory", tid.ToString());
+
+                    return response;
                 }
 
                 // Query String
@@ -194,7 +226,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetTopCategoryByID_XML_QS(string lang, int tid, string token)
                 {
-                    return getTopCategoryByID_XML(lang,tid, token);
+                    response = getTopCategoryByID_XML(lang,tid, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "this", "TopCategory", tid.ToString());
+
+                    return response;
                 }
                 private HttpResponseMessage getTopCategoryByID_XML(string lang, int tid, string token)
                 {

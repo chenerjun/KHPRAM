@@ -1,4 +1,5 @@
-﻿using BIZ.SubCategories;
+﻿using BIZ.Log;
+using BIZ.SubCategories;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Filters;
@@ -21,17 +23,19 @@ namespace WebApi.Controllers
     public class SubCategoryController : ApiController
     {
         private SubCategoryServices subcategorysercice = new SubCategoryServices();
-
+        HttpResponseMessage response = new HttpResponseMessage();
+        HttpRequest request = HttpContext.Current.Request;
+        LogServices logservices = new LogServices();
         #region Get All SubCategory
-            #region JSON
-                //Friendly
-                /// <summary>
-                /// Authorized users get allowable SubCategory JSON list, filter by language.
-                /// </summary>
-                /// <param name="lang">Language. English = "en", French = "fr"</param>
-                /// <param name="token">Access toke</param>
-                /// <returns>Return JSON style subcategory list, [SubCategoryID], [SubCategory], [SubCategoryDesc]. Filter by language</returns>
-                [ActionName("json")]
+        #region JSON
+        //Friendly
+        /// <summary>
+        /// Authorized users get allowable SubCategory JSON list, filter by language.
+        /// </summary>
+        /// <param name="lang">Language. English = "en", French = "fr"</param>
+        /// <param name="token">Access toke</param>
+        /// <returns>Return JSON style subcategory list, [SubCategoryID], [SubCategory], [SubCategoryDesc]. Filter by language</returns>
+        [ActionName("json")]
                 [Route("api/v2/SubCategory/json/{token}/{lang}")]
                 [Route("api/v2/souscatégorie/json/{token}/{lang}")]
                 [ResponseType(typeof(SubCategoryResult))]
@@ -39,7 +43,11 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetAllSubCategories(string lang, string token)
                 {
                     var json = subcategorysercice.GetAllSubCategories(lang, token).ToList();
-                    return toJson(json, lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "all", "subCategory", string.Empty);
+
+                    return response;
                 }
                 //Query String
                 /// <summary>
@@ -56,7 +64,11 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetAllSubCategories_QS(string lang, string token)
                 {
                     var json = subcategorysercice.GetAllSubCategories(lang, token).ToList();
-                    return toJson(json,lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "all", "subCategory", string.Empty);
+
+                    return response;
                 }
 
         #endregion
@@ -76,7 +88,12 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllSubCategories_XML(string lang, string token)
                 {
-                    return createAllSubCategories(lang, token);
+                    response =createAllSubCategories(lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "all", "subCategory", string.Empty);
+
+                    return response;
+
                 }
         //Query String
         /// <summary>
@@ -92,7 +109,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllSubCategories_XML_QS(string lang, string token)
                 {
-                    return createAllSubCategories(lang, token);
+                    response = createAllSubCategories(lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "all", "subCategory", string.Empty);
+
+                    return response;
                 }
                 private HttpResponseMessage createAllSubCategories(string lang, string token)
                 {
@@ -136,7 +157,11 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetSubcategoryBySID(string lang, int sid, string token)
                     {
                         var json = subcategorysercice.GetSubcategoryBySID(sid,lang, token);
-                        return toJson(json,lang);
+                        response = toJson(json, lang);
+                        request = HttpContext.Current.Request;
+                        logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "subCategory", sid.ToString());
+
+                        return response;
                     }
         // Query String
         /// <summary>
@@ -154,7 +179,11 @@ namespace WebApi.Controllers
                     public HttpResponseMessage GetSubcategoryBySID_QS(string lang, int sid, string token)
                     {
                         var json = subcategorysercice.GetSubcategoryBySID(sid, lang, token);
-                        return toJson(json,lang);
+                        response = toJson(json, lang);
+                        request = HttpContext.Current.Request;
+                        logservices.logservices(request, response, "dbo", "json", "query", lang, token, "this", "subCategory", sid.ToString());
+
+                        return response;
                     }
         #endregion
 
@@ -174,8 +203,11 @@ namespace WebApi.Controllers
                     [HttpGet]
                     public HttpResponseMessage GetSubcategoryBySID_XML(string lang, int sid, string token)
                     {
-                        return getSubCategoryByID(lang, sid, token);
+                        response =  getSubCategoryByID(lang, sid, token);
+                        request = HttpContext.Current.Request;
+                        logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "this", "subCategory", sid.ToString());
 
+                        return response;
                     }
         // Query String
         /// <summary>
@@ -192,7 +224,11 @@ namespace WebApi.Controllers
                     [HttpGet]
                     public HttpResponseMessage GetSubcategoryBySID_XML_QS(string lang, int sid, string token)
                     {
-                        return getSubCategoryByID(lang,sid, token);
+                        response = getSubCategoryByID(lang,sid, token);
+                        request = HttpContext.Current.Request;
+                        logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "this", "subCategory", sid.ToString());
+
+                        return response;
                     }
                     private HttpResponseMessage getSubCategoryByID(string lang,int sid, string token)
                     {
@@ -238,7 +274,11 @@ namespace WebApi.Controllers
                 {
 
                     var json = subcategorysercice.GetSubcategoryByTopID(tid,lang, token);
-                    return toJson(json, lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "subcategory under tid", "subCategory", tid.ToString());
+
+                    return response;
                 }
             //Query String
                 /// <summary>
@@ -256,7 +296,11 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetSubcategoryByTopID_QS(string lang, int tid, string token)
                 {
                     var json = subcategorysercice.GetSubcategoryByTopID(tid, lang, token);
-                    return toJson(json,lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "subcategory under tid", "subCategory", tid.ToString());
+
+                    return response;
                 }
             #endregion JSON
 
@@ -276,7 +320,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetSubcategoryByTopID_XML(string lang, int tid, string token)
                 {
-                    return getSubCategoriesByTID(lang, tid, token);
+                    response = getSubCategoriesByTID(lang, tid, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "subcategory under tid", "subCategory", tid.ToString());
+
+                    return response;
                 }
                 //Query String
 
@@ -294,7 +342,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetSubcategoryByTopID_XML_QS(string lang, int tid, string token)
                 {
-                    return getSubCategoriesByTID(lang, tid, token);
+                    response = getSubCategoriesByTID(lang, tid, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "subcategory under tid", "subCategory", tid.ToString());
+
+                    return response;
                 }
 
                 private HttpResponseMessage getSubCategoriesByTID(string lang, int tid, string token)
