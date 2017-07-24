@@ -1,4 +1,5 @@
 ﻿using BIZ.Locations;
+using BIZ.Log;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Filters;
@@ -20,17 +22,20 @@ namespace WebApi.Controllers
     public class ProvinceController : ApiController
     {
         private ProvinceServices provincesrvice = new ProvinceServices();
+        HttpResponseMessage response = new HttpResponseMessage();
+        HttpRequest request = HttpContext.Current.Request;
+        LogServices logservices = new LogServices();
 
         #region Get Province List
-            #region JSON
-            //Friendly
-            /// <summary>
-            /// Get allowable province list in JSON format filter by language.
-            /// </summary>
-            /// <param name="lang">Language. English = "en"; French = "fr"</param>
-            /// <param name="token">Access token</param>
-            /// <returns>Return a province list, [ProvinceID], [Province], [Province ALias],format in JSON</returns>
-            [ActionName("json")]
+        #region JSON
+        //Friendly
+        /// <summary>
+        /// Get allowable province list in JSON format filter by language.
+        /// </summary>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return a province list, [ProvinceID], [Province], [Province ALias],format in JSON</returns>
+        [ActionName("json")]
             [Route("api/v2/Province/json/{lang}/{token}")]
             [ResponseType(typeof(ProvinceList))]
             [HttpGet]
@@ -39,7 +44,11 @@ namespace WebApi.Controllers
             {
                 //var json = provincesrvice.GetAllProvinces(lang).ToList();
                 var json = provincesrvice.GetAllProvinces(lang, token);
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "all", "province", string.Empty);
+
+                return response;
             }
 
         //Query String
@@ -56,7 +65,11 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllProvince_QS(string lang, string token)
             {
                 var json = provincesrvice.GetAllProvinces(lang, token).ToList();
-                return toJson(json,lang);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "all", "province", string.Empty);
+
+            return response;
             }
 
         #endregion JSON
@@ -75,7 +88,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllProvinces_XML(string lang, string token)
                 {
-                    return createProvince_XML(lang, token);
+                    response = createProvince_XML(lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "all", "province", string.Empty);
+
+                    return response;
                 }
 
         //Query String
@@ -91,7 +108,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllProvinces_XML_QS(string lang, string token)
                 {
-                    return createProvince_XML(lang, token);
+                    response = createProvince_XML(lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "all", "province", string.Empty);
+
+                    return response;
                 }
                 private HttpResponseMessage createProvince_XML(string lang, string token)
                 {
@@ -134,7 +155,11 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetProvincesByID(string lang, int pid, string token)
                 {
                     var json = provincesrvice.GetProvinceByID(lang, pid, token);
-                    return toJson (json,lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "this", "province", pid.ToString());
+                    return response;
                 }
         //Query String
         /// <summary>
@@ -151,7 +176,11 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetProvincesByID_QS(string lang, int pid, string token)
                 {
                     var json = provincesrvice.GetProvinceByID(lang, pid, token);
-                    return toJson(json,lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "this", "province", pid.ToString());
+
+                    return response;
                 }
         #endregion JSON
 
@@ -170,7 +199,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllProvincesByID_XML(string lang, int pid, string token)
                 {
-                    return createProvinceByID_XML(lang, pid, token);
+                    response = createProvinceByID_XML(lang, pid, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "this", "province", pid.ToString());
+
+                    return response;
                 }
         //Query String
         /// <summary>
@@ -186,7 +219,11 @@ namespace WebApi.Controllers
                 [HttpGet]
                 public HttpResponseMessage GetAllProvincesByID_XML_QS(string lang, int pid, string token)
                 {
-                    return createProvinceByID_XML(lang, pid, token);
+                    response = createProvinceByID_XML(lang, pid, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "this", "province", pid.ToString());
+
+                    return response;
                 }
                 private HttpResponseMessage createProvinceByID_XML(string lang, int pid, string token)
                 {

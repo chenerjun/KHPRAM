@@ -1,4 +1,5 @@
 ﻿using BIZ.Locations;
+using BIZ.Log;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
@@ -21,30 +22,34 @@ namespace WebApi.Controllers
     public class GoogleLocationController : ApiController
     {
         LocationServices locationservice = new LocationServices();
-
+        HttpResponseMessage response = new HttpResponseMessage();
+        HttpRequest request = HttpContext.Current.Request;
+        LogServices logservices = new LogServices();
 
         #region get all Google cities list
-            #region response JSON
-            /// <summary>
-            /// Get Google City location list, response format in JSON
-            /// </summary>
-            /// <returns>return google city list format in JSON</returns>
-            [ActionName("json")]
+        #region response JSON
+        /// <summary>
+        /// Get Google City location list, response format in JSON
+        /// </summary>
+        /// <returns>return google city list format in JSON</returns>
+        [ActionName("json")]
             [Route("api/v2/google/city/json")]
             [ResponseType(typeof(GoogleCityList))]
             [HttpGet]
             public HttpResponseMessage GetAllGoogleCitis()
             {
-
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                var response = locationservice.GetAllGoogleCitis();
+                var resoult = locationservice.GetAllGoogleCitis();
+                response = toJson(resoult);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "all", "google", "city");
 
                 return toJson(response);
             }
             #endregion response JSON
 
 
-            #region response XML
+        #region response XML
             /// <summary>
             /// Get Google City location list, response format in XML
             /// </summary>
@@ -55,17 +60,22 @@ namespace WebApi.Controllers
             [HttpGet]
             public HttpResponseMessage GetAllGoogleCitis_XML()
             {
-
+                request = HttpContext.Current.Request;
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var xml = locationservice.GetAllGoogleCitis().ToList();
                 if (xml.Count > 0)
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                    logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "all", "google", "city");
+
                     return response;
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.NoContent);
+                    response = Request.CreateResponse(HttpStatusCode.NoContent);
+                    logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "all", "google", "city");
+
+                    return response;
                 }
             }
         #endregion response XML
@@ -89,7 +99,10 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var r = locationservice.GetGoogleCityByProvinceID(pid).ToList();
-            return toJson(r);
+            response = toJson(r);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+            return response;
         }
         #endregion path
 
@@ -107,13 +120,16 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var r = locationservice.GetGoogleCityByProvinceID(pid).ToList();
-            return toJson(r);
+            response = toJson(r);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+            return response;
         }
         #endregion querystring
         #endregion response JSON
 
 
-            #region response XML
+        #region response XML
         #region path
         /// <summary>
         /// Get Google City location list by provincial ID, response format in XML
@@ -126,15 +142,21 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetGoogleCityByProvince_XML(int pid)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            request = HttpContext.Current.Request;
             var xml = locationservice.GetGoogleCityByProvinceID(pid).ToList();
             if (xml.Count > 0)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+
                 return response;
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.NoContent);
+                response = Request.CreateResponse(HttpStatusCode.NoContent);
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+
+                return response;
             }
 
         }
@@ -152,15 +174,22 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetGoogleCityByProvince_XML_QS(int pid)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            request = HttpContext.Current.Request;
+
             var xml = locationservice.GetGoogleCityByProvinceID(pid).ToList();
             if (xml.Count > 0)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+
                 return response;
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.NoContent);
+                response = Request.CreateResponse(HttpStatusCode.NoContent);
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+
+                return response;
             }
 
         }
@@ -186,7 +215,10 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var r = locationservice.GetGoogleCityByCid(cid);
-            return toJson(r);
+            response = toJson(r);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "this city", "google", cid.ToString());
+            return response;
         }
         #endregion path
 
@@ -204,7 +236,10 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var r = locationservice.GetGoogleCityByCid(cid);
-            return toJson(r);
+            response = toJson(r);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", string.Empty, string.Empty, "this city", "google", cid.ToString());
+            return response;
         }
         #endregion querystring
         #endregion response JSON
@@ -223,15 +258,21 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetGoogleCityByCid_XML(int cid)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            request = HttpContext.Current.Request;
             var xml = locationservice.GetGoogleCityByCid(cid);
             if (xml != null)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "this city", "google", cid.ToString());
+
                 return response;
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.NoContent);
+                response = Request.CreateResponse(HttpStatusCode.NoContent);
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "this city", "google", cid.ToString());
+
+                return response;
             }
         }
         #endregion path
@@ -248,15 +289,20 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetGoogleCityByCid_XML_QS(int cid)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            request = HttpContext.Current.Request;
             var xml = locationservice.GetGoogleCityByCid(cid);
             if (xml != null)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "this city", "google", cid.ToString());
+
                 return response;
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.NoContent);
+                response =  Request.CreateResponse(HttpStatusCode.NoContent);
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "this city", "google", cid.ToString());
+                return response;
             }
         }
         #endregion querystring
@@ -282,7 +328,10 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = locationservice.GetIncrementGoogleCityList(cl).ToList();
-            return toJson(json);
+            response = toJson(json);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "increment", "google", cl);
+            return response;
         }
         #endregion path
 
@@ -300,11 +349,14 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = locationservice.GetIncrementGoogleCityList(cl).ToList();
-            return toJson(json);
+            response = toJson(json);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", string.Empty, string.Empty, "increment", "google", cl);
+
+            return response;
         }
         #endregion querystring
         #endregion response JSON
-
 
 
         #region response xml
@@ -321,15 +373,21 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetIncrementGoogleCityList_XML(string cl)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            request = HttpContext.Current.Request;
             var xml = locationservice.GetIncrementGoogleCityList(cl).ToList(); 
             if (xml != null)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "increment", "google", cl);
+
                 return response;
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.NoContent);
+                response = Request.CreateResponse(HttpStatusCode.NoContent);
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "increment", "google", cl);
+
+                return response;
             }
         }
         #endregion path
@@ -347,15 +405,21 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetIncrementGoogleCityList_XML_QS(string cl)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            request = HttpContext.Current.Request;
             var xml = locationservice.GetIncrementGoogleCityList(cl).ToList();
             if (xml != null)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "increment", "google", cl);
+
                 return response;
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.NoContent);
+                response = Request.CreateResponse(HttpStatusCode.NoContent);
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "increment", "google", cl);
+
+                return response;
             }
         }
         #endregion querystring

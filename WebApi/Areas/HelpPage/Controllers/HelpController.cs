@@ -1,4 +1,7 @@
+using BIZ.Log;
 using System;
+using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using WebApi.Areas.HelpPage.ModelDescriptions;
@@ -23,6 +26,7 @@ namespace WebApi.Areas.HelpPage.Controllers
     public class HelpController : Controller
     {
         private const string ErrorViewName = "Error";
+        LogServices logservices = new LogServices();
 
         public HelpController()
             : this(GlobalConfiguration.Configuration)
@@ -40,6 +44,10 @@ namespace WebApi.Areas.HelpPage.Controllers
         public ActionResult Index()
         {
             ViewBag.DocumentationProvider = Configuration.Services.GetDocumentationProvider();
+            HttpResponseMessage response = new HttpResponseMessage();
+            HttpRequest request = System.Web.HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "page", "display", request.UserHostName, string.Empty, request.UserHostAddress, "help", "quick start");
+
             return View(Configuration.Services.GetApiExplorer().ApiDescriptions);
         }
 

@@ -45,7 +45,11 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetAllResourcesByLang(lang, token).ToList();
-            return toJson(json, lang);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "resource by lang", "resource", lang);
+
+            return response;
         }
         //Query String
         /// <summary>
@@ -63,7 +67,11 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetAllResourcesByLang(lang, token).ToList();
-            return toJson(json, lang);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "resource by lang", "resource", lang);
+
+            return response;
         }
         #endregion JSON
 
@@ -83,7 +91,11 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetAllResourcesByLang_XML(string lang, string token)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            return createResourcehResult(lang, token);
+            response = createResourcehResult(lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "resource by lang", "resource", lang);
+
+            return response;
         }
         //Query String
         /// <summary>
@@ -100,7 +112,11 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetAllResourcesByLang_XML_QS(string lang, string token)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            return createResourcehResult(lang, token);
+            response = createResourcehResult(lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "resource by lang", "resource", lang);
+
+            return response;
         }
         #endregion XML
 
@@ -131,40 +147,46 @@ namespace WebApi.Controllers
 
         #region Get all Resource
             #region JSON
-        /// <summary>
-        /// Get allowable resource list return in JSON fromat
-        /// </summary>
-        /// <param name="token">Access token</param>
-        /// <returns>Return resource list format in JSON</returns>
-                [ActionName("Resource")]
-                [Route("api/v2/resource/all/json/{token}")]
-                [Route("api/v2/ressource/tout/json/{token}")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetAllResources(string token)
-                {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    var json = resourceservice.GetAllResources(token).ToList();
-                    return toJson(json, "en");
-                }
+            /// <summary>
+            /// Get allowable resource list return in JSON fromat
+            /// </summary>
+            /// <param name="token">Access token</param>
+            /// <returns>Return resource list format in JSON</returns>
+            [ActionName("Resource")]
+            [Route("api/v2/resource/all/json/{token}")]
+            [Route("api/v2/ressource/tout/json/{token}")]
+            [ResponseType(typeof(RamResource))]
+            [HttpGet]
+            public HttpResponseMessage GetAllResources(string token)
+            {
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                var json = resourceservice.GetAllResources(token).ToList();
+                response = toJson(json, "en");
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", string.Empty, token, "all", "resource", string.Empty);
+                return response;
+            }
 
-                //Query String
-                /// <summary>
-                /// Query string style getting allowable resource list return in JSON format.
-                /// </summary>
-                /// <param name="token">Access token</param>
-                /// <returns>Return JSON format resource list</returns>
-                [ActionName("json")]
-                [Route("api/v2/resource/all/json")]
-                [Route("api/v2/Ressource/tout/json")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetAllResources_QS(string token)
-                {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    var json = resourceservice.GetAllResources(token).ToList();
-                    return toJson(json, "en");
-                }
+            //Query String
+            /// <summary>
+            /// Query string style getting allowable resource list return in JSON format.
+            /// </summary>
+            /// <param name="token">Access token</param>
+            /// <returns>Return JSON format resource list</returns>
+            [ActionName("json")]
+            [Route("api/v2/resource/all/json")]
+            [Route("api/v2/Ressource/tout/json")]
+            [ResponseType(typeof(RamResource))]
+            [HttpGet]
+            public HttpResponseMessage GetAllResources_QS(string token)
+            {
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                var json = resourceservice.GetAllResources(token).ToList();
+                response = toJson(json, "en");
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", string.Empty, token, "all", "resource", string.Empty);
+                return response;
+            }
 
             #endregion JSON
             
@@ -182,15 +204,21 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetAllResources_xml(string token)
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                    request = HttpContext.Current.Request;
                     var xml = resourceservice.GetAllResources(token).ToList();
                     if (xml.Count > 0)
                     {
                         var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                        logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, token, "all", "resource", string.Empty);
+
                         return response;
                     }
                     else
                     {
-                        return Request.CreateResponse(HttpStatusCode.NoContent);
+                        response = Request.CreateResponse(HttpStatusCode.NoContent);
+                        logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, token, "all", "resource", string.Empty);
+
+                        return response;
                     }
                 }
 
@@ -208,15 +236,21 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetAllResources_XML_QS( string token)
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                    request = HttpContext.Current.Request;
                     var xml = resourceservice.GetAllResources(token).ToList();
                     if (xml.Count > 0)
                     {
                         var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                        logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, token, "all", "resource", string.Empty);
+
                         return response;
                     }
                     else
                     {
-                        return Request.CreateResponse(HttpStatusCode.NoContent);
+                        response = Request.CreateResponse(HttpStatusCode.NoContent);
+                        logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, token, "all", "resource", string.Empty);
+
+                        return response;
                     }
                 }
 
@@ -243,9 +277,10 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetResourceByType(type,lang,token).ToList();
-            return toJson(json, lang);
-
-
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "type", "resource", type);
+            return response;
         }
         #endregion Path
 
@@ -266,10 +301,10 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetResourceByType(type, lang, token).ToList();
-            return   toJson(json, lang);
-
-
-            
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "type", "resource", type);
+            return response;
         }
         #endregion queryString
         #endregion JSON
@@ -291,8 +326,12 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetResourcesByType_XML(string type, string lang, string token)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            var json = resourceservice.GetResourceByType(type, lang, token).ToList();
-            return createResourcehTypeResult(type, lang, token);
+            //var json = resourceservice.GetResourceByType(type, lang, token).ToList();
+            request = HttpContext.Current.Request;
+            response = createResourcehTypeResult(type, lang, token);
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "type", "resource", type);
+
+            return response;
         }
         #endregion Path
 
@@ -312,8 +351,12 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetResourcesByType_XML_QS(string type, string lang, string token)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            var json = resourceservice.GetResourceByType(type, lang, token).ToList();
-            return createResourcehTypeResult(type, lang, token);
+            //var json = resourceservice.GetResourceByType(type, lang, token).ToList();
+            request = HttpContext.Current.Request;
+            response = createResourcehTypeResult(type, lang, token);
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "type", "resource", type);
+
+            return response;
         }
         #endregion queryString
         private HttpResponseMessage createResourcehTypeResult(string type, string lang, string token)
@@ -354,217 +397,239 @@ namespace WebApi.Controllers
         /// <param name="token">Access token</param>
         /// <returns>return a JSON format specific resource's detail information</returns>
         [ActionName("json")]
-                [Route("api/v2/resource/json/{token}/{lang}/{rid}")]
-                [Route("api/v2/Ressource/json/{token}/{lang}/{rid}")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetResourcesByID(string lang, int rid, string token)
-                {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    var json = resourceservice.GetResourcesByID(lang,rid,token);
-                        response =toJson(json, lang);
-                        request = HttpContext.Current.Request;
+        [Route("api/v2/resource/json/{token}/{lang}/{rid}")]
+        [Route("api/v2/Ressource/json/{token}/{lang}/{rid}")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetResourcesByID(string lang, int rid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetResourcesByID(lang,rid,token);
+                response =toJson(json, lang);
+                request = HttpContext.Current.Request;
 
-                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", rid.ToString());
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "this", "resource", rid.ToString());
+            return response;
+        }
+        //Query String
+        /// <summary>
+        ///  Query String style getting allowable specific resource by its id, filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="rid">resource id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format specific resource's detail information</returns>
+        [ActionName("json")]
+        [Route("api/v2/resource/json")]
+        [Route("api/v2/Ressource/json")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetResourcesByID_QS(string lang, int rid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetResourcesByID(lang, rid, token);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "this", "resource", rid.ToString());
+            return response;
+
+        }
+        #endregion JSON
+
+        #region XML
+        /// <summary>
+        ///  Get allowable specific resource by its id, filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="rid">resource id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a XML format specific resource's detail information</returns>
+        //Friendly
+        [ActionName("xml")]
+        [Route("api/v2/resource/xml/{token}/{lang}/{rid}")]
+        [Route("api/v2/Ressource/xml/{token}/{lang}/{rid}")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GGetResourcesByID_XML(string lang, int rid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            response =  CreateResourcesByID(lang, rid, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "this", "resource", rid.ToString());
+            return response;
+        }
+        //Query String
+        /// <summary>
+        ///  Query String style getting allowable specific resource by its id, filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="rid">resource id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a XML format specific resource's detail information</returns>
+        [ActionName("xml")]
+        [Route("api/v2/resource/xml")]
+        [Route("api/v2/Ressource/xml")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetResourcesByID_XML_QS(string lang, int rid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            response = CreateResourcesByID(lang, rid, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "this", "resource", rid.ToString());
+            return response;
+        }
+        private HttpResponseMessage CreateResourcesByID(string lang, int rid, string token)
+        {
+            lang = lang.ToLower();
+            if ((lang == "en") || (lang == "fr"))
+            {
+                var xml = resourceservice.GetResourcesByID(lang, rid, token);
+                if (xml != null)
+                {
+                    var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
                     return response;
                 }
-                //Query String
-                /// <summary>
-                ///  Query String style getting allowable specific resource by its id, filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="rid">resource id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a JSON format specific resource's detail information</returns>
-                [ActionName("json")]
-                [Route("api/v2/resource/json")]
-                [Route("api/v2/Ressource/json")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetResourcesByID_QS(string lang, int rid, string token)
+                else
                 {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    var json = resourceservice.GetResourcesByID(lang, rid, token);
-                    return toJson(json, lang);
+                    return Request.CreateResponse(HttpStatusCode.NoContent);
                 }
-            #endregion JSON
-
-            #region XML
-                /// <summary>
-                ///  Get allowable specific resource by its id, filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="rid">resource id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a XML format specific resource's detail information</returns>
-                //Friendly
-                [ActionName("xml")]
-                [Route("api/v2/resource/xml/{token}/{lang}/{rid}")]
-                [Route("api/v2/Ressource/xml/{token}/{lang}/{rid}")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GGetResourcesByID_XML(string lang, int rid, string token)
-                {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    return CreateResourcesByID(lang, rid, token);
-                }
-                //Query String
-                /// <summary>
-                ///  Query String style getting allowable specific resource by its id, filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="rid">resource id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a XML format specific resource's detail information</returns>
-                [ActionName("xml")]
-                [Route("api/v2/resource/xml")]
-                [Route("api/v2/Ressource/xml")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetResourcesByID_XML_QS(string lang, int rid, string token)
-                {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    return CreateResourcesByID(lang, rid, token);
-                }
-                private HttpResponseMessage CreateResourcesByID(string lang, int rid, string token)
-                {
-                    lang = lang.ToLower();
-                    if ((lang == "en") || (lang == "fr"))
-                    {
-                        var xml = resourceservice.GetResourcesByID(lang, rid, token);
-                        if (xml != null)
-                        {
-                            var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                            return response;
-                        }
-                        else
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NoContent);
-                        }
-                    }
-                    else
-                    {
-                        return Request.CreateResponse(HttpStatusCode.NotFound);
-                    }
-                }
-            #endregion XML
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+        #endregion XML
         #endregion Get Resource By ID
 
 
         #region Get Unique Resource By 
-                #region JSON
-                //Friendly
-                /// <summary>
-                ///  For email favour list to user, it will track user selected resource for a period of time. get specific resource by language, map, resource agency number, SubCategory id, top category id 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="map">map resource. such as mapped, list, both, shelter</param>
-                /// <param name="ran">resourceAgencyNum id</param>
-                /// <param name="sid">SubCategoryid id</param>
-                /// <param name="tid">top category id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a JSON format specific resource's detail information</returns>
-                /// 
-                [ActionName("json")]
-                [Route("api/v2/resource/favour/json/{token}/{lang}/{map}/{ran}/{sid}/{tid}")]
-                [Route("api/v2/Ressource/favoriser/json/{token}/{lang}/{map}/{ran}/{sid}/{tid}")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetUniqueResources(string lang, string map, string ran, int sid, int tid, string token)
-                {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    var json = resourceservice.GetUniqueResources(map, ran, sid, tid, lang, token);
-                    return toJson(json, lang);
-                }
-                //Query String
-                /// <summary>
-                ///  For email favour list to user, it will track user selected resource for a period of time. Query String style getting specific resource by by language, map, resource agency number, SubCategory id, top category id 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="map">map resource. such as mapped, list, both, shelter</param>
-                /// <param name="ran">resourceAgencyNum id</param>
-                /// <param name="sid">SubCategoryid id</param>
-                /// <param name="tid">top category  id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a JSON format specific resource's detail information</returns>
-                [ActionName("json")]
-                [Route("api/v2/resource/favour/json")]
-                [Route("api/v2/Ressource/favoriser/json")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetUniqueResources_QS(string lang, string map, string ran, int sid, int tid, string token)
-                {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    var json = resourceservice.GetUniqueResources(map, ran, sid, tid, lang, token); 
-                    return toJson(json, lang);
-                }
-                #endregion JSON
+        #region JSON
+        //Friendly
+        /// <summary>
+        ///  For email favour list to user, it will track user selected resource for a period of time. get specific resource by language, map, resource agency number, SubCategory id, top category id 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="map">map resource. such as mapped, list, both, shelter</param>
+        /// <param name="ran">resourceAgencyNum id</param>
+        /// <param name="sid">SubCategoryid id</param>
+        /// <param name="tid">top category id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format specific resource's detail information</returns>
+        /// 
+        [ActionName("json")]
+        [Route("api/v2/resource/favour/json/{token}/{lang}/{map}/{ran}/{sid}/{tid}")]
+        [Route("api/v2/Ressource/favoriser/json/{token}/{lang}/{map}/{ran}/{sid}/{tid}")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetUniqueResources(string lang, string map, string ran, int sid, int tid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetUniqueResources(map, ran, sid, tid, lang, token);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "unique", "resource", tid + lang + ran + map + sid);
+            return response;
+        }
+        //Query String
+        /// <summary>
+        ///  For email favour list to user, it will track user selected resource for a period of time. Query String style getting specific resource by by language, map, resource agency number, SubCategory id, top category id 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="map">map resource. such as mapped, list, both, shelter</param>
+        /// <param name="ran">resourceAgencyNum id</param>
+        /// <param name="sid">SubCategoryid id</param>
+        /// <param name="tid">top category  id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a JSON format specific resource's detail information</returns>
+        [ActionName("json")]
+        [Route("api/v2/resource/favour/json")]
+        [Route("api/v2/Ressource/favoriser/json")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetUniqueResources_QS(string lang, string map, string ran, int sid, int tid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = resourceservice.GetUniqueResources(map, ran, sid, tid, lang, token);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "unique", "resource", tid + lang + ran + map + sid);
+            return response;
+        }
+        #endregion JSON
 
-                #region XML
-                /// <summary>
-                ///  For email favour list to user, it will track user selected resource for a period of time. XML format, get specific resource by language, map, resource agency number, SubCategory id, top category id 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="map">map resource. such as mapped, list, both, shelter</param>
-                /// <param name="ran">resourceAgencyNum id</param>
-                /// <param name="sid">SubCategoryid id</param>
-                /// <param name="tid">top category  id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a XML format specific resource's detail information</returns>
-                //Friendly
-                [ActionName("xml")]
-                [Route("api/v2/resource/favour/xml/{token}/{lang}/{map}/{ran}/{sid}/{tid}")]
-                [Route("api/v2/Ressource/favoriser/xml/{token}/{lang}/{map}/{ran}/{sid}/{tid}")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetUniqueResources_XML(string lang, string map, string ran, int sid, int tid, string token)
+        #region XML
+        /// <summary>
+        ///  For email favour list to user, it will track user selected resource for a period of time. XML format, get specific resource by language, map, resource agency number, SubCategory id, top category id 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="map">map resource. such as mapped, list, both, shelter</param>
+        /// <param name="ran">resourceAgencyNum id</param>
+        /// <param name="sid">SubCategoryid id</param>
+        /// <param name="tid">top category  id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a XML format specific resource's detail information</returns>
+        //Friendly
+        [ActionName("xml")]
+        [Route("api/v2/resource/favour/xml/{token}/{lang}/{map}/{ran}/{sid}/{tid}")]
+        [Route("api/v2/Ressource/favoriser/xml/{token}/{lang}/{map}/{ran}/{sid}/{tid}")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetUniqueResources_XML(string lang, string map, string ran, int sid, int tid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            response = CreateUniqueResources(lang, map, ran, sid, tid, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "unique", "resource", tid + lang + ran + map + sid);
+            return response;
+        }
+        //Query String
+        /// <summary>
+        ///  For email favour list to user, it will track user selected resource for a period of time. Query String style getting specific resource by language, map, resource agency number, SubCategory id, top category id 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="map">map resource. such as mapped, list, both, shelter</param>
+        /// <param name="ran">resourceAgencyNum id</param>
+        /// <param name="sid">SubCategory id</param>
+        /// <param name="tid">top category  id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a XML format specific resource's detail information</returns>
+        [ActionName("xml")]
+        [Route("api/v2/resource/favour/xml")]
+        [Route("api/v2/Ressource/favoriser/xml")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetUniqueResources_XML_QS(string lang, string map, string ran, int sid, int tid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            response = CreateUniqueResources(lang, map, ran, sid, tid, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "unique", "resource", tid + lang + ran + map + sid);
+            return response;
+        }
+        private HttpResponseMessage CreateUniqueResources(string lang, string map, string ran, int sid, int tid, string token)
+        {
+            lang = lang.ToLower();
+            if ((lang == "en") || (lang == "fr"))
+            {
+                var xml = resourceservice.GetUniqueResources(map, ran, sid, tid, lang, token);
+                if (xml != null)
                 {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    return CreateUniqueResources(lang, map, ran, sid, tid, token);
+                    var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                    return response;
                 }
-                //Query String
-                /// <summary>
-                ///  For email favour list to user, it will track user selected resource for a period of time. Query String style getting specific resource by language, map, resource agency number, SubCategory id, top category id 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="map">map resource. such as mapped, list, both, shelter</param>
-                /// <param name="ran">resourceAgencyNum id</param>
-                /// <param name="sid">SubCategory id</param>
-                /// <param name="tid">top category  id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a XML format specific resource's detail information</returns>
-                [ActionName("xml")]
-                [Route("api/v2/resource/favour/xml")]
-                [Route("api/v2/Ressource/favoriser/xml")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetUniqueResources_XML_QS(string lang, string map, string ran, int sid, int tid, string token)
+                else
                 {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    return CreateUniqueResources(lang, map, ran, sid, tid, token);
+                    return Request.CreateResponse(HttpStatusCode.NoContent);
                 }
-                private HttpResponseMessage CreateUniqueResources(string lang, string map, string ran, int sid, int tid, string token)
-                {
-                    lang = lang.ToLower();
-                    if ((lang == "en") || (lang == "fr"))
-                    {
-                        var xml = resourceservice.GetUniqueResources(map, ran, sid, tid, lang, token);
-                        if (xml != null)
-                        {
-                            var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                            return response;
-                        }
-                        else
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NoContent);
-                        }
-                    }
-                    else
-                    {
-                        return Request.CreateResponse(HttpStatusCode.NotFound);
-                    }
-                }
-                #endregion XML
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
+        #endregion XML
         #endregion Get Unique Resource By
 
 
@@ -587,7 +652,11 @@ namespace WebApi.Controllers
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     var json = resourceservice.GetResourcesByCity(cid, lang, token).ToList();
-                    return toJson(json, lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "in city", "resource", cid.ToString());
+
+                    return response;
                 }
                 // Query String
                 /// <summary>
@@ -606,7 +675,11 @@ namespace WebApi.Controllers
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     var json = resourceservice.GetResourcesByCity(cid, lang, token).ToList();
-                    return toJson(json, lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "in city", "resource", cid.ToString());
+
+                    return response;
                 }
             #endregion JSON
 
@@ -627,17 +700,20 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetAllResourcesByCity_XML(string lang, int cid, string token)
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    return createResourcesByCityResult(cid, lang, token);
+                    response = createResourcesByCityResult(cid, lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "in city", "resource", cid.ToString());
+                    return response;
                 }
-                // Query String
-                /// <summary>
-                ///  Query String style getting resource list in the specific allosing city filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="cid">city id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a XML format resource list located in a specific city</returns>
-                [ActionName("xml")]
+        // Query String
+        /// <summary>
+        ///  Query String style getting resource list in the specific allosing city filter by resource's language 
+        /// </summary>
+        /// <param name="lang">language. English = "en"; French = "fr"</param>
+        /// <param name="cid">city id</param>
+        /// <param name="token">Access token</param>
+        /// <returns>return a XML format resource list located in a specific city</returns>
+        [ActionName("xml")]
                 [Route("api/v2/resource/city/xml")]
                 [Route("api/v2/Ressource/ville/xml")]
                 [ResponseType(typeof(RamResource))]
@@ -645,7 +721,10 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetAllResourcesByCity_XML_QS(string lang, int cid, string token)
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    return createResourcesByCityResult(cid, lang, token);
+                    response = createResourcesByCityResult(cid, lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "in city", "resource", cid.ToString());
+                    return response;
                 }
                 private HttpResponseMessage createResourcesByCityResult(int cid, string lang, string token)
                 {
@@ -692,7 +771,11 @@ namespace WebApi.Controllers
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     var json = resourceservice.GetResourcesByProvince(pid, lang, token).ToList();
-                    return toJson(json, lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "in Province", "resource", pid.ToString());
+
+                    return response;
                 }
                 // Query String
                 /// <summary>
@@ -711,7 +794,11 @@ namespace WebApi.Controllers
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     var json = resourceservice.GetResourcesByProvince(pid, lang, token).ToList();
-                    return toJson(json, lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "in Province", "resource", pid.ToString());
+
+                    return response;
                 }
         #endregion JSON
 
@@ -732,7 +819,10 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetAllResourcesByProvince_XML(string lang, int pid, string token)
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    return createResourcesByProvinceResult(pid, lang, token);
+                    response = createResourcesByProvinceResult(pid, lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "in Province", "resource", pid.ToString());
+                    return response;
                 }
                 // Query String
                 /// <summary>
@@ -750,7 +840,10 @@ namespace WebApi.Controllers
                 public HttpResponseMessage GetAllResourcesByProvince_XML_QS(string lang, int pid, string token)
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    return createResourcesByProvinceResult(pid, lang, token);
+                    response = createResourcesByProvinceResult(pid, lang, token);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "in Province", "resource", pid.ToString());
+                    return response;
                 }
                 private HttpResponseMessage createResourcesByProvinceResult(int pid, string lang, string token)
                 {
@@ -797,7 +890,10 @@ namespace WebApi.Controllers
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     var json = resourceservice.GetResourcesBySubCategory(sid, lang, token).ToList();
-                    return toJson(json, lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "in subcategory", "resource", sid.ToString());
+                    return response;
                 }
                 // Query String
                 /// <summary>
@@ -816,28 +912,34 @@ namespace WebApi.Controllers
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     var json = resourceservice.GetResourcesBySubCategory(sid, lang, token).ToList();
-                    return toJson(json, lang);
+                    response = toJson(json, lang);
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "in subcategory", "resource", sid.ToString());
+                    return response;
                 }
             #endregion JSON
 
             #region XML
             // Friendly
-                /// <summary>
-                ///  Get resource list under the SubCategory filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="sid">SubCategory id.</param>
-                /// <param name="token">Access token</param>
-                /// <returns>Return a XML format resource list under the specific SubCategory</returns>
+            /// <summary>
+            ///  Get resource list under the SubCategory filter by resource's language 
+            /// </summary>
+            /// <param name="lang">language. English = "en"; French = "fr"</param>
+            /// <param name="sid">SubCategory id.</param>
+            /// <param name="token">Access token</param>
+            /// <returns>Return a XML format resource list under the specific SubCategory</returns>
             [ActionName("xml")]
             [Route("api/v2/resource/SubCategory/xml/{token}/{lang}/{sid}")]
             [Route("api/v2/Ressource/souscatégorie/xml/{token}/{lang}/{sid}")]
             [ResponseType(typeof(RamResource))]
             [HttpGet]
-                public HttpResponseMessage GetAllResourcesBySubCategory_XML(string lang, int sid, string token)
+            public HttpResponseMessage GetAllResourcesBySubCategory_XML(string lang, int sid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesBySubCategoryResult(sid, lang, token);
+                response = createResourcesBySubCategoryResult(sid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "in subcategory", "resource", sid.ToString());
+                return response;
             }
             // Query String
             /// <summary>
@@ -855,7 +957,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesBySubCategory_XML_QS(string lang, int sid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesBySubCategoryResult(sid, lang, token);
+                response = createResourcesBySubCategoryResult(sid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "in subcategory", "resource", sid.ToString());
+                return response;
             }
             private HttpResponseMessage createResourcesBySubCategoryResult(int sid, string lang, string token)
             {
@@ -902,7 +1007,11 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetResourcesByTopCategory(tid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "in topcategory", "resource", tid.ToString());
+
+                return response;
             }
 
             // Query String
@@ -922,7 +1031,11 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetResourcesByTopCategory(tid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "in topcategory", "resource", tid.ToString());
+
+                return response;
             }
             #endregion JSON
 
@@ -943,7 +1056,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesByTopCategory_XML(string lang, int tid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesByTopcategoryResult(tid, lang, token);
+                response = createResourcesByTopcategoryResult(tid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "in topcategory", "resource", tid.ToString());
+                return response;
             }
 
 
@@ -963,7 +1079,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesByTopCategory_XML_QS(string lang, int tid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesByTopcategoryResult(tid, lang, token);
+                response = createResourcesByTopcategoryResult(tid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "in topcategory", "resource", tid.ToString());
+                return response;
             }
             private HttpResponseMessage createResourcesByTopcategoryResult(int tid, string lang, string token)
             {
@@ -1010,13 +1129,15 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetResourceByKeywords(kws, lang, token).ToList();
-            return toJson(json, lang);
-
-            //var response = Request.CreateResponse(HttpStatusCode.Moved);
-            //response = toJson(json, lang);
-            //response.Headers.Location = new Uri(Properties.Settings.Default.newdir);
-            //return response;
-        }
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "search", "resource", kws);
+                return response;
+                //var response = Request.CreateResponse(HttpStatusCode.Moved);
+                //response = toJson(json, lang);
+                //response.Headers.Location = new Uri(Properties.Settings.Default.newdir);
+                //return response;
+            }
             //Query String
             /// <summary>
             /// Query String style pass interest keyword(s), response allowable JSON resource list.  
@@ -1034,7 +1155,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetResourceByKeywords(kws, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "search", "resource", kws);
+                return response;
             }
             #endregion JSON
 
@@ -1055,7 +1179,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage search_XML(string lang, string kws, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createSearchResult(kws, lang, token);
+                response = createSearchResult(kws, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "search", "resource", kws);
+                return response;
             }
             //Query String
             /// <summary>
@@ -1073,7 +1200,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage search_XML_QS(string lang, string kws, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createSearchResult(kws, lang, token);
+                response = createSearchResult(kws, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "search", "resource", kws);
+                return response;
             }
             #endregion XML
 
@@ -1124,7 +1254,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetResourcesInRadiusList(lang, lat, lon, radius, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "circular", "resource", "lat" + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
 
             //Query String
@@ -1146,7 +1279,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetResourcesInRadiusList(lang, lat, lon, radius, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "circular", "resource", "lat" + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
             #endregion JSON
 
@@ -1169,7 +1305,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetResourcesInRadiusList_XML(string lang, decimal lat, decimal lon, decimal radius, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createCircularResult(lang, lat, lon, radius, token);
+                response = createCircularResult(lang, lat, lon, radius, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "circular", "resource", "lat" + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
 
             //Query String
@@ -1190,7 +1329,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetResourcesInRadiusList_XML_QS(string lang, decimal lat, decimal lon, decimal radius, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createCircularResult(lang, lat, lon, radius, token);
+                response = createCircularResult(lang, lat, lon, radius, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "circular", "resource", "lat" + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
             #endregion XML
             private HttpResponseMessage createCircularResult(string lang, decimal lat, decimal lon, decimal radius, string token)
@@ -1216,7 +1358,6 @@ namespace WebApi.Controllers
                 }
             }
 
-
         #endregion Proc_Get_All_Resources_In_Radius
 
 
@@ -1240,7 +1381,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetResourcesInBoxList(string lang, decimal lat, decimal lon, decimal radius, string token)
             {
                 var json = resourceservice.GetResourcesInRadiusBoundaryBoxList(lang, lat, lon, radius, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "box", "resource", "lat" + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
 
             //Query String
@@ -1262,7 +1406,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = resourceservice.GetResourcesInRadiusBoundaryBoxList(lang, lat, lon, radius, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "box", "resource", "lat" + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
             #endregion JSON
 
@@ -1284,7 +1431,11 @@ namespace WebApi.Controllers
             [HttpGet]
             public HttpResponseMessage GetResourcesInBoxList_XML(string lang, decimal lat, decimal lon, decimal radius, string token)
             {
-                return createBoxResult(lang, lat, lon, radius, token);
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                response = createBoxResult(lang, lat, lon, radius, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "box", "resource", "lat" + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
 
             //Query String
@@ -1305,7 +1456,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetResourcesInBoxList_XML_QS(string lang, decimal lat, decimal lon, decimal radius, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createBoxResult(lang, lat, lon, radius, token);
+                response = createBoxResult(lang, lat, lon, radius, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "box", "resource", "lat" + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
             #endregion XML
             private HttpResponseMessage createBoxResult(string lang, decimal lat, decimal lon, decimal radius, string token)
@@ -1334,8 +1488,6 @@ namespace WebApi.Controllers
         #endregion Proc_Get_All_Resource_In_Radius_boundary_Box
 
 
-
-
         #region Search Resource by Coverage
         #region JSON
         // Friendly
@@ -1355,7 +1507,11 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetResourceByCoverage(coverage, lang, token).ToList();
-            return toJson(json, lang);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "coverage", "resource", coverage);
+
+            return response;
         }
         // Query String
         /// <summary>
@@ -1374,7 +1530,11 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = resourceservice.GetResourceByCoverage(coverage, lang, token).ToList();
-            return toJson(json, lang);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "coverage", "resource", coverage);
+
+            return response;
         }
         #endregion JSON
 
@@ -1392,10 +1552,13 @@ namespace WebApi.Controllers
         [Route("api/v2/Ressource/couverture/xml/{token}/{lang}/{coverage}")]
         [ResponseType(typeof(RamResource))]
         [HttpGet]
-        public HttpResponseMessage GetAllResourcesByProvince_XML(string lang, string coverage, string token)
+        public HttpResponseMessage GetAllResourcesByCoverage_XML(string lang, string coverage, string token)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            return createResourcesByCoverageResult(coverage, lang, token);
+            response = createResourcesByCoverageResult(coverage, lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "coverage", "resource", coverage);
+            return response;
         }
         // Query String
         /// <summary>
@@ -1413,7 +1576,10 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetAllResourcesByCoverage_XML_QS(string lang, string coverage, string token)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            return createResourcesByCoverageResult(coverage, lang, token);
+            response = createResourcesByCoverageResult(coverage, lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "coverage", "resource", coverage);
+            return response;
         }
         private HttpResponseMessage createResourcesByCoverageResult(string coverage, string lang, string token)
         {

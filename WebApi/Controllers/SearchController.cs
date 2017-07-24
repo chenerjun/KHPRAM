@@ -1,4 +1,5 @@
-﻿using BIZ.Search;
+﻿using BIZ.Log;
+using BIZ.Search;
 using DATA.EF;
 using Newtonsoft.Json;
 using System;
@@ -21,86 +22,103 @@ namespace WebApi.Controllers
     public class SearchController : ApiController
     {
         private SearchServices searchservice = new SearchServices();
+        HttpResponseMessage response = new HttpResponseMessage();
+        HttpRequest request = HttpContext.Current.Request;
+        LogServices logservices = new LogServices();
+
 
         #region Search
-            #region JSON
-                //Friendly
-                    /// <summary>
-                    /// Search resource by using interest key word(s).  
-                    /// </summary>
-                    /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
-                    /// <param name="lang">Language. English = "en"; French = "fr"</param>
-                    /// <param name="token">Access token</param>
-                    /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
-                    [ActionName("search")]
-                    [Route("api/v2/Search/json/{token}/{lang}/{kws}")]
-                    [Route("api/v2/Chercher/json/{token}/{lang}/{kws}")]
-                    [ResponseType(typeof(Search_Result))]
-                    [HttpGet]
-                    public HttpResponseMessage search(string kws,string lang, string token  )
-                    {
-                        HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                        var json = searchservice.SearchByKeywords(kws, lang, token).ToList();
-                        return toJson(json, lang);
-                    }
-                //Query String
-                    /// <summary>
-                    /// Query String style cluster search resource by using interest key word(s).  
-                    /// </summary>
-                    /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
-                    /// <param name="lang">Language. English = "en"; French = "fr"</param>
-                    /// <param name="token">Access token</param>
-                    /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
-                    [ActionName("search")]
-                    [Route("api/v2/Search/json")]
-                    [Route("api/v2/Chercher/json")]
-                    [ResponseType(typeof(Search_Result))]
-                    [HttpGet]
-                    public HttpResponseMessage search_QS(string lang, string kws, string token)
-                    {
-                        HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                        var json = searchservice.SearchByKeywords(kws, lang, token).ToList();
-                        return toJson(json, lang);
-                    }
+        #region JSON
+        //Friendly
+        /// <summary>
+        /// Search resource by using interest key word(s).  
+        /// </summary>
+        /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
+        [ActionName("search")]
+        [Route("api/v2/Search/json/{token}/{lang}/{kws}")]
+        [Route("api/v2/Chercher/json/{token}/{lang}/{kws}")]
+        [ResponseType(typeof(Search_Result))]
+        [HttpGet]
+        public HttpResponseMessage search(string kws,string lang, string token )
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = searchservice.SearchByKeywords(kws, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "search", "search", kws);
+            return response;
+        }
+        //Query String
+        /// <summary>
+        /// Query String style cluster search resource by using interest key word(s).  
+        /// </summary>
+        /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in JSON</returns>
+        [ActionName("search")]
+        [Route("api/v2/Search/json")]
+        [Route("api/v2/Chercher/json")]
+        [ResponseType(typeof(Search_Result))]
+        [HttpGet]
+        public HttpResponseMessage search_QS(string lang, string kws, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            var json = searchservice.SearchByKeywords(kws, lang, token).ToList();
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "search", "search", kws);
+            return response;
+        }
             #endregion JSON
 
-            #region XML
-                //Friendly
-                    /// <summary>
-                    /// Cluster search resource by using interest key word(s). XML response. 
-                    /// </summary>
-                    /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
-                    /// <param name="lang">Language. English = "en"; French = "fr"</param>
-                    /// <param name="token">Access token</param>
-                    /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
-                    [ActionName("xml")]
-                    [Route("api/v2/Search/xml/{token}/{lang}/{kws}")]
-                    [Route("api/v2/Chercher/xml/{token}/{lang}/{kws}")]
-                    [ResponseType(typeof(Search_Result))]
-                    [HttpGet]
-                    public HttpResponseMessage search_XML(string lang, string kws, string token)
-                    {
-                        HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                        return createSearchResult(kws, lang, token);
-                    }
-                //Query String
-                    /// <summary>
-                    /// Query String style cluster search resource by using interest key word(s).  XML response 
-                    /// </summary>
-                    /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
-                    /// <param name="lang">Language. English = "en"; French = "fr"</param>
-                    /// <param name="token">Access token</param>
-                    /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
-                    [ActionName("xml")]
-                    [Route("api/v2/Search/xml")]
-                    [Route("api/v2/Chercher/xml")]
-                    [ResponseType(typeof(Search_Result))]
-                    [HttpGet]
-                    public HttpResponseMessage search_XML_QS(string lang, string kws, string token)
-                    {
-                        return createSearchResult(kws,lang, token);
-                    }
-            #endregion XML
+        #region XML
+        //Friendly
+            /// <summary>
+            /// Cluster search resource by using interest key word(s). XML response. 
+            /// </summary>
+            /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+            /// <param name="lang">Language. English = "en"; French = "fr"</param>
+            /// <param name="token">Access token</param>
+            /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
+            [ActionName("xml")]
+            [Route("api/v2/Search/xml/{token}/{lang}/{kws}")]
+            [Route("api/v2/Chercher/xml/{token}/{lang}/{kws}")]
+            [ResponseType(typeof(Search_Result))]
+            [HttpGet]
+            public HttpResponseMessage search_XML(string lang, string kws, string token)
+            {
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                response = createSearchResult(kws, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "search", "search", kws);
+                return response;
+            }
+        //Query String
+        /// <summary>
+        /// Query String style cluster search resource by using interest key word(s).  XML response 
+        /// </summary>
+        /// <param name="kws">interest key words to be search. Multiple interesting kords could be split by using Space, comma, semicolon</param>
+        /// <param name="lang">Language. English = "en"; French = "fr"</param>
+        /// <param name="token">Access token</param>
+        /// <returns>Return resource list. Returned resource includes any interest search key words or their synonym in his name, description, location, term, category etc. Format in XML</returns>
+        [ActionName("xml")]
+        [Route("api/v2/Search/xml")]
+        [Route("api/v2/Chercher/xml")]
+        [ResponseType(typeof(Search_Result))]
+        [HttpGet]
+        public HttpResponseMessage search_XML_QS(string lang, string kws, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            response = createSearchResult(kws, lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "search", "search", kws);
+            return response;
+        }
+        #endregion XML
 
             private HttpResponseMessage createSearchResult(string kws, string lang, string token)
             {
@@ -149,7 +167,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesInRadiusList(lang, lat, lon, radius, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "circular", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
 
             //Query String
@@ -171,7 +192,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesInRadiusList(lang, lat, lon, radius, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "circular", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
             #endregion JSON
 
@@ -194,7 +218,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetResourcesInRadiusList_XML(string lang, decimal lat, decimal lon, decimal radius, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createCircularResult(lang, lat, lon, radius, token);
+                response = createCircularResult(lang, lat, lon, radius, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "circular", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
 
             //Query String
@@ -215,7 +242,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetResourcesInRadiusList_XML_QS(string lang, decimal lat, decimal lon, decimal radius, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createCircularResult(lang, lat, lon, radius, token);
+                response = createCircularResult(lang, lat, lon, radius, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "circular", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
             #endregion XML
             private HttpResponseMessage createCircularResult(string lang, decimal lat, decimal lon, decimal radius, string token)
@@ -241,8 +271,6 @@ namespace WebApi.Controllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-
-
         #endregion Search_Resources_In_Radius
 
 
@@ -267,7 +295,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesInRadiusBoundaryBoxList(lang, lat, lon, radius, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "box", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
 
             //Query String
@@ -289,7 +320,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesInRadiusBoundaryBoxList(lang, lat, lon, radius, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "box", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
             #endregion JSON
 
@@ -312,7 +346,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetResourcesInBoxList_XML(string lang, decimal lat, decimal lon, decimal radius, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createBoxResult(lang, lat, lon, radius, token);
+                response = createBoxResult(lang, lat, lon, radius, token);
+                request = HttpContext.Current.Request;  
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "box", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
 
             //Query String
@@ -333,7 +370,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetResourcesInBoxList_XML_QS(string lang, decimal lat, decimal lon, decimal radius, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createBoxResult(lang, lat, lon, radius,token);
+                response = createBoxResult(lang, lat, lon, radius, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "box", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                return response;
             }
             #endregion XML
             private HttpResponseMessage createBoxResult(string lang, decimal lat, decimal lon, decimal radius, string token)
@@ -380,7 +420,11 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesByCity(cid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "city", "search", cid.ToString());
+
+                return response;
             }
             // Query String
             /// <summary>
@@ -399,7 +443,11 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesByCity(cid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "city", "search", cid.ToString());
+
+                return response;
             }
             #endregion JSON
 
@@ -420,7 +468,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesByCity_XML(string lang, int cid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesByCityResult(cid, lang, token);
+                response = createResourcesByCityResult(cid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "city", "search", cid.ToString());
+                return response;
             }
             // Query String
             /// <summary>
@@ -438,7 +489,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesByCity_XML_QS(string lang, int cid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesByCityResult(cid, lang, token);
+                response = createResourcesByCityResult(cid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "city", "search", cid.ToString());
+                return response;
             }
             private HttpResponseMessage createResourcesByCityResult(int cid, string lang, string token)
             {
@@ -485,7 +539,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesByProvince(pid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "province", "search", pid.ToString());
+                return response;
             }
             // Query String
             /// <summary>
@@ -504,7 +561,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesByProvince(pid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "province", "search", pid.ToString());
+                return response;
             }
             #endregion JSON
 
@@ -525,7 +585,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesByProvince_XML(string lang, int pid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesByProvinceResult(pid, lang, token);
+                response = createResourcesByProvinceResult(pid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "province", "search", pid.ToString());
+                return response;
             }
             // Query String
             /// <summary>
@@ -543,7 +606,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesByProvince_XML_QS(string lang, int pid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesByProvinceResult(pid, lang, token);
+                response = createResourcesByProvinceResult(pid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "province", "search", pid.ToString());
+                return response;
             }
             private HttpResponseMessage createResourcesByProvinceResult(int pid, string lang, string token)
             {
@@ -590,7 +656,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesBySubCategory(sid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "subcategory", "search", sid.ToString());
+                return response;
             }
             // Query String
             /// <summary>
@@ -609,7 +678,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesBySubCategory(sid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "subcategory", "search", sid.ToString());
+                return response;
             }
             #endregion JSON
 
@@ -630,7 +702,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesBySubCategory_XML(string lang, int sid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesBySubcategoryResult(sid, lang, token);
+                response = createResourcesBySubcategoryResult(sid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "subcategory", "search", sid.ToString());
+                return response;
             }
             // Query String
             /// <summary>
@@ -648,7 +723,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesBySubCategory_XML_QS(string lang, int sid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesBySubcategoryResult(sid, lang, token);
+                response = createResourcesBySubcategoryResult(sid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "subcategory", "search", sid.ToString());
+                return response;
             }
             private HttpResponseMessage createResourcesBySubcategoryResult(int sid, string lang, string token)
             {
@@ -695,7 +773,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesByTopCategory(tid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "topcategory", "search", tid.ToString());
+                return response;
             }
 
             // Query String
@@ -715,7 +796,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetResourcesByTopCategory(tid, lang, token).ToList();
-                return toJson(json, lang);
+                response = toJson(json, lang);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "topcategory", "search", tid.ToString());
+                return response;
             }
             #endregion JSON
 
@@ -736,7 +820,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesByTopCategory_XML(string lang, int tid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesByTopcategoryResult(tid, lang, token);
+                response = createResourcesByTopcategoryResult(tid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "topcategory", "search", tid.ToString());
+                return response;
             }
 
 
@@ -756,7 +843,10 @@ namespace WebApi.Controllers
             public HttpResponseMessage GetAllResourcesByTopCategory_XML_QS(string lang, int tid, string token)
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                return createResourcesByTopcategoryResult(tid, lang, token);
+                response = createResourcesByTopcategoryResult(tid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "topcategory", "search", tid.ToString());
+                return response;
             }
             private HttpResponseMessage createResourcesByTopcategoryResult(int tid, string lang, string token)
             {
@@ -799,47 +889,56 @@ namespace WebApi.Controllers
                 {
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     var json = searchservice.GetSuggestionWordList().ToList();
-                    return toJson(json, "en");
+                    response = toJson(json, "en");
+                    request = HttpContext.Current.Request;
+                    logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "suggest", "search", string.Empty);
+                    return response;
                 }
-            #endregion JSON
+        #endregion JSON
 
             #region XML
-                /// <summary>
-                /// Get suggection key word list. the suggested words are province ,city if they have resource locate in his boundary; name category, term, description, services etc.  
-                /// </summary>
-                /// <returns>suggection key word list format in XML</returns>
-                [ActionName("suggest")]
-                [Route("api/v2/Search/suggestion/xml")]
-                [Route("api/v2/Chercher/suggestion/xml")]
-                [ResponseType(typeof(SuggestionWords))]
-                [HttpGet]
-                public HttpResponseMessage suggestionWordList_XML()
-                {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                        var xml = searchservice.GetSuggestionWordList().ToList();
+            /// <summary>
+            /// Get suggection key word list. the suggested words are province ,city if they have resource locate in his boundary; name category, term, description, services etc.  
+            /// </summary>
+            /// <returns>suggection key word list format in XML</returns>
+            [ActionName("suggest")]
+            [Route("api/v2/Search/suggestion/xml")]
+            [Route("api/v2/Chercher/suggestion/xml")]
+            [ResponseType(typeof(SuggestionWords))]
+            [HttpGet]
+            public HttpResponseMessage suggestionWordList_XML()
+            {
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                    var xml = searchservice.GetSuggestionWordList().ToList();
+                    request = HttpContext.Current.Request;
 
-                        if (xml.Count > 0)
-                        {
-                            var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                            return response;
-                        }
-                        else
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NoContent);
-                        }
-                }
-            #endregion XML
+                    if (xml.Count > 0)
+                    {
+                        var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                        logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "suggest", "search", string.Empty);
+
+                        return response;
+                    }
+                    else
+                    {
+                        response = Request.CreateResponse(HttpStatusCode.NoContent);
+                        logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "suggest", "search", string.Empty);
+
+                        return response;
+                    }
+            }
+        #endregion XML
         #endregion Get Suggestion Word List
 
 
         #region Get Increment Suggestion Word List
             #region JSON
             //Friendly
-        /// <summary>
-        ///  incrementally return interest key words for searching (auto-complete searching key word(s) 
-        /// </summary>
-        /// <param name="sw">incremental letter(s) of interest key word</param>
-        /// <returns>retun suggested key word(s), format in JSON</returns>
+            /// <summary>
+            ///  incrementally return interest key words for searching (auto-complete searching key word(s) 
+            /// </summary>
+            /// <param name="sw">incremental letter(s) of interest key word</param>
+            /// <returns>retun suggested key word(s), format in JSON</returns>
             [ActionName("json")]
             [Route("api/v2/Search/suggestion/json/{sw}")]
             [Route("api/v2/Chercher/suggestion/json/{sw}")]
@@ -849,7 +948,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetIncrementSuggestionWordList(sw).ToList();
-                return toJson(json, "en");
+                response = toJson(json, "en");
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "increment", "search", sw);
+                return response;
             }
             //Query String
             /// <summary>
@@ -866,7 +968,10 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var json = searchservice.GetIncrementSuggestionWordList(sw).ToList();
-                return toJson(json, "en");
+                response = toJson(json, "en");
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "json", "query", string.Empty, string.Empty, "increment", "search", sw);
+                return response;
             }
             #endregion JSON
 
@@ -886,15 +991,20 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var xml = searchservice.GetIncrementSuggestionWordList(sw).ToList();
-
+                request = HttpContext.Current.Request;
                 if (xml.Count > 0)
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                    logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "increment", "search", sw);
+
                     return response;
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.NoContent);
+                    response = Request.CreateResponse(HttpStatusCode.NoContent);
+                    logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "increment", "search", sw);
+
+                    return response;
                 }
             }
             //Query String
@@ -912,20 +1022,24 @@ namespace WebApi.Controllers
             {
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 var xml = searchservice.GetIncrementSuggestionWordList(sw).ToList();
-
-                if (xml.Count > 0)
+                request = HttpContext.Current.Request;
+            if (xml.Count > 0)
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
+                    logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "increment", "search", sw);
+
                     return response;
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.NoContent);
+                    response = Request.CreateResponse(HttpStatusCode.NoContent); 
+                    logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "increment", "search", sw);
+
+                    return response;
                 }
             }
         #endregion XML
         #endregion Get Increment Suggestion Word List
-
 
 
         #region Search Resource by Coverage
@@ -947,7 +1061,10 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = searchservice.GetResourcesByCoverage(coverage, lang, token).ToList();
-            return toJson(json, lang);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "coverage", "search", coverage);
+            return response;
         }
         // Query String
         /// <summary>
@@ -966,7 +1083,10 @@ namespace WebApi.Controllers
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             var json = searchservice.GetResourcesByCoverage(coverage, lang, token).ToList();
-            return toJson(json, lang);
+            response = toJson(json, lang);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "coverage", "search", coverage);
+            return response;
         }
         #endregion JSON
 
@@ -987,7 +1107,10 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetAllResourcesByProvince_XML(string lang, string coverage, string token)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            return createResourcesByCoverageResult(coverage, lang, token);
+            response = createResourcesByCoverageResult(coverage, lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "coverage", "search", coverage);
+            return response;
         }
         // Query String
         /// <summary>
@@ -1005,7 +1128,10 @@ namespace WebApi.Controllers
         public HttpResponseMessage GetAllResourcesByCoverage_XML_QS(string lang, string coverage, string token)
         {
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-            return createResourcesByCoverageResult(coverage, lang, token);
+            response = createResourcesByCoverageResult(coverage, lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "coverage", "search", coverage);
+            return response;
         }
         private HttpResponseMessage createResourcesByCoverageResult(string coverage, string lang, string token)
         {

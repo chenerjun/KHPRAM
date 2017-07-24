@@ -1,10 +1,11 @@
 ﻿using BIZ.EmailMe;
-using Newtonsoft.Json;
+using BIZ.Log;
 using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Filters;
@@ -18,7 +19,9 @@ namespace WebApi.Controllers
     public class EmailController : ApiController
     {
         emailSenderServices es = new emailSenderServices();
-
+        HttpResponseMessage response = new HttpResponseMessage();
+        HttpRequest request = HttpContext.Current.Request;
+        LogServices logservices = new LogServices();
 
 
         /// <summary>
@@ -65,6 +68,8 @@ namespace WebApi.Controllers
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                logservices.logservices(request, response, string.Empty, string.Empty, "send", _email.lang, string.Empty, subject, "email", _email.receiver);
+
                 return response;
             }
             else
@@ -72,6 +77,8 @@ namespace WebApi.Controllers
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
                 response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                logservices.logservices(request, response, string.Empty, string.Empty, "send", _email.lang, string.Empty, subject, "email", _email.receiver);
+
                 return response; 
             }
 
@@ -80,7 +87,7 @@ namespace WebApi.Controllers
 
 
         /// <summary>
-        /// Sending KHP eCard
+        /// Sending KHP eCard, its property declares in eCare class.
         /// </summary>
         /// <param name="_eCard">user's email account. Using "，" (comma) to separate each receivers if you have multiple receivers.
         /// JSON format. 
@@ -131,6 +138,8 @@ namespace WebApi.Controllers
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                logservices.logservices(request, response, string.Empty, string.Empty, "send", lang, string.Empty, subject, "eCard", receiver);
+
                 return response;
             }
             else
@@ -138,12 +147,23 @@ namespace WebApi.Controllers
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
                 response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                logservices.logservices(request, response, string.Empty, string.Empty, "send", lang, string.Empty, subject, "eCard", receiver);
+
                 return response;
             }
         }
 
 
-
+        /// <summary>
+        /// eCard sender, does not use eCard class
+        /// </summary>
+        /// <param name="lang">Language</param>
+        /// <param name="receiver">Receiver account</param>
+        /// <param name="sendfrom">Send from account</param>
+        /// <param name="displayName">display name on the mail head.</param>
+        /// <param name="subject">subject of mail.</param>
+        /// <param name="body">mail body.</param>
+        /// <returns></returns>
         [ResponseType(typeof(eCard))]
         [ActionName("Send")]
         [Route("api/v2/eCard/submit")]
@@ -179,6 +199,8 @@ namespace WebApi.Controllers
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                logservices.logservices(request, response, string.Empty, string.Empty, "submit", lang, string.Empty, subject, "eCard", receiver);
+
                 return response;
             }
             else
@@ -186,6 +208,8 @@ namespace WebApi.Controllers
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
                 response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                logservices.logservices(request, response, string.Empty, string.Empty, "submit", lang, string.Empty, subject, "eCard", receiver);
+
                 return response;
             }
         }
@@ -241,6 +265,8 @@ namespace WebApi.Controllers
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                logservices.logservices(request, response, string.Empty, string.Empty, "gsender", _email.lang, string.Empty, subject, "gmail", _account);
+
                 return response;
             }
             else
@@ -248,6 +274,8 @@ namespace WebApi.Controllers
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
                 response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                logservices.logservices(request, response, string.Empty, string.Empty, "gsender", _email.lang, string.Empty, subject, "gmail", _account);
+
                 return response;
             }
         }
