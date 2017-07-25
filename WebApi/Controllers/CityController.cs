@@ -169,7 +169,7 @@ namespace WebApi.Controllers
                     var r = citysercice.GetCityByProvince(pid, token).ToList();
                     response = toJson(r);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "path", string.Empty, token, "cities of " + pid, "city", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "path", string.Empty, token, "Provincal", "city", pid.ToString());
 
                     return response;
                 }
@@ -191,7 +191,7 @@ namespace WebApi.Controllers
                     var r = citysercice.GetCityByProvince(pid, token).ToList();
                     response = toJson(r);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "query", string.Empty, token, "cities of " + pid, "city", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "query", string.Empty, token, "Provincal", "city", pid.ToString());
 
                     return response;
     }
@@ -217,14 +217,14 @@ namespace WebApi.Controllers
                 if (xml.Count > 0)
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                    logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, token, "cities of " + pid, "city", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, token, "Provincal", "city", pid.ToString());
 
                     return response;
                 }
                 else
                 {
                     response = Request.CreateResponse(HttpStatusCode.NoContent);
-                    logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, token, "cities of " + pid, "city", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, token, "Provincal", "city", pid.ToString());
 
                     return response;
                 }
@@ -249,14 +249,14 @@ namespace WebApi.Controllers
                 if (xml.Count > 0)
                 {
                     var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                    logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, token, "cities of " + pid, "city", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, token, "Provincal", "city", pid.ToString());
 
                     return response;
                 }
                 else
                 {
                     response = Request.CreateResponse(HttpStatusCode.NotFound);
-                    logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, token, "cities of " + pid, "city", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, token, "Provincal", "city", pid.ToString());
 
                     return response;
                 }

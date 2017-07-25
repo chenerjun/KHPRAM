@@ -276,7 +276,7 @@ namespace WebApi.Controllers
                     var json = subcategorysercice.GetSubcategoryByTopID(tid,lang, token);
                     response = toJson(json, lang);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "subcategory under tid", "subCategory", tid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "TopCategory", "subCategory", tid.ToString());
 
                     return response;
                 }
@@ -298,7 +298,7 @@ namespace WebApi.Controllers
                     var json = subcategorysercice.GetSubcategoryByTopID(tid, lang, token);
                     response = toJson(json, lang);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "subcategory under tid", "subCategory", tid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "TopCategory", "subCategory", tid.ToString());
 
                     return response;
                 }
@@ -322,7 +322,7 @@ namespace WebApi.Controllers
                 {
                     response = getSubCategoriesByTID(lang, tid, token);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "subcategory under tid", "subCategory", tid.ToString());
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "TopCategory", "subCategory", tid.ToString());
 
                     return response;
                 }
@@ -344,7 +344,7 @@ namespace WebApi.Controllers
                 {
                     response = getSubCategoriesByTID(lang, tid, token);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "subcategory under tid", "subCategory", tid.ToString());
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "TopCategory", "subCategory", tid.ToString());
 
                     return response;
                 }

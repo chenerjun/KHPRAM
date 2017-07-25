@@ -101,7 +101,7 @@ namespace WebApi.Controllers
             var r = locationservice.GetGoogleCityByProvinceID(pid).ToList();
             response = toJson(r);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+            logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "Provincal", "google", pid.ToString());
             return response;
         }
         #endregion path
@@ -122,7 +122,7 @@ namespace WebApi.Controllers
             var r = locationservice.GetGoogleCityByProvinceID(pid).ToList();
             response = toJson(r);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "query", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+            logservices.logservices(request, response, "dbo", "json", "query", string.Empty, string.Empty, "Provincal", "google", pid.ToString());
             return response;
         }
         #endregion querystring
@@ -147,14 +147,14 @@ namespace WebApi.Controllers
             if (xml.Count > 0)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "Provincal", "google", pid.ToString());
 
                 return response;
             }
             else
             {
                 response = Request.CreateResponse(HttpStatusCode.NoContent);
-                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "Provincal", "google", pid.ToString());
 
                 return response;
             }
@@ -180,14 +180,14 @@ namespace WebApi.Controllers
             if (xml.Count > 0)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "Provincal", "google", pid.ToString());
 
                 return response;
             }
             else
             {
                 response = Request.CreateResponse(HttpStatusCode.NoContent);
-                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "cities in", "google", pid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "Provincal", "google", pid.ToString());
 
                 return response;
             }
@@ -217,7 +217,7 @@ namespace WebApi.Controllers
             var r = locationservice.GetGoogleCityByCid(cid);
             response = toJson(r);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "this city", "google", cid.ToString());
+            logservices.logservices(request, response, "dbo", "json", "path", string.Empty, string.Empty, "this", "google", cid.ToString());
             return response;
         }
         #endregion path
@@ -238,7 +238,7 @@ namespace WebApi.Controllers
             var r = locationservice.GetGoogleCityByCid(cid);
             response = toJson(r);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "query", string.Empty, string.Empty, "this city", "google", cid.ToString());
+            logservices.logservices(request, response, "dbo", "json", "query", string.Empty, string.Empty, "this", "google", cid.ToString());
             return response;
         }
         #endregion querystring
@@ -263,14 +263,14 @@ namespace WebApi.Controllers
             if (xml != null)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "this city", "google", cid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "this", "google", cid.ToString());
 
                 return response;
             }
             else
             {
                 response = Request.CreateResponse(HttpStatusCode.NoContent);
-                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "this city", "google", cid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "path", string.Empty, string.Empty, "this", "google", cid.ToString());
 
                 return response;
             }
@@ -294,14 +294,14 @@ namespace WebApi.Controllers
             if (xml != null)
             {
                 var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "this city", "google", cid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "this", "google", cid.ToString());
 
                 return response;
             }
             else
             {
                 response =  Request.CreateResponse(HttpStatusCode.NoContent);
-                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "this city", "google", cid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "query", string.Empty, string.Empty, "this", "google", cid.ToString());
                 return response;
             }
         }

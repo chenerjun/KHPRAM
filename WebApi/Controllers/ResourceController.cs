@@ -47,7 +47,7 @@ namespace WebApi.Controllers
             var json = resourceservice.GetAllResourcesByLang(lang, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "resource by lang", "resource", lang);
+            logservices.logservices(request, response, "dbo", "json", "path", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -69,7 +69,7 @@ namespace WebApi.Controllers
             var json = resourceservice.GetAllResourcesByLang(lang, token).ToList();
             response = toJson(json, lang);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "resource by lang", "resource", lang);
+            logservices.logservices(request, response, "dbo", "json", "query", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -93,7 +93,7 @@ namespace WebApi.Controllers
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response = createResourcehResult(lang, token);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "resource by lang", "resource", lang);
+            logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -114,7 +114,7 @@ namespace WebApi.Controllers
             HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
             response = createResourcehResult(lang, token);
             request = HttpContext.Current.Request;
-            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "resource by lang", "resource", lang);
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "Language", "resource", lang);
 
             return response;
         }
@@ -654,7 +654,7 @@ namespace WebApi.Controllers
                     var json = resourceservice.GetResourcesByCity(cid, lang, token).ToList();
                     response = toJson(json, lang);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "in city", "resource", cid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "City", "resource", cid.ToString());
 
                     return response;
                 }
@@ -677,34 +677,34 @@ namespace WebApi.Controllers
                     var json = resourceservice.GetResourcesByCity(cid, lang, token).ToList();
                     response = toJson(json, lang);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "in city", "resource", cid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "City", "resource", cid.ToString());
 
                     return response;
                 }
             #endregion JSON
 
             #region XML
-                // Friendly
-                /// <summary>
-                ///  Get resource list in the specific allowable city filter by resource's language 
-                /// </summary>
-                /// <param name="lang">language. English = "en"; French = "fr"</param>
-                /// <param name="cid">city id</param>
-                /// <param name="token">Access token</param>
-                /// <returns>return a XML format resource list located in a specific city</returns>
-                [ActionName("xml")]
-                [Route("api/v2/resource/city/xml/{token}/{lang}/{cid}")]
-                [Route("api/v2/Ressource/ville/xml/{token}/{lang}/{cid}")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetAllResourcesByCity_XML(string lang, int cid, string token)
-                {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    response = createResourcesByCityResult(cid, lang, token);
-                    request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "in city", "resource", cid.ToString());
-                    return response;
-                }
+            // Friendly
+            /// <summary>
+            ///  Get resource list in the specific allowable city filter by resource's language 
+            /// </summary>
+            /// <param name="lang">language. English = "en"; French = "fr"</param>
+            /// <param name="cid">city id</param>
+            /// <param name="token">Access token</param>
+            /// <returns>return a XML format resource list located in a specific city</returns>
+            [ActionName("xml")]
+            [Route("api/v2/resource/city/xml/{token}/{lang}/{cid}")]
+            [Route("api/v2/Ressource/ville/xml/{token}/{lang}/{cid}")]
+            [ResponseType(typeof(RamResource))]
+            [HttpGet]
+            public HttpResponseMessage GetAllResourcesByCity_XML(string lang, int cid, string token)
+            {
+                HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+                response = createResourcesByCityResult(cid, lang, token);
+                request = HttpContext.Current.Request;
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "City", "resource", cid.ToString());
+                return response;
+            }
         // Query String
         /// <summary>
         ///  Query String style getting resource list in the specific allosing city filter by resource's language 
@@ -714,40 +714,40 @@ namespace WebApi.Controllers
         /// <param name="token">Access token</param>
         /// <returns>return a XML format resource list located in a specific city</returns>
         [ActionName("xml")]
-                [Route("api/v2/resource/city/xml")]
-                [Route("api/v2/Ressource/ville/xml")]
-                [ResponseType(typeof(RamResource))]
-                [HttpGet]
-                public HttpResponseMessage GetAllResourcesByCity_XML_QS(string lang, int cid, string token)
+        [Route("api/v2/resource/city/xml")]
+        [Route("api/v2/Ressource/ville/xml")]
+        [ResponseType(typeof(RamResource))]
+        [HttpGet]
+        public HttpResponseMessage GetAllResourcesByCity_XML_QS(string lang, int cid, string token)
+        {
+            HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
+            response = createResourcesByCityResult(cid, lang, token);
+            request = HttpContext.Current.Request;
+            logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "City", "resource", cid.ToString());
+            return response;
+        }
+        private HttpResponseMessage createResourcesByCityResult(int cid, string lang, string token)
+        {
+            lang = lang.ToLower();
+            if ((lang == "en") || (lang == "fr"))
+            {
+                var xml = resourceservice.GetResourcesByCity(cid, lang, token).ToList();
+
+                if (xml.Count > 0)
                 {
-                    HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
-                    response = createResourcesByCityResult(cid, lang, token);
-                    request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "in city", "resource", cid.ToString());
+                    var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
                     return response;
                 }
-                private HttpResponseMessage createResourcesByCityResult(int cid, string lang, string token)
+                else
                 {
-                    lang = lang.ToLower();
-                    if ((lang == "en") || (lang == "fr"))
-                    {
-                        var xml = resourceservice.GetResourcesByCity(cid, lang, token).ToList();
-
-                        if (xml.Count > 0)
-                        {
-                            var response = Request.CreateResponse(HttpStatusCode.OK, xml, "application/xml");
-                            return response;
-                        }
-                        else
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NoContent);
-                        }
-                    }
-                    else
-                    {
-                        return Request.CreateResponse(HttpStatusCode.NotFound);
-                    }
+                    return Request.CreateResponse(HttpStatusCode.NoContent);
                 }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+        }
             #endregion XML
         #endregion Get Resource By City ID
 
@@ -773,7 +773,7 @@ namespace WebApi.Controllers
                     var json = resourceservice.GetResourcesByProvince(pid, lang, token).ToList();
                     response = toJson(json, lang);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "in Province", "resource", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "Province", "resource", pid.ToString());
 
                     return response;
                 }
@@ -796,7 +796,7 @@ namespace WebApi.Controllers
                     var json = resourceservice.GetResourcesByProvince(pid, lang, token).ToList();
                     response = toJson(json, lang);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "in Province", "resource", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "Province", "resource", pid.ToString());
 
                     return response;
                 }
@@ -821,7 +821,7 @@ namespace WebApi.Controllers
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     response = createResourcesByProvinceResult(pid, lang, token);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "in Province", "resource", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "Province", "resource", pid.ToString());
                     return response;
                 }
                 // Query String
@@ -842,7 +842,7 @@ namespace WebApi.Controllers
                     HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                     response = createResourcesByProvinceResult(pid, lang, token);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "in Province", "resource", pid.ToString());
+                    logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "Province", "resource", pid.ToString());
                     return response;
                 }
                 private HttpResponseMessage createResourcesByProvinceResult(int pid, string lang, string token)
@@ -892,7 +892,7 @@ namespace WebApi.Controllers
                     var json = resourceservice.GetResourcesBySubCategory(sid, lang, token).ToList();
                     response = toJson(json, lang);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "in subcategory", "resource", sid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "path", lang, token, "SubCategory", "resource", sid.ToString());
                     return response;
                 }
                 // Query String
@@ -914,7 +914,7 @@ namespace WebApi.Controllers
                     var json = resourceservice.GetResourcesBySubCategory(sid, lang, token).ToList();
                     response = toJson(json, lang);
                     request = HttpContext.Current.Request;
-                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "in subcategory", "resource", sid.ToString());
+                    logservices.logservices(request, response, "dbo", "json", "query", lang, token, "SubCategory", "resource", sid.ToString());
                     return response;
                 }
             #endregion JSON
@@ -938,7 +938,7 @@ namespace WebApi.Controllers
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 response = createResourcesBySubCategoryResult(sid, lang, token);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "in subcategory", "resource", sid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "SubCategory", "resource", sid.ToString());
                 return response;
             }
             // Query String
@@ -959,7 +959,7 @@ namespace WebApi.Controllers
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 response = createResourcesBySubCategoryResult(sid, lang, token);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "in subcategory", "resource", sid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "SubCategory", "resource", sid.ToString());
                 return response;
             }
             private HttpResponseMessage createResourcesBySubCategoryResult(int sid, string lang, string token)
@@ -1009,7 +1009,7 @@ namespace WebApi.Controllers
                 var json = resourceservice.GetResourcesByTopCategory(tid, lang, token).ToList();
                 response = toJson(json, lang);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "in topcategory", "resource", tid.ToString());
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "TopCategory", "resource", tid.ToString());
 
                 return response;
             }
@@ -1033,7 +1033,7 @@ namespace WebApi.Controllers
                 var json = resourceservice.GetResourcesByTopCategory(tid, lang, token).ToList();
                 response = toJson(json, lang);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "in topcategory", "resource", tid.ToString());
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "TopCategory", "resource", tid.ToString());
 
                 return response;
             }
@@ -1058,7 +1058,7 @@ namespace WebApi.Controllers
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 response = createResourcesByTopcategoryResult(tid, lang, token);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "in topcategory", "resource", tid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "TopCategory", "resource", tid.ToString());
                 return response;
             }
 
@@ -1081,7 +1081,7 @@ namespace WebApi.Controllers
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 response = createResourcesByTopcategoryResult(tid, lang, token);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "in topcategory", "resource", tid.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "TopCategory", "resource", tid.ToString());
                 return response;
             }
             private HttpResponseMessage createResourcesByTopcategoryResult(int tid, string lang, string token)
