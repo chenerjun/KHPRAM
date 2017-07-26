@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="6/28/2017 3:10:31 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="GeoBlockLocation"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{4BE0B865-0457-45F7-892B-806DDB7D7927}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{11716300-6B88-4D60-9B7C-85939DB96A9D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -82,25 +82,25 @@
               DTS:DataType="20"
               DTS:TextQualified="True"
               DTS:ObjectName="locId"
-              DTS:DTSID="{DBB7AE7D-1F5C-4388-944F-221AEAE20B2D}"
+              DTS:DTSID="{FC191860-2D2F-4194-9D2C-7C69845EA694}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="2"
+              DTS:MaximumWidth="50"
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="country"
-              DTS:DTSID="{696D4310-843B-424E-80BE-67385B6E80AD}"
+              DTS:DTSID="{7753B800-0494-4629-92F1-B2DDD07145EB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
               DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="2"
+              DTS:MaximumWidth="50"
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="region"
-              DTS:DTSID="{92E4D9C4-645B-4115-A333-B817F70FF53A}"
+              DTS:DTSID="{5266C083-D786-453E-8B0E-E1ABEB324237}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -109,7 +109,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="city"
-              DTS:DTSID="{4E054C9A-619C-4F62-875F-9CCF86BEC274}"
+              DTS:DTSID="{195BC883-F064-4157-AE26-256BBCE8BBCB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -118,7 +118,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="postalCode"
-              DTS:DTSID="{C28CB446-202A-4D61-9092-61F5918F62F1}"
+              DTS:DTSID="{C2C8F109-D726-4D18-986B-DAE2BFB658EE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -128,7 +128,7 @@
               DTS:DataScale="8"
               DTS:TextQualified="True"
               DTS:ObjectName="latitude"
-              DTS:DTSID="{3AFC67E1-6F4C-49DD-BEBD-0D0A6AEEA0BC}"
+              DTS:DTSID="{D54F722C-FDA8-4E42-A19E-4474E23288FB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -138,7 +138,7 @@
               DTS:DataScale="8"
               DTS:TextQualified="True"
               DTS:ObjectName="longitude"
-              DTS:DTSID="{CE96903C-75E1-4A59-A18D-BE5FBA482EC5}"
+              DTS:DTSID="{DF3E6A0A-14D5-48B6-85EE-70B2E2574CDD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -147,7 +147,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="metroCode"
-              DTS:DTSID="{50731438-CB8C-428D-B1DC-B913BB1111C2}"
+              DTS:DTSID="{9F76BCD6-77F8-41DC-AA99-48A8F7154A74}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -156,7 +156,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="areaCode"
-              DTS:DTSID="{91A59416-58EF-4417-A66A-A8DA34A0A35A}"
+              DTS:DTSID="{0D50A8B8-D5FE-4F54-8334-8E713AB123F4}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -201,7 +201,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="CreatedDate">
       <DTS:VariableValue
-        DTS:DataType="7">7/19/2017 11:12:26 AM</DTS:VariableValue>
+        DTS:DataType="7">7/26/2017 10:18:56 AM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -302,7 +302,7 @@
                     <inputColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\Conditional Split Filter out CA.Inputs[Conditional Split Input].Columns[country]"
                       cachedDataType="wstr"
-                      cachedLength="2"
+                      cachedLength="50"
                       cachedName="country"
                       lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[country]" />
                   </inputColumns>
@@ -643,10 +643,159 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[country]"
-                      length="2"
+                      length="50"
                       lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[country]"
                       name="country"
                       truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[region]"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[region]"
+                      name="region"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[city]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[city]"
+                      length="255"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[city]"
+                      name="city"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[postalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[postalCode]"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[postalCode]"
+                      name="postalCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[latitude]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[latitude]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[latitude]"
+                      name="latitude"
+                      precision="18"
+                      scale="8"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[longitude]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[longitude]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[longitude]"
+                      name="longitude"
+                      precision="18"
+                      scale="8"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[metroCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[metroCode]"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[metroCode]"
+                      name="metroCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[areaCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[areaCode]"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[areaCode]"
+                      name="areaCode"
+                      truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.Boolean"
@@ -668,12 +817,12 @@
                     <externalMetadataColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[country]"
                       dataType="wstr"
-                      length="2"
+                      length="50"
                       name="country" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[region]"
                       dataType="wstr"
-                      length="2"
+                      length="50"
                       name="region" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].ExternalColumns[city]"
@@ -808,9 +957,53 @@
                     <inputColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[country]"
                       cachedDataType="wstr"
-                      cachedLength="2"
+                      cachedLength="50"
                       cachedName="country"
                       lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[country]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[region]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="region"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[region]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="city"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[city]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[postalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="postalCode"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[postalCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[latitude]"
+                      cachedDataType="numeric"
+                      cachedName="latitude"
+                      cachedPrecision="18"
+                      cachedScale="8"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[latitude]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[longitude]"
+                      cachedDataType="numeric"
+                      cachedName="longitude"
+                      cachedPrecision="18"
+                      cachedScale="8"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[longitude]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[metroCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="metroCode"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[metroCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[areaCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="areaCode"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[areaCode]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -888,7 +1081,7 @@
                     <outputColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[country]"
                       dataType="wstr"
-                      length="2"
+                      length="50"
                       lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[country]"
                       name="country">
                       <properties>
@@ -897,6 +1090,106 @@
                           dataType="System.Int32"
                           description="The input column associated with this output column"
                           name="InputColumnID">#{Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[country]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[region]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[region]"
+                      name="region">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[region]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[city]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[city]"
+                      name="city">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[city]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[postalCode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[postalCode]"
+                      name="postalCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[postalCode]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[latitude]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[latitude]"
+                      name="latitude"
+                      precision="18"
+                      scale="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[latitude]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[longitude]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[longitude]"
+                      name="longitude"
+                      precision="18"
+                      scale="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[longitude]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[metroCode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[metroCode]"
+                      name="metroCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[metroCode]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[areaCode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[areaCode]"
+                      name="areaCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Flow Task Update Table Geo-Canada\Merge Join.Inputs[Merge Join Left Input].Columns[areaCode]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -972,7 +1265,7 @@
                 <input
                   refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
+                  errorRowDisposition="IgnoreFailure"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
@@ -1004,10 +1297,61 @@
                     <inputColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].Columns[country]"
                       cachedDataType="wstr"
-                      cachedLength="2"
+                      cachedLength="50"
                       cachedName="country"
                       externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[country]"
                       lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[country]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].Columns[region]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="region"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[region]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[region]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="city"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[city]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].Columns[postalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="postalCode"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[postalcode]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[postalCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].Columns[latitude]"
+                      cachedDataType="numeric"
+                      cachedName="latitude"
+                      cachedPrecision="18"
+                      cachedScale="8"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[latitude]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[latitude]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].Columns[longitude]"
+                      cachedDataType="numeric"
+                      cachedName="longitude"
+                      cachedPrecision="18"
+                      cachedScale="8"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[longitude]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[longitude]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].Columns[metroCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="metroCode"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[metroCode]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[metroCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].Columns[areaCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="areaCode"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[areaCode]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output].Columns[areaCode]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1030,7 +1374,7 @@
                     <externalMetadataColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[country]"
                       dataType="wstr"
-                      length="10"
+                      length="50"
                       name="country" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[changeddate]"
@@ -1040,6 +1384,43 @@
                       refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[createddate]"
                       dataType="dbTimeStamp"
                       name="createddate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[region]"
+                      dataType="wstr"
+                      length="50"
+                      name="region" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      dataType="wstr"
+                      length="255"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[postalcode]"
+                      dataType="wstr"
+                      length="50"
+                      name="postalcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[latitude]"
+                      dataType="numeric"
+                      name="latitude"
+                      precision="18"
+                      scale="8" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[longitude]"
+                      dataType="numeric"
+                      name="longitude"
+                      precision="18"
+                      scale="8" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[metroCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="metroCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Inputs[OLE DB Destination Input].ExternalColumns[areaCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="areaCode" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1110,9 +1491,130 @@
                     <inputColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Inputs[Sort Input].Columns[country]"
                       cachedDataType="wstr"
-                      cachedLength="2"
+                      cachedLength="50"
                       cachedName="country"
                       lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[country]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Inputs[Sort Input].Columns[region]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="region"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[region]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Inputs[Sort Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="city"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[city]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Inputs[Sort Input].Columns[postalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="postalCode"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[postalCode]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Inputs[Sort Input].Columns[latitude]"
+                      cachedDataType="numeric"
+                      cachedName="latitude"
+                      cachedPrecision="18"
+                      cachedScale="8"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[latitude]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Inputs[Sort Input].Columns[longitude]"
+                      cachedDataType="numeric"
+                      cachedName="longitude"
+                      cachedPrecision="18"
+                      cachedScale="8"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[longitude]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Inputs[Sort Input].Columns[metroCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="metroCode"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[metroCode]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Inputs[Sort Input].Columns[areaCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="areaCode"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[areaCode]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -1151,7 +1653,7 @@
                     <outputColumn
                       refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[country]"
                       dataType="wstr"
-                      length="2"
+                      length="50"
                       lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[country]"
                       name="country">
                       <properties>
@@ -1160,6 +1662,106 @@
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[country]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[region]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[region]"
+                      name="region">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[region]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[city]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[city]"
+                      name="city">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[city]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[postalCode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[postalCode]"
+                      name="postalCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[postalCode]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[latitude]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[latitude]"
+                      name="latitude"
+                      precision="18"
+                      scale="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[latitude]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[longitude]"
+                      dataType="numeric"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[longitude]"
+                      name="longitude"
+                      precision="18"
+                      scale="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[longitude]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[metroCode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[metroCode]"
+                      name="metroCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[metroCode]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[areaCode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Sort  locid.Outputs[Sort Output].Columns[areaCode]"
+                      name="areaCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[areaCode]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1574,125 +2176,49 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="417,42"
           Id="Package\Data Flow Task Update Table Geo-Canada"
           TopLeft="159.444444444444,129.25" />
         <NodeLayout
           Size="417,42"
-          Id="Package\Execute SQL Task Truncate Table Geo-Canada"
-          TopLeft="159.444444444444,47" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="367.944444444444,89">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,40.25"
-              Start="0,0"
-              End="0,32.75">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.75" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Id="Package\Execute SQL Allow Advanced Options"
+          TopLeft="159.444444444444,376" />
         <NodeLayout
           Size="417,42"
-          Id="Package\Execute SQL Task log update"
-          TopLeft="159.444444444444,211.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="367.944444444444,171.25">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,40.25"
-              Start="0,0"
-              End="0,32.75">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.75" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Id="Package\Execute SQL Enable feature"
+          TopLeft="159.444444444444,540.5" />
         <NodeLayout
           Size="417,42"
           Id="Package\Execute SQL Shrink"
           TopLeft="159.444444444444,293.75" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="367.944444444444,253.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,40.25"
-              Start="0,0"
-              End="0,32.75">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.75" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
           Size="417,42"
-          Id="Package\Execute SQL Allow Advanced Options"
-          TopLeft="159.444444444444,376" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="367.944444444444,335.75">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,40.25"
-              Start="0,0"
-              End="0,32.75">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.75" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Id="Package\Execute SQL Task log update"
+          TopLeft="159.444444444444,211.5" />
+        <NodeLayout
+          Size="417,42"
+          Id="Package\Execute SQL Task Remove TEMP"
+          TopLeft="159.444444444444,705" />
+        <NodeLayout
+          Size="417,42"
+          Id="Package\Execute SQL Task Restore_currently_configured_value_for_this_feature"
+          TopLeft="159.444444444444,622.75" />
+        <NodeLayout
+          Size="417,42"
+          Id="Package\Execute SQL Task Truncate Table Geo-Canada"
+          TopLeft="159.444444444444,47" />
         <NodeLayout
           Size="417,42"
           Id="Package\Execute SQL update the current configured value"
           TopLeft="159.444444444444,458.25" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="367.944444444444,418">
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="367.944444444444,89">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,40.25"
               Start="0,0"
               End="0,32.75">
@@ -1709,16 +2235,100 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="417,42"
-          Id="Package\Execute SQL Enable feature"
-          TopLeft="159.444444444444,540.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="367.944444444444,171.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.25"
+              Start="0,0"
+              End="0,32.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="367.944444444444,253.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.25"
+              Start="0,0"
+              End="0,32.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="367.944444444444,335.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.25"
+              Start="0,0"
+              End="0,32.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="367.944444444444,418">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.25"
+              Start="0,0"
+              End="0,32.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
           TopLeft="367.944444444444,500.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,40.25"
               Start="0,0"
               End="0,32.75">
@@ -1735,16 +2345,12 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="417,42"
-          Id="Package\Execute SQL Task Restore_currently_configured_value_for_this_feature"
-          TopLeft="159.444444444444,622.75" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
           TopLeft="367.944444444444,582.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,40.25"
               Start="0,0"
               End="0,32.75">
@@ -1761,16 +2367,12 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="417,42"
-          Id="Package\Execute SQL Task Remove TEMP"
-          TopLeft="159.444444444444,705" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
           TopLeft="367.944444444444,664.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,40.25"
               Start="0,0"
               End="0,32.75">
@@ -1794,57 +2396,57 @@
     design-time-name="Package\Data Flow Task Update Table Geo-Canada">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="194,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location"
-          TopLeft="80,29" />
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="244,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip"
           TopLeft="204,650" />
         <NodeLayout
+          Size="184,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Blocks"
+          TopLeft="384,41" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Merge Join"
+          TopLeft="250,381" />
+        <NodeLayout
           Size="126,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Sort  locid"
           TopLeft="110,262" />
         <NodeLayout
-          Size="184,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Blocks"
-          TopLeft="384,41" />
+          Size="216,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Conditional Split Filter out CA"
+          TopLeft="67,184" />
         <NodeLayout
           Size="123,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Sort locid"
           TopLeft="412,247" />
         <NodeLayout
-          Size="130,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\Merge Join"
-          TopLeft="250,381" />
+          Size="173,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Location Row Count"
+          TopLeft="86,104" />
         <NodeLayout
           Size="177,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Canadaip Row Count"
           TopLeft="223,466" />
         <NodeLayout
           Size="216,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\Conditional Split Filter out CA"
-          TopLeft="67,184" />
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\Location Row Count"
-          TopLeft="86,104" />
+          Id="Package\Data Flow Task Update Table Geo-Canada\Derived Column CreatedDate"
+          TopLeft="218,547" />
         <NodeLayout
           Size="163,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Blocks Row Count"
           TopLeft="409,145" />
         <NodeLayout
-          Size="216,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\Derived Column CreatedDate"
-          TopLeft="218,547" />
+          Size="194,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location"
+          TopLeft="80,29" />
         <EdgeLayout
           Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Merge Join Output]"
           TopLeft="313.25,423">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,43"
               Start="0,0"
               End="0,35.5">
@@ -1866,7 +2468,7 @@
           TopLeft="174.75,71">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,33"
               Start="0,0"
               End="0,25.5">
@@ -1888,7 +2490,7 @@
           TopLeft="476,83">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="14.5,62"
               Start="0,0"
               End="14.5,54.5">
@@ -1918,11 +2520,33 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Derived Column Output]"
+          TopLeft="326,589">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\Data Flow Task Update Table Geo-Canada.Paths[CA]"
           TopLeft="174,226">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,36"
               Start="0,0"
               End="0,28.5">
@@ -1946,7 +2570,7 @@
           TopLeft="473.5,289">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-138.166666666667,92"
               Start="0,0"
               End="-138.166666666667,84.5">
@@ -1980,7 +2604,7 @@
           TopLeft="173,304">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="121.666666666667,77"
               Start="0,0"
               End="121.666666666667,69.5">
@@ -2014,7 +2638,7 @@
           TopLeft="311.5,508">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="14.5,39"
               Start="0,0"
               End="14.5,31.5">
@@ -2048,7 +2672,7 @@
           TopLeft="173.75,146">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="0,38"
               Start="0,0"
               End="0,30.5">
@@ -2070,7 +2694,7 @@
           TopLeft="490.5,187">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{x:Null}"
+              StartConnector="{assembly:Null}"
               EndConnector="-17,60"
               Start="0,0"
               End="-17,52.5">
@@ -2091,28 +2715,6 @@
                     Point3="-17,34" />
                   <mssgle:LineSegment
                     End="-17,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Derived Column Output]"
-          TopLeft="326,589">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{x:Null}"
-              EndConnector="0,61"
-              Start="0,0"
-              End="0,53.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,53.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
