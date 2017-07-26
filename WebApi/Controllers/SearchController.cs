@@ -169,7 +169,7 @@ namespace WebApi.Controllers
                 var json = searchservice.GetResourcesInRadiusList(lang, lat, lon, radius, token).ToList();
                 response = toJson(json, lang);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "circular", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "circular", "search", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
                 return response;
             }
 
@@ -194,7 +194,7 @@ namespace WebApi.Controllers
                 var json = searchservice.GetResourcesInRadiusList(lang, lat, lon, radius, token).ToList();
                 response = toJson(json, lang);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "circular", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "circular", "search", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
                 return response;
             }
             #endregion JSON
@@ -220,7 +220,7 @@ namespace WebApi.Controllers
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 response = createCircularResult(lang, lat, lon, radius, token);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "circular", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "circular", "search", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
                 return response;
             }
 
@@ -244,7 +244,7 @@ namespace WebApi.Controllers
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 response = createCircularResult(lang, lat, lon, radius, token);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "circular", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "circular", "search", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
                 return response;
             }
             #endregion XML
@@ -297,7 +297,7 @@ namespace WebApi.Controllers
                 var json = searchservice.GetResourcesInRadiusBoundaryBoxList(lang, lat, lon, radius, token).ToList();
                 response = toJson(json, lang);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "box", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                logservices.logservices(request, response, "dbo", "json", "path", lang, token, "box", "search", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
                 return response;
             }
 
@@ -322,7 +322,7 @@ namespace WebApi.Controllers
                 var json = searchservice.GetResourcesInRadiusBoundaryBoxList(lang, lat, lon, radius, token).ToList();
                 response = toJson(json, lang);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "box", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                logservices.logservices(request, response, "dbo", "json", "query", lang, token, "box", "search", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
                 return response;
             }
             #endregion JSON
@@ -348,7 +348,7 @@ namespace WebApi.Controllers
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 response = createBoxResult(lang, lat, lon, radius, token);
                 request = HttpContext.Current.Request;  
-                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "box", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "path", lang, token, "box", "search", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
                 return response;
             }
 
@@ -372,7 +372,7 @@ namespace WebApi.Controllers
                 HttpContext.Current.Response.Cache.VaryByHeaders["accept-enconding"] = true;
                 response = createBoxResult(lang, lat, lon, radius, token);
                 request = HttpContext.Current.Request;
-                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "box", "search", lat + lat.ToString() + "/lon" + lon.ToString() + "/r" + radius.ToString());
+                logservices.logservices(request, response, "dbo", "xml", "query", lang, token, "box", "search", lat.ToString() + "/" + lon.ToString() + "/" + radius.ToString());
                 return response;
             }
             #endregion XML
