@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="GeoBlockLocation"
   DTS:PackageType="5"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{11716300-6B88-4D60-9B7C-85939DB96A9D}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{EE21B281-C0BE-4855-8FA7-79E0714757C3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
@@ -201,7 +201,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="CreatedDate">
       <DTS:VariableValue
-        DTS:DataType="7">7/26/2017 10:18:56 AM</DTS:VariableValue>
+        DTS:DataType="7">8/8/2017 11:27:11 AM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1198,6 +1198,98 @@
               </outputs>
             </component>
             <component
+              refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks"
+              componentClassID="DTSTransform.Multicast.3"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast_Blocks">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Outputs[Multicast Output 3]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location"
+              componentClassID="DTSTransform.Multicast.3"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast_Location">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Outputs[Multicast Output 4]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 4"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Outputs[Multicast Output 5]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 5"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Outputs[Multicast Output 3]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip"
               componentClassID="DTSAdapter.OLEDBDestination.3"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -1442,6 +1534,352 @@
                       refId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB_Dest_CityLocation"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[geo].[CityLocation]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].Columns[locId]"
+                      cachedDataType="i8"
+                      cachedName="locId"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[locId]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[locId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].Columns[country]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="country"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[country]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].Columns[region]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="region"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[region]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[region]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="city"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[city]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].Columns[postalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="postalCode"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[postalCode]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[postalCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].Columns[latitude]"
+                      cachedDataType="numeric"
+                      cachedName="latitude"
+                      cachedPrecision="18"
+                      cachedScale="8"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[latitude]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[latitude]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].Columns[longitude]"
+                      cachedDataType="numeric"
+                      cachedName="longitude"
+                      cachedPrecision="18"
+                      cachedScale="8"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[longitude]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[longitude]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].Columns[metroCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="metroCode"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[metroCode]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[metroCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].Columns[areaCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="areaCode"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[areaCode]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output].Columns[areaCode]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[locId]"
+                      dataType="i8"
+                      name="locId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      dataType="wstr"
+                      length="50"
+                      name="country" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[region]"
+                      dataType="wstr"
+                      length="50"
+                      name="region" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      dataType="wstr"
+                      length="255"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[postalCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="postalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[latitude]"
+                      dataType="numeric"
+                      name="latitude"
+                      precision="18"
+                      scale="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[longitude]"
+                      dataType="numeric"
+                      name="longitude"
+                      precision="18"
+                      scale="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[metroCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="metroCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input].ExternalColumns[areaCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="areaCode" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB_Dest_load_CityBlocaks"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[geo].[CityBlocks]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.RAM]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.RAM]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input].Columns[startIpNum]"
+                      cachedDataType="i8"
+                      cachedName="startIpNum"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input].ExternalColumns[startIpNum]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Blocks.Outputs[Flat File Source Output].Columns[startIpNum]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input].Columns[endIpNum]"
+                      cachedDataType="i8"
+                      cachedName="endIpNum"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input].ExternalColumns[endIpNum]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Blocks.Outputs[Flat File Source Output].Columns[endIpNum]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input].Columns[locId]"
+                      cachedDataType="i8"
+                      cachedName="locId"
+                      externalMetadataColumnId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input].ExternalColumns[locId]"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Blocks.Outputs[Flat File Source Output].Columns[locId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input].ExternalColumns[startIpNum]"
+                      dataType="i8"
+                      name="startIpNum" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input].ExternalColumns[endIpNum]"
+                      dataType="i8"
+                      name="endIpNum" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input].ExternalColumns[locId]"
+                      dataType="i8"
+                      name="locId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1909,12 +2347,12 @@
               startId="Package\Data Flow Task Update Table Geo-Canada\Derived Column CreatedDate.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow Task Update Table Geo-Canada.Paths[Flat File Source Output]"
-              endId="Package\Data Flow Task Update Table Geo-Canada\Blocks Row Count.Inputs[Row Count Input 1]"
+              endId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Inputs[Multicast Input 1]"
               name="Flat File Source Output"
               startId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Blocks.Outputs[Flat File Source Output]" />
             <path
               refId="Package\Data Flow Task Update Table Geo-Canada.Paths[Flat File Source Output1]"
-              endId="Package\Data Flow Task Update Table Geo-Canada\Location Row Count.Inputs[Row Count Input 1]"
+              endId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Inputs[Multicast Input 1]"
               name="Flat File Source Output"
               startId="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location.Outputs[Flat File Source Output]" />
             <path
@@ -1922,6 +2360,26 @@
               endId="Package\Data Flow Task Update Table Geo-Canada\Canadaip Row Count.Inputs[Row Count Input 1]"
               name="Merge Join Output"
               startId="Package\Data Flow Task Update Table Geo-Canada\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Data Flow Task Update Table Geo-Canada.Paths[Multicast Output 1]"
+              endId="Package\Data Flow Task Update Table Geo-Canada\Blocks Row Count.Inputs[Row Count Input 1]"
+              name="Multicast Output 1"
+              startId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\Data Flow Task Update Table Geo-Canada.Paths[Multicast Output 11]"
+              endId="Package\Data Flow Task Update Table Geo-Canada\Location Row Count.Inputs[Row Count Input 1]"
+              name="Multicast Output 1"
+              startId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\Data Flow Task Update Table Geo-Canada.Paths[Multicast Output 2]"
+              endId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 2"
+              startId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\Data Flow Task Update Table Geo-Canada.Paths[Multicast Output 21]"
+              endId="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 2"
+              startId="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location.Outputs[Multicast Output 2]" />
             <path
               refId="Package\Data Flow Task Update Table Geo-Canada.Paths[Row Count Output 1]"
               endId="Package\Data Flow Task Update Table Geo-Canada\Sort locid.Inputs[Sort Input]"
@@ -2067,19 +2525,19 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Execute SQL Task Truncate Table Geo-Canada"
+      DTS:refId="Package\Execute SQL Task Truncate Table Geo-CanadaIP_CityBlocks_CityLocation"
       DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{FC41DBDE-0A68-4B10-8EFB-928CA85D6743}"
       DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Execute SQL Task Truncate Table Geo-Canada"
+      DTS:ObjectName="Execute SQL Task Truncate Table Geo-CanadaIP_CityBlocks_CityLocation"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{0AB89A4E-FF04-48AE-B2D9-240747967EEC}"
-          SQLTask:SqlStatementSource="Truncate Table [geo].[Canadaip];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="Truncate Table [geo].[Canadaip];&#xA;Truncate Table [geo].[CityBlocks];&#xA;Truncate Table [geo].[CityLocation];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -2104,7 +2562,7 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{62275C60-13E3-437C-B8DF-FCD99D6BF564}"
-      DTS:From="Package\Execute SQL Task Truncate Table Geo-Canada"
+      DTS:From="Package\Execute SQL Task Truncate Table Geo-CanadaIP_CityBlocks_CityLocation"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\Data Flow Task Update Table Geo-Canada" />
@@ -2206,8 +2664,8 @@
           Id="Package\Execute SQL Task Restore_currently_configured_value_for_this_feature"
           TopLeft="159.444444444444,622.75" />
         <NodeLayout
-          Size="417,42"
-          Id="Package\Execute SQL Task Truncate Table Geo-Canada"
+          Size="424,42"
+          Id="Package\Execute SQL Task Truncate Table Geo-CanadaIP_CityBlocks_CityLocation"
           TopLeft="159.444444444444,47" />
         <NodeLayout
           Size="417,42"
@@ -2215,7 +2673,7 @@
           TopLeft="159.444444444444,458.25" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="367.944444444444,89">
+          TopLeft="369.694444444444,89">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2398,199 +2856,75 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="244,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip"
-          TopLeft="204,650" />
-        <NodeLayout
-          Size="184,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Blocks"
-          TopLeft="384,41" />
-        <NodeLayout
           Size="130,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Merge Join"
-          TopLeft="250,381" />
-        <NodeLayout
-          Size="126,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\Sort  locid"
-          TopLeft="110,262" />
-        <NodeLayout
-          Size="216,42"
-          Id="Package\Data Flow Task Update Table Geo-Canada\Conditional Split Filter out CA"
-          TopLeft="67,184" />
+          TopLeft="827,432" />
         <NodeLayout
           Size="123,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Sort locid"
-          TopLeft="412,247" />
+          TopLeft="1003,291" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Blocks"
+          TopLeft="990,66" />
         <NodeLayout
           Size="173,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Location Row Count"
-          TopLeft="86,104" />
+          TopLeft="623,222" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Conditional Split Filter out CA"
+          TopLeft="617,295" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Sort  locid"
+          TopLeft="643,370" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip"
+          TopLeft="788,685" />
         <NodeLayout
           Size="177,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Canadaip Row Count"
-          TopLeft="223,466" />
+          TopLeft="798,512" />
         <NodeLayout
           Size="216,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Derived Column CreatedDate"
-          TopLeft="218,547" />
+          TopLeft="789,597" />
         <NodeLayout
           Size="163,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Blocks Row Count"
-          TopLeft="409,145" />
+          TopLeft="990,212" />
         <NodeLayout
           Size="194,42"
           Id="Package\Data Flow Task Update Table Geo-Canada\Flat File Source Location"
-          TopLeft="80,29" />
-        <EdgeLayout
-          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Merge Join Output]"
-          TopLeft="313.25,423">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Flat File Source Output1]"
-          TopLeft="174.75,71">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,33"
-              Start="0,0"
-              End="0,25.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Flat File Source Output]"
-          TopLeft="476,83">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="14.5,62"
-              Start="0,0"
-              End="14.5,54.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,27"
-                    Point2="0,31"
-                    Point3="4,31" />
-                  <mssgle:LineSegment
-                    End="10.5,31" />
-                  <mssgle:CubicBezierSegment
-                    Point1="10.5,31"
-                    Point2="14.5,31"
-                    Point3="14.5,35" />
-                  <mssgle:LineSegment
-                    End="14.5,54.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Derived Column Output]"
-          TopLeft="326,589">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,61"
-              Start="0,0"
-              End="0,53.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,53.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[CA]"
-          TopLeft="174,226">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,36"
-              Start="0,0"
-              End="0,28.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-6.866328125,9.48291015625,13.73265625,9.5341796875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="629,66" />
         <EdgeLayout
           Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Sort Output1]"
-          TopLeft="473.5,289">
+          TopLeft="1064.5,333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-138.166666666667,92"
+              EndConnector="-152.166666666667,99"
               Start="0,0"
-              End="-138.166666666667,84.5">
+              End="-152.166666666667,91.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.5288753799392" />
+                    End="0,54.677811550152" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,50.5288753799392"
-                    Point2="0,54.5288753799392"
-                    Point3="-4,54.5288753799392" />
+                    Point1="0,54.677811550152"
+                    Point2="0,58.677811550152"
+                    Point3="-4,58.677811550152" />
                   <mssgle:LineSegment
-                    End="-134.166666666667,54.5288753799392" />
+                    End="-148.166666666667,58.677811550152" />
                   <mssgle:CubicBezierSegment
-                    Point1="-134.166666666667,54.5288753799392"
-                    Point2="-138.166666666667,54.5288753799392"
-                    Point3="-138.166666666667,58.5288753799392" />
+                    Point1="-148.166666666667,58.677811550152"
+                    Point2="-152.166666666667,58.677811550152"
+                    Point3="-152.166666666667,62.677811550152" />
                   <mssgle:LineSegment
-                    End="-138.166666666667,84.5" />
+                    End="-152.166666666667,91.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2601,30 +2935,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Sort Output]"
-          TopLeft="173,304">
+          TopLeft="769,391">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="121.666666666667,77"
+              EndConnector="58,62"
               Start="0,0"
-              End="121.666666666667,69.5">
+              End="50.5,62">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.6382978723404" />
+                    End="25,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,41.6382978723404"
-                    Point2="0,45.6382978723404"
-                    Point3="4,45.6382978723404" />
+                    Point1="25,0"
+                    Point2="29,0"
+                    Point3="29,4" />
                   <mssgle:LineSegment
-                    End="117.666666666667,45.6382978723404" />
+                    End="29,58" />
                   <mssgle:CubicBezierSegment
-                    Point1="117.666666666667,45.6382978723404"
-                    Point2="121.666666666667,45.6382978723404"
-                    Point3="121.666666666667,49.6382978723404" />
+                    Point1="29,58"
+                    Point2="29,62"
+                    Point3="33,62" />
                   <mssgle:LineSegment
-                    End="121.666666666667,69.5" />
+                    End="50.5,62" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2635,30 +2969,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Row Count Output 12]"
-          TopLeft="311.5,508">
+          TopLeft="886.5,554">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="14.5,39"
+              EndConnector="10.5,43"
               Start="0,0"
-              End="14.5,31.5">
+              End="10.5,35.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.5" />
+                    End="0,17.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15.5"
-                    Point2="0,19.5"
-                    Point3="4,19.5" />
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="4,21.5" />
                   <mssgle:LineSegment
-                    End="10.5,19.5" />
+                    End="6.5,21.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="10.5,19.5"
-                    Point2="14.5,19.5"
-                    Point3="14.5,23.5" />
+                    Point1="6.5,21.5"
+                    Point2="10.5,21.5"
+                    Point3="10.5,25.5" />
                   <mssgle:LineSegment
-                    End="14.5,31.5" />
+                    End="10.5,35.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2669,7 +3003,63 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Row Count Output 11]"
-          TopLeft="173.75,146">
+          TopLeft="709.5,264">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.5,31"
+              Start="0,0"
+              End="15.5,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="11.5,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.5,15.5"
+                    Point2="15.5,15.5"
+                    Point3="15.5,19.5" />
+                  <mssgle:LineSegment
+                    End="15.5,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Row Count Output 1]"
+          TopLeft="1068,254">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Merge Join Output]"
+          TopLeft="889.25,474">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2690,31 +3080,227 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Row Count Output 1]"
-          TopLeft="490.5,187">
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Derived Column Output]"
+          TopLeft="897,639">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-17,60"
+              EndConnector="13,46"
               Start="0,0"
-              End="-17,52.5">
+              End="13,38.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26" />
+                    End="0,19" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="4,23" />
                   <mssgle:LineSegment
-                    End="-13,30" />
+                    End="9,23" />
                   <mssgle:CubicBezierSegment
-                    Point1="-13,30"
-                    Point2="-17,30"
-                    Point3="-17,34" />
+                    Point1="9,23"
+                    Point2="13,23"
+                    Point3="13,27" />
                   <mssgle:LineSegment
-                    End="-17,52.5" />
+                    End="13,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[CA]"
+          TopLeft="725,337">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19,33"
+              Start="0,0"
+              End="-19,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5"
+                    Point2="0,16.5"
+                    Point3="-4,16.5" />
+                  <mssgle:LineSegment
+                    End="-15,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15,16.5"
+                    Point2="-19,16.5"
+                    Point3="-19,20.5" />
+                  <mssgle:LineSegment
+                    End="-19,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.366328125,21.5,13.73265625,9.5341796875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Multicast_Blocks"
+          TopLeft="999,143" />
+        <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Flat File Source Output]"
+          TopLeft="1079.5,108">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Multicast Output 1]"
+          TopLeft="1074.25,185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks"
+          TopLeft="1223,146" />
+        <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Multicast Output 2]"
+          TopLeft="1155,165.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="68,0"
+              Start="0,0"
+              End="60.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="60.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\Multicast_Location"
+          TopLeft="639,146" />
+        <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Flat File Source Output1]"
+          TopLeft="724,108">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Multicast Output 11]"
+          TopLeft="722,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12.5,34"
+              Start="0,0"
+              End="-12.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="-4,17" />
+                  <mssgle:LineSegment
+                    End="-8.5,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8.5,17"
+                    Point2="-12.5,17"
+                    Point3="-12.5,21" />
+                  <mssgle:LineSegment
+                    End="-12.5,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation"
+          TopLeft="408,150" />
+        <EdgeLayout
+          Id="Package\Data Flow Task Update Table Geo-Canada.Paths[Multicast Output 21]"
+          TopLeft="639,169">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-30,0"
+              Start="0,0"
+              End="-22.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-22.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2728,6 +3314,32 @@
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Data Flow Task Update Table Geo-Canada\OLE DB Destination table Canadaip">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_load_CityBlocaks">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task Update Table Geo-Canada\OLEDB_Dest_CityLocation">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

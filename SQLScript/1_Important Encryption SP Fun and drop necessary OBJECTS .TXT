@@ -6918,7 +6918,7 @@ BEGIN
 		FROM [GoogleLocation] as g join Province as p  on p.ProvinceID  = g.[GoogleProvinceID] 
 		WHERE G.googlelocationID = @CID
 END
-
+go
 
 
 
@@ -7073,7 +7073,7 @@ WHERE A.[MAP] = @t and a.LanguageOfRecord  = @lang  AND SC.Active = 1  AND TC.Ac
 ORDER BY  a.TOPCategoryID,  a.SubCategoryID 
 --a.PhysicalProvinceID, a.PhysicalCityID,
 END
-
+go
 
 
 
@@ -7110,7 +7110,7 @@ BEGIN
 			SELECT RTRIM(LTRIM(c.[country])) as country FROM [geo].[canadaip] as c WHERE c.[start_ip] <= @ip AND  @ip <= c.[end_ip]
 		END
 END
-
+go
 
 
 
@@ -7188,19 +7188,693 @@ BEGIN
 	DECLARE @aclid int = -1;
 	DECLARE @aclName NVARCHAR(255);
 	SELECT @aclid = [ACLID] FROM [dbo].AccessControlList WHERE [ACLToken]=@token;
-	SELECT @aclName = [ACLName] FROM [dbo].AccessControlList WHERE [ACLToken]=@token;
+	
+	IF (@aclid = -1) AND (@csmethod = 'POST')  select @aclname = 'KHP' ;
+
+	SELECT  @aclName = case 
+						when [ACLName] = 'BlancLabs' then 'KHP'
+						else [aclName] 
+						end     
+	FROM [dbo].AccessControlList WHERE [ACLToken]=@token;
+
+
+	-- location info
+	DECLARE @IPNUM BIGINT
+	DECLARE @COUNTRY NVARCHAR(50)
+	DECLARE @REGION NVARCHAR(50)
+	DECLARE @CITY NVARCHAR(255)
+	DECLARE @LATITUDE NUMERIC (18,10)
+	DECLARE @LONGITUDE NUMERIC (18,10)
+
+	SELECT @IPNUM = [dbo].[fn_Ipv4_to_int] (@csip);
+	select top(1)	@COUNTRY = l.country,
+					@REGION = l.region,
+					@CITY = l.city,
+					@LATITUDE = l.latitude, 
+					@LONGITUDE = l.longitude
+	from geo.cityblocks as b join geo.citylocation as l on b.locid = l.locid
+	where b.startipnum<= @ipnum and @ipnum <=b.endipnum
 
 
 
+	-- Insert log record
 INSERT INTO apilog
-             (dbschema, csmethod, [format],[para],[lang], aclid, aclname, cscontent, csendpoint, keywords, [csip], [csstatus], [cscode], cshost, csurl, csuseragent)
-VALUES        (@dbschema,@csmethod,@format,@para,@lang,@aclid,@aclname,@cscontent,@csendpoint,@keywords,@csip,@csstatus,@cscode,@cshost,@csurl, @csuseragent)
+             (dbschema, csmethod, [format],[para],[lang], aclid, aclname, cscontent, csendpoint, keywords, 
+			 [csip], [cscountry], [csregion], [cscity], [latitude], [longitude],
+			 [csstatus], [cscode], cshost, csurl, csuseragent)
+VALUES        (@dbschema,@csmethod,@format,@para,@lang,@aclid,@aclname,@cscontent,@csendpoint,@keywords,
+				@csip, @COUNTRY, @REGION, @CITY, @LATITUDE, @LONGITUDE,
+				@csstatus,@cscode,@cshost,@csurl, @csuseragent)
+				
+END
+go
+
+
+
+
+
+
+
+
+
+
+
+
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type IN (N'FN', N'IF', N'TF') AND name = 'fn_Ipv4_to_int')
+DROP FUNCTION fn_Ipv4_to_int 
+GO
+
+-- =============================================
+-- Author:		William Chen
+-- Create date: July 26, 2017
+-- Description:	Convert ipv4 address to a integer
+-- =============================================
+CREATE FUNCTION fn_Ipv4_to_int 
+(
+	-- Add the parameters for the function here
+	@ipv4 nvarchar(50)
+)
+RETURNS bigint
+WITH ENCRYPTION
+AS
+BEGIN
+	-- Declare the return variable here
+	DECLARE @intip bigint;
+
+	-- Add the T-SQL statements to compute the return value here
+	SELECT @intip = (((CONVERT([bigint],parsename(@ipv4,(4)))*(16777216)+CONVERT([bigint],parsename(@ipv4,(3)))*(65536))+CONVERT([bigint],parsename(@ipv4,(2)))*(256))+CONVERT([bigint],parsename(@ipv4,(1))))
+
+	-- Return the result of the function
+	RETURN @intip
 
 END
+GO
 
 
 
 
+IF EXISTS (SELECT * FROM sys.objects WHERE type IN (N'FN', N'IF', N'TF') AND name = 'fn_lastmonth_endday')
+DROP FUNCTION fn_lastmonth_endday
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		William Chen
+-- Create date: Aug.3, 2017
+-- Description:	Get last month end day
+-- =============================================
+CREATE FUNCTION fn_lastmonth_endday 
+(
+
+)
+RETURNS DATE
+AS
+BEGIN
+	-- Declare the return variable here
+	DECLARE @lastmonth_endday DATE
+
+	-- Add the T-SQL statements to compute the return value here
+	SELECT @lastmonth_endday = DATEADD(mm, 1, DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) - 1, 0))
+
+	-- Return the result of the function
+	RETURN @lastmonth_endday
+
+END
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type IN (N'FN', N'IF', N'TF') AND name = 'fn_lastmonth_startday')
+DROP FUNCTION fn_lastmonth_startday
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		William Chen	
+-- Create date: Aug.3, 2017
+-- Description:	get last month start day
+-- =============================================
+CREATE FUNCTION fn_lastmonth_startday
+(
+ 
+)
+RETURNS date
+AS
+BEGIN
+	-- Declare the return variable here
+	DECLARE @lastmonth_startday DATE
+
+	-- Add the T-SQL statements to compute the return value here
+	SELECT @lastmonth_startday = DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) - 1, 0)
+
+	-- Return the result of the function
+	RETURN @lastmonth_startday
+
+END
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type IN (N'FN', N'IF', N'TF') AND name = 'fn_lastweek_endday')
+DROP FUNCTION fn_lastweek_endday
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		William	Chen
+-- Create date: Aug.3, 2017
+-- Description:	Get last week end day
+-- =============================================
+CREATE FUNCTION fn_lastweek_endday 
+(
+ 
+)
+RETURNS DATE
+AS
+BEGIN
+	-- Declare the return variable here
+	DECLARE @lastweek_endday date 
+
+	-- Add the T-SQL statements to compute the return value here
+	SELECT @lastweek_endday =  DATEADD(day, 1 - DATEPART(dw, GETDATE()), CONVERT(date, GETDATE()))
+
+	-- Return the result of the function
+	RETURN @lastweek_endday
+
+END
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type IN (N'FN', N'IF', N'TF') AND name = 'fn_lastweek_startday')
+DROP FUNCTION fn_lastweek_startday
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date:  Aug. 3, 2017
+-- Description:	 get last week start day
+-- =============================================
+CREATE FUNCTION fn_lastweek_startday
+(
+
+)
+RETURNS DATE 
+AS
+BEGIN
+	-- Declare the return variable here
+	DECLARE @lastweek_startday DATE
+
+	-- Add the T-SQL statements to compute the return value here
+	SELECT @lastweek_startday = DATEADD(day, - (DATEPART(dw, GETDATE()) + 6), CONVERT(date, GETDATE()))
+
+	-- Return the result of the function
+	RETURN @lastweek_startday
+
+END
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type IN (N'FN', N'IF', N'TF') AND name = 'fn_get_TopcategoryID_from_Log_keywords')
+DROP FUNCTION fn_get_TopcategoryID_from_Log_keywords
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date, ,>
+-- Description:	Get TopCategory ID from table apilog, column keywords 
+-- =============================================
+CREATE FUNCTION fn_get_TopcategoryID_from_Log_keywords 
+(
+@apilogid int
+)
+RETURNS int
+WITH ENCRYPTION
+AS
+BEGIN
+ 
+	 --  @s 待分拆的字符串 
+DECLARE @s NVARCHAR(4000);
+select @s=[KeyWords] from [dbo].[apilog] where apilogid  = @apilogid;
+
+  --数据分隔符
+ DECLARE @splitlen int;
+ SET @splitlen=LEN('/'+'a')-2;
+
+ declare @T_KEYWORD table
+ (
+
+ keyword nvarchar(50)
+ )
+;WHILE CHARINDEX('/',@s)>0
+ BEGIN
+
+	if (not exists (select KEYWORD from @T_KEYWORD where KEYWORD =   LEFT(@s,CHARINDEX('/',@s)-1) ) AND LEN(@s) >1  )
+		INSERT into  @T_KEYWORD  (KEYWORD) VALUES(LEFT(@s,CHARINDEX('/',@s)-1) )  ;
+ 
+	SET @s=RTRIM(LTRIM(STUFF(@s,1,CHARINDEX('/',@s)+@splitlen,'')));
+ 
+ END;
+
+ if ( not exists (select KEYWORD from  @T_KEYWORD where KEYWORD = @s) AND LEN(@s) >1 )
+ INSERT into  @T_KEYWORD  (KEYWORD) VALUES( @s);
+
+ declare @tid int
+-- Return the result of the function
+select TOP(1) @tid = Convert(int,KEYWORD) from @T_KEYWORD 
+
+RETURN   @tid
+
+END
+GO
+
+
+
+
+
+
+
+
+
+
+----
+-- view: read last week api unique access by topcategory 
+----
+IF object_id(N'V_Lastweek_Browse_By_Category', 'V') IS NOT NULL
+	DROP VIEW V_Lastweek_Browse_By_Category
+GO
+
+CREATE VIEW V_Lastweek_Browse_By_Category AS
+select a.num, a. tid, t.TopCategory, 
+case t.TopCategory
+when 'Health' then 'Health'
+when 'Indigenous Support Services' then 'Indigenous'
+when 'Drugs, Alcohol and Gambling Support' then 'Drugs'
+when 'Counselling and Mental Health Support' then 'Counselling'
+when 'Legal and Advocacy Support' then 'Legal'
+when 'Housing and Homelessness Support' then 'Housing'
+when 'Jobs Support' then 'Job'
+when 'Violence and Abuse Support' then 'Violence'
+when 'LGBTQ Support Services' then 'LGBTQ'
+end as category
+ from Topcategory as t
+join 
+  (
+  select Count(api.apilogid) as Num,  kws.TID
+ from apilog as api cross apply
+ (select [dbo].[fn_get_TopcategoryID_from_Log_keywords] (api.apilogid) as [TID]) as kws
+ where api.cscontent ='unique' AND 
+ (logdate >= [dbo].[fn_lastweek_startday]()  and logdate <[dbo].[fn_lastweek_endday]())
+ group by kws.TID
+ ) as a
+ on t.topcategoryId = a.TID
+ ;
+Go
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ --
+ --  view: last month unique browsed by topcategory 
+ --
+ IF object_id(N'V_LastMonth_Browse_By_Category', 'V') IS NOT NULL
+	DROP VIEW V_LastMonth_Browse_By_Category
+GO
+
+CREATE VIEW V_LastMonth_Browse_By_Category AS
+select a.num, a. tid, t.TopCategory, 
+case t.TopCategory
+when 'Health' then 'Health'
+when 'Indigenous Support Services' then 'Indigenous'
+when 'Drugs, Alcohol and Gambling Support' then 'Drugs'
+when 'Counselling and Mental Health Support' then 'Counselling'
+when 'Legal and Advocacy Support' then 'Legal'
+when 'Housing and Homelessness Support' then 'Housing'
+when 'Jobs Support' then 'Job'
+when 'Violence and Abuse Support' then 'Violence'
+when 'LGBTQ Support Services' then 'LGBTQ'
+end as category
+ from Topcategory as t
+join 
+  (
+  select Count(api.apilogid) as Num,  kws.TID
+ from apilog as api cross apply
+ (select [dbo].[fn_get_TopcategoryID_from_Log_keywords] (api.apilogid) as [TID]) as kws
+ where api.cscontent ='unique' AND 
+ (logdate >= [dbo].[fn_lastMonth_startday]()  and logdate <[dbo].[fn_lastMonth_endday]())
+ group by kws.TID
+ ) as a
+ on t.topcategoryId = a.TID
+ 
+ GO
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+IF object_id(N'V_LastWeek_Call', 'V') IS NOT NULL
+	DROP VIEW V_LastWeek_Call
+GO
+CREATE VIEW [dbo].[V_LastWeek_Call]
+WITH ENCRYPTION
+AS
+SELECT         dbo.fn_lastweek_startday() as [From], dateadd(dd,-1,dbo.fn_lastweek_endday()) as [To] ,
+a.All_lastweek, b.All_lastweek_lastYear, c.English_lastweek, d.English_lastweek_lastYear, e.French_lastweek, f.French_lastweek_lastYear, k.KHP_Lastweek,kl.KHP_Lastweek_LastYear, CAMH_LastWeek, CAMH_LastWeek_LastYear, [Other_LastWeek],[Other_LastWeek_LastYear]
+FROM            (SELECT        'a' AS l, COUNT(*) AS All_lastweek
+                          FROM            dbo.apilog
+                          WHERE        (logdate >= dbo.fn_lastweek_startday()) AND (logdate < dbo.fn_lastweek_endday())) AS a INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS All_lastweek_lastYear
+                               FROM            dbo.apilog AS apilog_5
+                               WHERE        (logdate >= DATEADD(year, - 1, dbo.fn_lastweek_startday())) AND (logdate < DATEADD(year, - 1, dbo.fn_lastweek_endday()))) AS b ON a.l = b.l INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS English_lastweek
+                               FROM            dbo.apilog AS apilog_4
+                               WHERE        (lang <> 'fr' OR
+                                                         lang IS NULL) AND (logdate >= dbo.fn_lastweek_startday()) AND (logdate < dbo.fn_lastweek_endday())) AS c ON a.l = c.l INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS English_lastweek_lastYear
+                               FROM            dbo.apilog AS apilog_3
+                               WHERE        (lang <> 'fr' OR
+                                                         lang IS NULL) AND (logdate >= DATEADD(year, - 1, dbo.fn_lastweek_startday())) AND (logdate < DATEADD(year, - 1, dbo.fn_lastweek_endday()))) AS d ON a.l = d.l INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS French_lastweek
+                               FROM            dbo.apilog AS apilog_2
+                               WHERE        (lang = 'fr') AND (logdate >= dbo.fn_lastweek_startday()) AND (logdate < dbo.fn_lastweek_endday())) AS e ON a.l = e.l INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS French_lastweek_lastYear
+                               FROM            dbo.apilog AS apilog_1
+                               WHERE        (lang = 'fr') AND (logdate >= DATEADD(year, - 1, dbo.fn_lastweek_startday())) AND (logdate < DATEADD(year, - 1, dbo.fn_lastweek_endday()))) AS f ON a.l = f.l   INNER JOIN
+
+							   (
+							   select 'a' as l , count(*) as KHP_Lastweek from dbo.apilog as a1  where  (logdate >= dbo.fn_lastweek_startday() and logdate <dbo.fn_lastweek_endday()) and  a1.aclname = 'KHP'  
+							   ) as k on a.l = k.l  INNER JOIN 
+							   (
+							   select 'a' as l, count(*) as KHP_Lastweek_LastYear from apilog as a2 where (logdate >= DATEADD(year, - 1, dbo.fn_lastweek_startday())) AND (logdate < DATEADD(year, - 1, dbo.fn_lastweek_endday()))  and a2.aclname = 'KHP'  
+							   ) as kl on a.l = kl.l INNER JOIN
+							   (
+							   select 'a' as l, count(*) as [CAMH_LastWeek] from apilog where (logdate >= [dbo].[fn_lastweek_startday]() AND logdate <[dbo].[fn_lastweek_endday]()) AND (aclname = 'CAMH' or aclname is null  )
+							   ) as CAMH on a.l = camh.l  INNER JOIN
+							   (
+							   select 'a' as l, count(*) as [CAMH_LastWeek_LastYear] from apilog where (logdate >= DATEADD(year,-1,[dbo].[fn_lastweek_startday]()) AND logdate <DATEADD(Year,-1,[dbo].[fn_lastweek_endday]())) AND (aclname = 'CAMH' or aclname is null  )
+							   )as CAMH_L on a.l = CAMH_L.l INNER JOIN 
+							   (
+							   select 'a' as l, count(*) as [Other_LastWeek] from apilog where (logdate >= [dbo].[fn_lastweek_startday]() AND logdate <[dbo].[fn_lastweek_endday]()) AND (aclname = 'Unknown' or aclname is null )
+							   ) as u on a.l = u.l  INNER JOIN
+							   (
+							   select 'a' as l, count(*) as [Other_LastWeek_LastYear] from apilog where (logdate >= [dbo].[fn_lastweek_startday]() AND logdate <[dbo].[fn_lastweek_endday]()) AND (aclname = 'Unknown' or aclname is null )
+							   ) as ul on a.l = ul.l
+Go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-last month*/
+IF object_id(N'V_LastMonth_Call', 'V') IS NOT NULL
+	DROP VIEW V_LastMonth_Call
+CREATE VIEW [dbo].[V_LastMonth_Call]
+WITH ENCRYPTION
+AS
+SELECT   DATEADD(year, - 1, dbo.fn_lastmonth_startday()) as [From] ,      Dateadd(dd,-1,DATEADD(year, - 1, dbo.fn_lastmonth_endday())) as [To],
+       a.All_lastMonth, b.All_lastMonth_lastYear, c.English_lastMonth, d.English_lastMonth_latyear, e.French_lastMonth, f.French_lastMonth_lastyear,KHP_LastMonth,KHP_LastMonth_LastYear,CAMH_LastMonth,CAMH_LastMonth_LastYear,Other_LastMonth,Other_LastMonth_LastYear
+FROM            (SELECT        'a' AS l, COUNT(*) AS All_lastMonth
+                          FROM            dbo.apilog
+                          WHERE        (logdate >= dbo.fn_lastmonth_startday()) AND (logdate < dbo.fn_lastmonth_endday())) AS a INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS All_lastMonth_lastYear
+                               FROM            dbo.apilog AS apilog_5
+                               WHERE        (logdate >= DATEADD(year, - 1, dbo.fn_lastmonth_startday())) AND (logdate < DATEADD(year, - 1, dbo.fn_lastmonth_endday()))) AS b ON a.l = b.l INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS English_lastMonth
+                               FROM            dbo.apilog AS apilog_4
+                               WHERE        (lang <> 'fr' OR
+                                                         lang IS NULL) AND (logdate >= dbo.fn_lastmonth_startday()) AND (logdate < dbo.fn_lastmonth_endday())) AS c ON a.l = c.l INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS English_lastMonth_latyear
+                               FROM            dbo.apilog AS apilog_3
+                               WHERE        (lang <> 'fr' OR
+                                                         lang IS NULL) AND (logdate >= DATEADD(year, - 1, dbo.fn_lastmonth_startday())) AND (logdate < DATEADD(year, - 1, dbo.fn_lastmonth_endday()))) AS d ON a.l = d.l INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS French_lastMonth
+                               FROM            dbo.apilog AS apilog_2
+                               WHERE        (lang = 'fr') AND (logdate >= dbo.fn_lastmonth_startday()) AND (logdate < dbo.fn_lastmonth_endday())) AS e ON a.l = e.l INNER JOIN
+                             (SELECT        'a' AS l, COUNT(*) AS French_lastMonth_lastyear
+                               FROM            dbo.apilog AS apilog_1
+                               WHERE        (lang = 'fr') AND (logdate >= DATEADD(year, - 1, dbo.fn_lastmonth_startday())) AND (logdate < DATEADD(year, - 1, dbo.fn_lastmonth_endday()))) AS f ON a.l = f.l INNER JOIN
+							   							   (
+							   select 'a' as l , count(*) as KHP_LastMonth from dbo.apilog as a1  where  (logdate >= dbo.fn_lastmonth_startday() and logdate <dbo.fn_lastmonth_endday()) and  a1.aclname = 'KHP'  
+							   ) as k on a.l = k.l  INNER JOIN 
+							   (
+							   select 'a' as l, count(*) as KHP_LastMonth_LastYear from apilog as a2 where (logdate >= DATEADD(year, - 1, dbo.fn_LastMonth_startday())) AND (logdate < DATEADD(year, - 1, dbo.fn_LastMonth_endday()))  and a2.aclname = 'KHP'  
+							   ) as kl on a.l = kl.l INNER JOIN
+							   (
+							   select 'a' as l, count(*) as [CAMH_LastMonth] from apilog where (logdate >= [dbo].[fn_LastMonth_startday]() AND logdate <[dbo].[fn_LastMonth_endday]()) AND (aclname = 'CAMH' or aclname is null  )
+							   ) as CAMH on a.l = camh.l  INNER JOIN
+							   (
+							   select 'a' as l, count(*) as [CAMH_LastMonth_LastYear] from apilog where (logdate >= DATEADD(year,-1,[dbo].[fn_LastMonth_startday]()) AND logdate <DATEADD(Year,-1,[dbo].[fn_LastMonth_endday]())) AND (aclname = 'CAMH' or aclname is null  )
+							   )as CAMH_L on a.l = CAMH_L.l INNER JOIN 
+							   (
+							   select 'a' as l, count(*) as [Other_LastMonth] from apilog where (logdate >= [dbo].[fn_LastMonth_startday]() AND logdate <[dbo].[fn_LastMonth_endday]()) AND (aclname = 'Unknown' or aclname is null )
+							   ) as u on a.l = u.l  INNER JOIN
+							   (
+							   select 'a' as l, count(*) as [Other_LastMonth_LastYear] from apilog where (logdate >=dateadd(year,-1, [dbo].[fn_LastMonth_startday]()) AND logdate <dateadd(year,-1,[dbo].[fn_LastMonth_endday]())) AND (aclname = 'Unknown' or aclname is null )
+							   ) as ul on a.l = ul.l
+GO							   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IF object_id(N'F_Ipv4_to_int', 'V') IS NOT NULL
+	DROP VIEW F_Ipv4_to_int
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		William
+-- Create date: Aug. 7, 2017
+-- Description:	covert ipv4 string to integer 
+-- =============================================
+CREATE FUNCTION F_Ipv4_to_int
+(	
+	-- Add the parameters for the function here
+	@ipv4 nvarchar(50)
+)
+RETURNS TABLE 
+with ENCRYPTION
+AS
+RETURN 
+(
+	-- Add the SELECT statement with parameter references here
+SELECT  (((CONVERT([bigint],parsename(@ipv4,(4)))*(16777216)+CONVERT([bigint],parsename(@ipv4,(3)))*(65536))+CONVERT([bigint],parsename(@ipv4,(2)))*(256))+CONVERT([bigint],parsename(@ipv4,(1)))) as ipnum
+
+)
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ IF object_id(N'fn_get_ResourceNum_from_Log_keywords', 'V') IS NOT NULL
+	DROP VIEW fn_get_ResourceNum_from_Log_keywords
+ go
+ SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+ -- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date, ,>
+-- Description:	Get Resourcenum from table apilog, column keywords 
+-- =============================================
+ CREATE FUNCTION  [dbo].[fn_get_ResourceNum_from_Log_keywords] 
+(
+	-- Add the parameters for the function here
+@apilogid int
+)
+RETURNS nvarchar(50)
+WITH ENCRYPTION
+AS
+BEGIN
+ 
+	 --  @s 待分拆的字符串 
+DECLARE @s NVARCHAR(4000);
+select @s=[KeyWords] from [dbo].[apilog] where apilogid  = @apilogid;
+
+  --数据分隔符
+ DECLARE @splitlen int;
+ SET @splitlen=LEN('/'+'a')-2;
+
+ declare @T_KEYWORD table
+ (
+ id int IDENTITY(1,1),
+ keyword nvarchar(50)
+ )
+;WHILE CHARINDEX('/',@s)>0
+ BEGIN
+
+	if (not exists (select KEYWORD from @T_KEYWORD where KEYWORD =   LEFT(@s,CHARINDEX('/',@s)-1) ) AND LEN(@s) >1  )
+		INSERT into  @T_KEYWORD  (KEYWORD) VALUES(LEFT(@s,CHARINDEX('/',@s)-1) )  ;
+ 
+	SET @s=RTRIM(LTRIM(STUFF(@s,1,CHARINDEX('/',@s)+@splitlen,'')));
+ 
+ END;
+
+ if ( not exists (select KEYWORD from  @T_KEYWORD where KEYWORD = @s) AND LEN(@s) >1 )
+ INSERT into  @T_KEYWORD  (KEYWORD) VALUES( @s);
+
+ declare @Resourcenum Nvarchar(50)
+-- Return the result of the function
+select  @Resourcenum =  KEYWORD from @T_KEYWORD  where id=3
+
+RETURN   @Resourcenum
+END
+ GO
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 -- ======================================================================================================
 -- ======================================================================================================
 --
