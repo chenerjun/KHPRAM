@@ -7764,9 +7764,9 @@ GO
 
 
 
-
-IF object_id(N'F_Ipv4_to_int', 'V') IS NOT NULL
-	DROP VIEW F_Ipv4_to_int
+IF EXISTS (SELECT * FROM sys.objects WHERE type IN (N'FN', N'IF', N'TF') AND name = 'F_Ipv4_to_int')
+DROP FUNCTION F_Ipv4_to_int
+go
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7809,10 +7809,10 @@ GO
 
  
  
+ IF EXISTS (SELECT * FROM sys.objects WHERE type IN (N'FN', N'IF', N'TF') AND name = 'fn_get_ResourceNum_from_Log_keywords')
+DROP FUNCTION fn_get_ResourceNum_from_Log_keywords
+go
  
- IF object_id(N'fn_get_ResourceNum_from_Log_keywords', 'V') IS NOT NULL
-	DROP VIEW fn_get_ResourceNum_from_Log_keywords
- go
  SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7873,7 +7873,122 @@ END
  
  
  
+  IF object_id(N'V_LastWeek_Visted_By_Category', 'V') IS NOT NULL
+	DROP VIEW V_LastWeek_Visted_By_Category
+ go
  
+ CREATE VIEW [dbo].[V_LastWeek_Visted_By_Category] 
+ WITH ENCRYPTION
+ AS
+select isnull(cc.Num,0) + isnull(bb.num,0) as num
+, tt.TopCategoryID as tid, tt.topcategory, tt.TopcategoryAlias as category  
+from [dbo].[TopCategory] as tt 
+     left join [dbo].[V_Lastweek_Browse_By_Category]  as [bb] on tt.TopCategory = bb.TopCategory 
+     left join [dbo].[V_LastWeek_Category] as [cc] on cc.TopCategory = bb.TopCategory
+where tt.Active = 1
+GO
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+IF object_id(N'V_LastWeek_Visted_Lastyear_By_Category', 'V') IS NOT NULL
+	DROP VIEW V_LastWeek_Visted_Lastyear_By_Category
+ go
+ 
+ CREATE VIEW [dbo].[V_LastWeek_Visted_Lastyear_By_Category] 
+  with encryption
+ AS
+select isnull(cc.Num,0) + isnull(bb.num,0) as num
+, tt.TopCategoryID as tid, tt.topcategory, tt.TopcategoryAlias as category 
+from   [dbo].[TopCategory] as tt    
+       left join [dbo].[V_Lastweek_Browse_Lastyear_By_Category]  as [bb] on tt.topcategory = bb.topcategory
+       left join [dbo].[V_LastWeek_Lastyear_Category] as [cc] on cc.TopCategory = bb.TopCategory
+where tt.Active = 1  
+GO
+ 
+ 
+ 
+ 
+ 
+ 
+  
+IF object_id(N'V_LastMonth_Visted_By_Category', 'V') IS NOT NULL
+	DROP VIEW V_LastMonth_Visted_By_Category
+ go
+CREATE VIEW [dbo].[V_LastMonth_Visted_By_Category] 
+WITH ENCRYPTION
+AS
+select isnull(cc.Num,0) + isnull(bb.num,0) as num, tt.TopCategoryID as tid, tt.topcategory
+, tt.TopcategoryAlias as category 
+from dbo.TopCategory as tt
+     left join [dbo].[V_LastMonth_Browse_By_Category]  as [bb]  on tt.TopCategory = bb.TopCategory
+     left join [dbo].[V_LastMonth_Category] as [cc] on cc.TopCategory = bb.TopCategory
+where tt.Active = 1
+go
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+IF object_id(N'V_LastMonth_Visted_Lastyear_By_Category', 'V') IS NOT NULL
+	DROP VIEW V_LastMonth_Visted_Lastyear_By_Category
+ go 
+CREATE VIEW [dbo].[V_LastMonth_Visted_Lastyear_By_Category] 
+WITH ENCRYPTION
+AS
+select isnull(cc.Num,0) + isnull(bb.num,0) as num
+, tt.TopCategoryID as tid, tt.topcategory,   tt.TopcategoryAlias as category 
+from  [dbo].[TopCategory] as tt   
+     left join [dbo].[V_LastMonth_Browse_Lastyear_By_Category]  as [bb]  on tt.TopCategory = bb.TopCategory
+     left join [dbo].[V_LastMonth_Lastyear_Category] as [cc] on cc.TopCategory = bb.TopCategory
+where tt.Active = 1
+GO
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+IF object_id(N'V_All_Visted_By_Category', 'V') IS NOT NULL
+	DROP VIEW V_All_Visted_By_Category
+ go 
+CREATE VIEW [dbo].[V_All_Visted_By_Category] 
+WITH ENCRYPTION
+AS
+select ISNULL(cc.Num,0) + ISNULL(bb.num,0) as num, tt.TopCategoryID as tid, tt.topcategory
+, tt.TopcategoryAlias as category 
+from  [dbo].TopCategory as tt
+	left join  [dbo].[V_All_Browse_By_Category]  as [bb]   on tt.TopCategory = bb.TopCategory
+    left join [dbo].[V_All_Category] as [cc]  on cc.TopCategory = bb.TopCategory 
+where tt.Active = 1
+GO
+
+
+
+
+
+
  
 -- ======================================================================================================
 -- ======================================================================================================
