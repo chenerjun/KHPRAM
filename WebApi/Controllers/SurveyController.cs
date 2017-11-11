@@ -8,7 +8,6 @@ using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WebApi.Filters;
 using System.Collections.Generic;
 using System.Web.Http.Cors;
 
@@ -27,7 +26,13 @@ namespace WebApi.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="_survey">surveyType_ID: 1=Pre Survey; 2=Post Survey ; _surveyQuestion_ID; _chatid</param>
+        /// <param name="_survey">Collection of answers</param>
+        /// <param name="_surveyQuestion_ID">_surveyQuestion_ID</param>
+        /// <param name="_surveyAnswer">survey Answer(s)</param>
+        /// <param name="_chatID">ChatID:from ChatApp</param>
+        /// <param name="language">survey language, English, French</param>
+        /// <param name="surveyAnswer_Device">Answer device, useragent or short in Mobile, laptop etc </param>
+        /// <param name="token">Access Token</param>
         /// <returns></returns>
         [ResponseType(typeof(answer))]
         [Route("api/v2/survey/answer")]
