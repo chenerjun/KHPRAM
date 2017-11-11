@@ -54,7 +54,14 @@ namespace WebApi
             //  [EnableCors(origins: "http://localhost:59452", headers: "*", methods: "*")]
             //  You can add multiple origins by separating them with commas:
             //  [EnableCors(origins: "http://localhost:59452,http://localhost:25495,http://localhost:8080", headers: "*", methods: "*")]
-            var cors = new EnableCorsAttribute(allowdomain, "*", "*");
+            var cors = new EnableCorsAttribute(allowdomain, "*", "*")
+            {
+                SupportsCredentials = true
+            };
+            // 上面{SupportsCredentials = true}是为FoundryBC的要求加的 ， 以前没有这行code
+            //cors.SupportsCredentials = true;  // 或写成 <-- 应该也行  2017-11-1 add for FoundryBC
+            //upportsCredentials = true; EnableCorsAttribute(allowdomain, "*", "*") 里面的不能是* 通配符
+
             config.EnableCors(cors);
 
 

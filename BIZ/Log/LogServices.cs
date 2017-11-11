@@ -11,7 +11,8 @@ namespace BIZ.Log
     {
 
         private RAMEntities db = new RAMEntities();
-        public void logservices(HttpRequest request, HttpResponseMessage response, string dbschema, string format, string para, string lang, string token, string cscontent, string csendpoint, string keywords)
+        public void logservices(HttpRequest request, HttpResponseMessage response, string dbschema, string format,
+             string para, string lang, string token, string cscontent, string csendpoint, string keywords)
         {
             //string csstatus = ;
             //int cscode = ;
@@ -31,9 +32,9 @@ namespace BIZ.Log
                     request.Url.ToString(),
                     request.UserAgent);
             }
-            catch
+            catch ( Exception e)
             {
-
+                e.Message.ToString();
             }
         }
     }

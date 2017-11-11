@@ -97,6 +97,9 @@
     <Compile Include="Search\ResourceServices.cs" />
     <Compile Include="Search\SearchServices.cs" />
     <Compile Include="SubCategories\SubCategoryServices.cs" />
+    <Compile Include="Survey\answer.cs" />
+    <Compile Include="Survey\ChatSurvey.cs" />
+    <Compile Include="Survey\suveryServices.cs" />
     <Compile Include="TopCategories\TopCategoryServices.cs" />
   </ItemGroup>
   <ItemGroup>

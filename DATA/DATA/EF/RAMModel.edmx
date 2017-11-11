@@ -214,6 +214,14 @@
           <Parameter Name="ip" Type="bigint" Mode="In" />
           <Parameter Name="token" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Proc_Insert_Answer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="survey">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+          <Parameter Name="surveyQuestion_ID" Type="int" Mode="In" />
+          <Parameter Name="chatID" Type="int" Mode="In" />
+          <Parameter Name="surveyAnswer" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="language" Type="nvarchar" Mode="In" />
+          <Parameter Name="surveyAnswer_Device" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="RAMModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -428,6 +436,14 @@
             <Parameter Name="cshost" Mode="In" Type="String" />
             <Parameter Name="csurl" Mode="In" Type="String" />
             <Parameter Name="csuseragent" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Insert_Answer">
+            <Parameter Name="token" Mode="In" Type="String" />
+            <Parameter Name="surveyQuestion_ID" Mode="In" Type="Int32" />
+            <Parameter Name="chatID" Mode="In" Type="Int32" />
+            <Parameter Name="surveyAnswer" Mode="In" Type="String" />
+            <Parameter Name="language" Mode="In" Type="String" />
+            <Parameter Name="surveyAnswer_Device" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="TopCategoryList">
@@ -1507,6 +1523,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Proc_apilog" FunctionName="RAMModel.Store.Proc_apilog" />
+          <FunctionImportMapping FunctionImportName="Proc_Insert_Answer" FunctionName="RAMModel.Store.Proc_Insert_Answer" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

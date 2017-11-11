@@ -66,8 +66,8 @@ namespace WebApi.Controllers
             if (result) 
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
-                response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8);
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "send", _email.lang, string.Empty, subject, "email", _email.receiver);
 
                 return response;
@@ -75,8 +75,8 @@ namespace WebApi.Controllers
             else
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
-                response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8);
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "send", _email.lang, string.Empty, subject, "email", _email.receiver);
 
                 return response; 
@@ -136,8 +136,8 @@ namespace WebApi.Controllers
             if (result)
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
-                response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8);
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "send", lang, string.Empty, subject, "eCard", receiver);
 
                 return response;
@@ -145,8 +145,8 @@ namespace WebApi.Controllers
             else
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
-                response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8);
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "send", lang, string.Empty, subject, "eCard", receiver);
 
                 return response;
@@ -154,7 +154,7 @@ namespace WebApi.Controllers
         }
 
 
-// below is for debugging only. It is a "GET"
+        // below is for debugging only. It is a "GET"
 
         ///// <summary>
         ///// eCard sender, does not use eCard class
@@ -178,12 +178,12 @@ namespace WebApi.Controllers
         //    bool ssl = Properties.Settings.Default.ssl;
         //    string loginName = Properties.Settings.Default.eCardloginname;
         //    string pwd = Properties.Settings.Default.eCardpwd;
-            //string lang = _eCard.lang;
-            //string receiver = _eCard.receiver;
-            //string sendfrom = _eCard.sendfrom; //***??
-            //string displayName = _eCard.displayName; //***
-            //string subject = _eCard.subject; // ***??
-            //string body = _eCard.body;
+        //string lang = _eCard.lang;
+        //string receiver = _eCard.receiver;
+        //string sendfrom = _eCard.sendfrom; //***??
+        //string displayName = _eCard.displayName; //***
+        //string subject = _eCard.subject; // ***??
+        //string body = _eCard.body;
         //    bool result = false;
 
         //    try
@@ -199,8 +199,8 @@ namespace WebApi.Controllers
         //    if (result)
         //    {
         //        var response = this.Request.CreateResponse(HttpStatusCode.OK);
-        //        response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
-        //        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8);
+        //        response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
         //        logservices.logservices(request, response, string.Empty, string.Empty, "submit", lang, string.Empty, subject, "eCard", receiver);
 
         //        return response;
@@ -208,8 +208,8 @@ namespace WebApi.Controllers
         //    else
         //    {
         //        var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
-        //        response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
-        //        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //        response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8);
+        //        response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
         //        logservices.logservices(request, response, string.Empty, string.Empty, "submit", lang, string.Empty, subject, "eCard", receiver);
 
         //        return response;
@@ -265,8 +265,8 @@ namespace WebApi.Controllers
             if (result)
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
-                response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8, "application/json");
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.Content = new StringContent("\"status\":\"OK\"", Encoding.UTF8);
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "gsender", _email.lang, string.Empty, subject, "gmail", _account);
 
                 return response;
@@ -274,8 +274,8 @@ namespace WebApi.Controllers
             else
             {
                 var response = this.Request.CreateResponse(HttpStatusCode.NotFound);
-                response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8, "application/json");
-                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.Content = new StringContent("\"status\":\"Failed\"", Encoding.UTF8);
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
                 logservices.logservices(request, response, string.Empty, string.Empty, "gsender", _email.lang, string.Empty, subject, "gmail", _account);
 
                 return response;

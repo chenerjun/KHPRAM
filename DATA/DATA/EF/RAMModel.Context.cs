@@ -748,5 +748,34 @@ namespace DATA.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_apilog", dbschemaParameter, csmethodParameter, formatParameter, paraParameter, langParameter, tokenParameter, cscontentParameter, csendpointParameter, keywordsParameter, csipParameter, csstatusParameter, cscodeParameter, cshostParameter, csurlParameter, csuseragentParameter);
         }
+    
+        public virtual int Proc_Insert_Answer(string token, Nullable<int> surveyQuestion_ID, Nullable<int> chatID, string surveyAnswer, string language, string surveyAnswer_Device)
+        {
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            var surveyQuestion_IDParameter = surveyQuestion_ID.HasValue ?
+                new ObjectParameter("surveyQuestion_ID", surveyQuestion_ID) :
+                new ObjectParameter("surveyQuestion_ID", typeof(int));
+    
+            var chatIDParameter = chatID.HasValue ?
+                new ObjectParameter("chatID", chatID) :
+                new ObjectParameter("chatID", typeof(int));
+    
+            var surveyAnswerParameter = surveyAnswer != null ?
+                new ObjectParameter("surveyAnswer", surveyAnswer) :
+                new ObjectParameter("surveyAnswer", typeof(string));
+    
+            var languageParameter = language != null ?
+                new ObjectParameter("language", language) :
+                new ObjectParameter("language", typeof(string));
+    
+            var surveyAnswer_DeviceParameter = surveyAnswer_Device != null ?
+                new ObjectParameter("surveyAnswer_Device", surveyAnswer_Device) :
+                new ObjectParameter("surveyAnswer_Device", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_Insert_Answer", tokenParameter, surveyQuestion_IDParameter, chatIDParameter, surveyAnswerParameter, languageParameter, surveyAnswer_DeviceParameter);
+        }
     }
 }
