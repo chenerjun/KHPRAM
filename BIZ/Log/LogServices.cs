@@ -1,5 +1,7 @@
 ﻿using DATA.EF;
 using System;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 
@@ -19,14 +21,32 @@ namespace BIZ.Log
             //string csurl = ;
             //string csrequestType = ;
             //string csuseragent = ;
+
+
             try
             {
+            //
+            // 2017-11-21 add 
+            //
+            //string[] computer_name = System.Net.Dns.GetHostEntry(request.ServerVariables["remote_addr"]).HostName.Split(new Char[] { '.' });
+            //string ecname = System.Environment.MachineName;
+            //string txtComputerName = "";
+            //txtComputerName  = computer_name[0].ToString();
+                //IPAddress ip = Dns.GetHostName.GetHostEntry("whybla01").AddressList.Where(o => o.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).First();
+                //string _computerName = Dns.GetHostEntry(ip).HostName.ToString();
+                string txtComputerName = Dns.GetHostName();
+                
+
+
+
                 db.Proc_apilog(dbschema, request.RequestType, 
                     format, para, lang, token, cscontent, csendpoint, keywords,
                     request.UserHostAddress,
                     response.StatusCode.ToString(),
                     Convert.ToInt32(response.StatusCode),
-                    request.UserHostName,
+                    
+                    txtComputerName,//request.UserHostName,
+
                     request.Url.ToString(),
                     request.UserAgent);
             }
