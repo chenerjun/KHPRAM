@@ -21,22 +21,20 @@ namespace BIZ.Log
             //string csurl = ;
             //string csrequestType = ;
             //string csuseragent = ;
-
+            string txtComputerName = "";
 
             try
             {
-            //
-            // 2017-11-21 add 
-            //
-            //string[] computer_name = System.Net.Dns.GetHostEntry(request.ServerVariables["remote_addr"]).HostName.Split(new Char[] { '.' });
-            //string ecname = System.Environment.MachineName;
-            //string txtComputerName = "";
-            //txtComputerName  = computer_name[0].ToString();
-                //IPAddress ip = Dns.GetHostName.GetHostEntry("whybla01").AddressList.Where(o => o.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).First();
-                //string _computerName = Dns.GetHostEntry(ip).HostName.ToString();
-                string txtComputerName = Dns.GetHostName();
-                
+                //
+                // 2017-11-21 add 
+                //
 
+                //string ecname = System.Environment.MachineName; //不好用，出来的结果是Host API Server 的名字，例如：RAMAPI
+                //string[] computer_name = System.Net.Dns.GetHostEntry(request.ServerVariables["remote_addr"]).HostName.Split(new Char[] { '.' });
+                //txtComputerName = computer_name[0].ToString(); //应该还行，但是出了点问题， 家里的T530的request 没有Log
+                //txtComputerName = Dns.GetHostName(); //不好用，出来的结果是Host API Server 的名字，例如：RAMAPI
+
+                txtComputerName = request.UserHostName;  // 出来的还是IP, 只有这个可靠点
 
 
                 db.Proc_apilog(dbschema, request.RequestType, 
@@ -45,7 +43,8 @@ namespace BIZ.Log
                     response.StatusCode.ToString(),
                     Convert.ToInt32(response.StatusCode),
                     
-                    txtComputerName,//request.UserHostName,
+                    txtComputerName,
+                    //request.UserHostName,
 
                     request.Url.ToString(),
                     request.UserAgent);
