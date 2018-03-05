@@ -1,5 +1,4 @@
 CREATE view [dbo].[V_ThisWeek_User_From_Top30_City]
-with encryption
 AS
 SELECT * FROM 
 ( select TOP (30) cscity + ', '+csregion+', '+ cscountry as [city] , count(apilogid) as [num]
